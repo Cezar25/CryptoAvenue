@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\ConsoleProject\\ConsoleProject.csproj": {}
+    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\ConsoleProject\\ConsoleProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\ConsoleProject\\ConsoleProject.csproj": {
+    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\ConsoleProject\\ConsoleProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\ConsoleProject\\ConsoleProject.csproj",
+        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\ConsoleProject\\ConsoleProject.csproj",
         "projectName": "ConsoleProject",
-        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\ConsoleProject\\ConsoleProject.csproj",
+        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\ConsoleProject\\ConsoleProject.csproj",
         "packagesPath": "C:\\Users\\cezar.buna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\ConsoleProject\\obj\\",
+        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\ConsoleProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cezar.buna\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,22 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
