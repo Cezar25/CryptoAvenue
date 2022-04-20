@@ -14,8 +14,8 @@ namespace ConsoleProject.Migrations
                 columns: table => new
                 {
                     CoinID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Abreviation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Abreviation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ValueInEUR = table.Column<double>(type: "float", nullable: false),
                     ValueInUSD = table.Column<double>(type: "float", nullable: false),
                     ValueInBTC = table.Column<double>(type: "float", nullable: false)
@@ -30,11 +30,11 @@ namespace ConsoleProject.Migrations
                 columns: table => new
                 {
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    SecurityQuestion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityQuestion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SecurityAnswer = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrivateProfile = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
