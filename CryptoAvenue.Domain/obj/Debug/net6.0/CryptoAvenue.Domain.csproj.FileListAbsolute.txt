@@ -1,0 +1,14 @@
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\bin\Debug\net6.0\CryptoAvenue.Domain.deps.json
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\bin\Debug\net6.0\CryptoAvenue.Domain.runtimeconfig.json
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\bin\Debug\net6.0\CryptoAvenue.Domain.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\bin\Debug\net6.0\CryptoAvenue.Domain.pdb
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.csproj.AssemblyReference.cache
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.AssemblyInfoInputs.cache
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.AssemblyInfo.cs
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.csproj.CoreCompileInputs.cache
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\refint\CryptoAvenue.Domain.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.pdb
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\CryptoAvenue.Domain.genruntimeconfig.cache
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue.Domain\obj\Debug\net6.0\ref\CryptoAvenue.Domain.dll

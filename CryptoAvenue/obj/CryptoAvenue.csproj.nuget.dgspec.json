@@ -4,14 +4,174 @@
     "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj": {
+    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Application\\CryptoAvenue.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj",
-        "projectName": "CryptoAvenue",
-        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj",
+        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Application\\CryptoAvenue.Application.csproj",
+        "projectName": "CryptoAvenue.Application",
+        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Application\\CryptoAvenue.Application.csproj",
         "packagesPath": "C:\\Users\\cezar.buna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\obj\\",
+        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cezar.buna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj": {
+                "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.7.10.11, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj",
+        "projectName": "CryptoAvenue.Dal",
+        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj",
+        "packagesPath": "C:\\Users\\cezar.buna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cezar.buna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj": {
+                "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj",
+        "projectName": "CryptoAvenue.Domain",
+        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj",
+        "packagesPath": "C:\\Users\\cezar.buna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cezar.buna\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +200,106 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj",
+        "projectName": "CryptoAvenue",
+        "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\CryptoAvenue.csproj",
+        "packagesPath": "C:\\Users\\cezar.buna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cezar.buna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Application\\CryptoAvenue.Application.csproj": {
+                "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Application\\CryptoAvenue.Application.csproj"
+              },
+              "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj": {
+                "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Dal\\CryptoAvenue.Dal.csproj"
+              },
+              "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj": {
+                "projectPath": "C:\\Users\\cezar.buna\\Desktop\\AmdarisMainProject\\CryptoAvenue\\CryptoAvenue.Domain\\CryptoAvenue.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

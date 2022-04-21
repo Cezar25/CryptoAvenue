@@ -16,7 +16,6 @@ namespace ConsoleProject.Domain
         public Guid UserID { get; set; }
         public User WalletOwner { get; set; }
         public double CoinAmount { get; set; }
-
     }
 
 }
