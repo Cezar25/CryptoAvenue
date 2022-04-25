@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Queries.WalletQueries;
 using CryptoAvenue.Dal;
+using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using System;
@@ -12,17 +13,17 @@ namespace CryptoAvenue.Application.QueryHandlers.WalletQueryHandlers
 {
     public class GetWalletByIDHandler : IRequestHandler<GetWalletByID, Wallet>
     {
-        private readonly CryptoAvenueContext context;
+        private readonly IWalletRepository repository;
 
-        public GetWalletByIDHandler(CryptoAvenueContext context)
+        public GetWalletByIDHandler(IWalletRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
-        public async Task<Wallet> Handle(GetWalletByID request, CancellationToken cancellationToken)
+        public Task<Wallet> Handle(GetWalletByID request, CancellationToken cancellationToken)
         {
-            var wallet = context.Wallets.SingleOrDefault(x => x.Id == request.WalletID);
-            return wallet;
+            var wallet = repository.GetAll().SingleOrDefault(x => x.Id == request.WalletId);
+            return Task.FromResult(wallet);
         }
     }
 }

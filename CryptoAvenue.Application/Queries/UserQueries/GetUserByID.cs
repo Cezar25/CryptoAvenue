@@ -10,6 +10,6 @@ namespace CryptoAvenue.Application.Queries.UserQueries
 {
     public class GetUserByID : IRequest<User>
     {
-        public Guid UserID { get; set; }
+        public Guid UserId { get; set; }
     }
 }

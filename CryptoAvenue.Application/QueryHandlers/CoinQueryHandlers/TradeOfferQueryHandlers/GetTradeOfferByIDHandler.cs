@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Queries.TradeOfferQueries;
 using CryptoAvenue.Dal;
+using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using System;
@@ -12,15 +13,17 @@ namespace CryptoAvenue.Application.QueryHandlers.TradeOfferQueryHandlers
 {
     public class GetTradeOfferByIDHandler : IRequestHandler<GetTradeOfferByID, TradeOffer>
     {
-        private readonly CryptoAvenueContext context;
-        public GetTradeOfferByIDHandler(CryptoAvenueContext context)
+        private readonly ITradeOfferRepository repository;
+
+        public GetTradeOfferByIDHandler(ITradeOfferRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
-        public async Task<TradeOffer> Handle(GetTradeOfferByID request, CancellationToken cancellationToken)
+
+        public Task<TradeOffer> Handle(GetTradeOfferByID request, CancellationToken cancellationToken)
         {
-            var tradeOffer = context.Offers.SingleOrDefault(x => x.Id == request.TradeOfferID);
-            return tradeOffer;
+            var tradeOffer = repository.GetAll().SingleOrDefault(x => x.Id == request.TradeOfferId);
+            return Task.FromResult(tradeOffer);
         }
     }
 }

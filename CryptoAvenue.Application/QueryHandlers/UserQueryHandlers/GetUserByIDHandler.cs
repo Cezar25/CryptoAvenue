@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Queries.UserQueries;
 using CryptoAvenue.Dal;
+using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using System;
@@ -12,17 +13,17 @@ namespace CryptoAvenue.Application.QueryHandlers.UserQueryHandlers
 {
     public class GetUserByIDHandler : IRequestHandler<GetUserByID, User>
     {
-        private readonly CryptoAvenueContext context;
+        private readonly IUserRepository repository;
 
-        public GetUserByIDHandler(CryptoAvenueContext context)
+        public GetUserByIDHandler(IUserRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
-        public async Task<User> Handle(GetUserByID request, CancellationToken cancellationToken)
+        public Task<User> Handle(GetUserByID request, CancellationToken cancellationToken)
         {
-            var user = context.Users.SingleOrDefault(x => x.Id == request.UserID);
-            return user;
+            var user = repository.GetAll().SingleOrDefault(x => x.Id == request.UserId);
+            return Task.FromResult(user);
         }
     }
 }

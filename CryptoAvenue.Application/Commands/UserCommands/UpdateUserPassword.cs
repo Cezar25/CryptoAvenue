@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoAvenue.Application.Queries.WalletQueries
+namespace CryptoAvenue.Application.Commands.UserCommands
 {
-    public class GetWalletsByUserID : IRequest<List<Wallet>>
+    public class UpdateUserPassword : IRequest<User>
     {
         public Guid UserId { get; set; }
+        public string UserPassword { get; set; }
     }
 }

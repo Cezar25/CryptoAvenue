@@ -10,6 +10,6 @@ namespace CryptoAvenue.Application.Queries.CoinQueries
 {
     public class GetCoinByID : IRequest<Coin>
     {
-        public Guid CoinID { get; set; }
+        public Guid CoinId { get; set; }
     }
 }

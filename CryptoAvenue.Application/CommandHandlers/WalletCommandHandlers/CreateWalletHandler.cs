@@ -20,12 +20,12 @@ namespace CryptoAvenue.Application.CommandHandlers
             this.repository = repository;
         }
 
-        public async Task<Wallet> Handle(CreateWallet request, CancellationToken cancellationToken)
+        public Task<Wallet> Handle(CreateWallet request, CancellationToken cancellationToken)
         {
             var wallet = new Wallet()
             {
-                CoinID = request.CoinID,
-                UserID = request.UserID,
+                CoinID = request.CoinId,
+                UserID = request.UserId,
                 CoinAmount = request.CoinAmount
             };
 
@@ -34,7 +34,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             repository.Insert(wallet);
             repository.SaveChanges();
 
-            return wallet;
+            return Task.FromResult(wallet);
         }
     }
 }

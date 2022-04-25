@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Dal;
+using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +14,16 @@ namespace CryptoAvenue.Application.QueryHandlers
 {
     public class GetAllWalletsHandler : IRequestHandler<GetAllWallets, List<Wallet>>
     {
-        private readonly CryptoAvenueContext context;
+        private readonly IWalletRepository repository;
 
-        public GetAllWalletsHandler(CryptoAvenueContext context)
+        public GetAllWalletsHandler(IWalletRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
         public async Task<List<Wallet>> Handle(GetAllWallets request, CancellationToken cancellationToken)
         {
-            return context.Wallets.ToList();
+            return repository.GetAll().ToList();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             this.repository = repository;
         }
 
-        public async Task<Coin> Handle(CreateCoin request, CancellationToken cancellationToken)
+        public Task<Coin> Handle(CreateCoin request, CancellationToken cancellationToken)
         {
             var coin = new Coin() { Name = request.Name , Abreviation = request.Abreviation, ValueInEUR = request.ValueInEUR, ValueInUSD = request.ValueInUSD, ValueInBTC = request.ValueInUSD};
 
@@ -28,7 +28,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             repository.Insert(coin);
             repository.SaveChanges();
 
-            return coin;
+            return Task.FromResult(coin);
         }
     }
 }

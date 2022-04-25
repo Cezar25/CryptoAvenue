@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Dal;
+using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +14,16 @@ namespace CryptoAvenue.Application.QueryHandlers.TradeOfferQueryHandlers
 {
     public class GetAllTradeOffersHandler : IRequestHandler<GetAllTradeOffers, List<TradeOffer>>
     {
-        private readonly CryptoAvenueContext context;
+        private readonly ITradeOfferRepository repository;
 
-        public GetAllTradeOffersHandler(CryptoAvenueContext context)
+        public GetAllTradeOffersHandler(ITradeOfferRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
-        public async Task<List<TradeOffer>> Handle(GetAllTradeOffers request, CancellationToken cancellationToken)
+        public Task<List<TradeOffer>> Handle(GetAllTradeOffers request, CancellationToken cancellationToken)
         {
-            return await context.Offers.ToListAsync();
+            return Task.FromResult(repository.GetAll().ToList());
         }
     }
 }

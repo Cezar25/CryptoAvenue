@@ -10,8 +10,8 @@ namespace CryptoAvenue.Application.Commands
 {
     public class CreateWallet : IRequest<Wallet>
     {
-        public Guid CoinID { get; set; }
-        public Guid UserID { get; set; }
+        public Guid CoinId { get; set; }
+        public Guid UserId { get; set; }
         public double CoinAmount { get; set; }
     }
 }

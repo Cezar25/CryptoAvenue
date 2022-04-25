@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Queries.CoinQueries;
 using CryptoAvenue.Dal;
+using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using System;
@@ -12,17 +13,17 @@ namespace CryptoAvenue.Application.QueryHandlers.CoinQueryHandlers
 {
     public class GetCoinByIDHandler : IRequestHandler<GetCoinByID, Coin>
     {
-        private readonly CryptoAvenueContext context;
+        private readonly ICoinRepository repository;
 
-        public GetCoinByIDHandler(CryptoAvenueContext context)
+        public GetCoinByIDHandler(ICoinRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
-        public async Task<Coin> Handle(GetCoinByID request, CancellationToken cancellationToken)
+        public Task<Coin> Handle(GetCoinByID request, CancellationToken cancellationToken)
         {
-            var coin = context.Coins.SingleOrDefault(c => c.Id == request.CoinID);
-            return coin;
+            var coin = repository.GetAll().SingleOrDefault(c => c.Id == request.CoinId);
+            return Task.FromResult(coin);
         }
     }
 }

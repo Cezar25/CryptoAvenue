@@ -10,6 +10,6 @@ namespace CryptoAvenue.Application.Queries.TradeOfferQueries
 {
     public class GetTradeOffersBySenderID : IRequest<List<TradeOffer>>
     {
-        public Guid SenderID { get; set; }
+        public Guid SenderId { get; set; }
     }
 }

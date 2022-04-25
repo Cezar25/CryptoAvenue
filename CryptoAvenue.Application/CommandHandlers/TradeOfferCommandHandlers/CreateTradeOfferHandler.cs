@@ -19,14 +19,14 @@ namespace CryptoAvenue.Application.CommandHandlers
             this.repository = repository;
         }
 
-        public async Task<TradeOffer> Handle(CreateTradeOffer request, CancellationToken cancellationToken)
+        public Task<TradeOffer> Handle(CreateTradeOffer request, CancellationToken cancellationToken)
         {
             var tradeOffer = new TradeOffer()
             {
-                SenderID = request.SenderID,
-                RecipientID = request.RecipientID,
-                SentCoinID = request.SentCoinID,
-                ReceivedCoinID = request.ReceivedCoinID,
+                SenderID = request.SenderId,
+                RecipientID = request.RecipientId,
+                SentCoinID = request.SentCoinId,
+                ReceivedCoinID = request.ReceivedCoinId,
                 SentAmount = request.SentAmount,
                 ReceivedAmount = request.ReceivedAmount
             };
@@ -36,7 +36,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             repository.Insert(tradeOffer);
             repository.SaveChanges();
 
-            return tradeOffer;
+            return Task.FromResult(tradeOffer);
         }
     }
 }
