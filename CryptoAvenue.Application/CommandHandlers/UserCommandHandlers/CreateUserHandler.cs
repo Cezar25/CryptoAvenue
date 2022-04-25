@@ -19,7 +19,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             this.repository = repository;
         }
 
-        public async Task<User> Handle(CreateUser request, CancellationToken cancellationToken)
+        public Task<User> Handle(CreateUser request, CancellationToken cancellationToken)
         {
             var user = new User()
             {
@@ -34,7 +34,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             repository.Insert(user);
             repository.SaveChanges();
 
-            return user;
+            return Task.FromResult(user);
         }
     }
 }
