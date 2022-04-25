@@ -9,49 +9,15 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Dal.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly CryptoAvenueContext context;
-
-        public UserRepository(CryptoAvenueContext context)
+        public UserRepository(CryptoAvenueContext context) : base(context)
         {
-            this.context = context;
-        }
-
-        public void DeleteUser(Guid userID)
-        {
-            User user = context.Users.Find(userID);
-            context.Users.Remove(user);
         }
 
         public User GetUserByEmail(string email)
         {
-            return context.Users.Find(email);
-        }
-
-        public User GetUserByID(Guid userID)
-        {
-            return context.Users.Find(userID);
-        }
-
-        public IEnumerable<User> GetUsers()
-        {
-            return context.Users.ToList();
-        }
-
-        public void InsertUser(User user)
-        {
-            context.Add(user);
-        }
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        public void UpdateUser(User user)
-        {
-            context.Entry(user).State = EntityState.Modified;
+            return context.Users.SingleOrDefault(x => x.Email == email);
         }
     }
 }

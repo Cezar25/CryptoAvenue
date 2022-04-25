@@ -516,6 +516,7 @@
       "CryptoAvenue.Dal/1.0.0": {
         "dependencies": {
           "CryptoAvenue.Domain": "1.0.0",
+          "MediatR": "10.0.1",
           "Microsoft.EntityFrameworkCore": "6.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.4"
         },

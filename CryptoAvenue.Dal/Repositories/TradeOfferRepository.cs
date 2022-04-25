@@ -9,29 +9,10 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Dal.Repositories
 {
-    public class TradeOfferRepository : ITradeOfferRepository
+    public class TradeOfferRepository : GenericRepository<TradeOffer>, ITradeOfferRepository
     {
-        private readonly CryptoAvenueContext context;
-
-        public TradeOfferRepository(CryptoAvenueContext context)
+        public TradeOfferRepository(CryptoAvenueContext context) : base(context)
         {
-            this.context = context;
-        }
-
-        public void DeleteWallet(Guid tradeOfferID)
-        {
-            Wallet wallet = context.Wallets.FirstOrDefault(x => x.WalletID == tradeOfferID);
-            context.Wallets.Remove(wallet);
-        }
-
-        public TradeOffer GetOfferByID(Guid tradeOfferID)
-        {
-            return context.Offers.Find(tradeOfferID);
-        }
-
-        public IEnumerable<TradeOffer> GetOffers()
-        {
-            return context.Offers.ToList();
         }
 
         public IEnumerable<TradeOffer> GetOffersByReceivedCoinID(Guid receivedCoinID)
@@ -52,21 +33,6 @@ namespace CryptoAvenue.Dal.Repositories
         public IEnumerable<TradeOffer> GetOffersBySentCoinID(Guid sentCoinID)
         {
             return context.Offers.Where(x => x.SentCoinID == sentCoinID).ToList();
-        }
-
-        public void InsertWallet(TradeOffer tradeOffer)
-        {
-            context.Add(tradeOffer);
-        }
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        public void UpdateWallet(TradeOffer tradeOffer)
-        {
-            context.Entry(tradeOffer).State = EntityState.Modified;
         }
     }
 }

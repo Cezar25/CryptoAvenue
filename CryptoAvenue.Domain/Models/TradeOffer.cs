@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Domain.Models
 {
-    public class TradeOffer
+    public class TradeOffer : BaseEntity
     {
-        public Guid TradeOfferID { get; set; } = Guid.NewGuid();
         public User Sender { get; set; }
         public User Recipient { get; set; }
         public Coin SentCoin { get; set; }
@@ -24,7 +23,7 @@ namespace CryptoAvenue.Domain.Models
         public override bool Equals(object? obj)
         {
             return obj is TradeOffer offer &&
-                   TradeOfferID.Equals(offer.TradeOfferID) &&
+                   Id.Equals(offer.Id) &&
                    EqualityComparer<User>.Default.Equals(Sender, offer.Sender) &&
                    EqualityComparer<User>.Default.Equals(Recipient, offer.Recipient) &&
                    EqualityComparer<Coin>.Default.Equals(SentCoin, offer.SentCoin) &&
@@ -40,7 +39,7 @@ namespace CryptoAvenue.Domain.Models
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
-            hash.Add(TradeOfferID);
+            hash.Add(Id);
             hash.Add(Sender);
             hash.Add(Recipient);
             hash.Add(SentCoin);

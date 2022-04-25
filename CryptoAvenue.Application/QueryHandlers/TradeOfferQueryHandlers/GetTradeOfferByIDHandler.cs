@@ -19,7 +19,7 @@ namespace CryptoAvenue.Application.QueryHandlers.TradeOfferQueryHandlers
         }
         public async Task<TradeOffer> Handle(GetTradeOfferByID request, CancellationToken cancellationToken)
         {
-            var tradeOffer = context.Offers.SingleOrDefault(x => x.TradeOfferID == request.TradeOfferID);
+            var tradeOffer = context.Offers.SingleOrDefault(x => x.Id == request.TradeOfferID);
             return tradeOffer;
         }
     }

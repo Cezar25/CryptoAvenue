@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Domain.Models
 {
-    public class Wallet
+    public class Wallet : BaseEntity
     {
-        public Guid WalletID { get; set; } = Guid.NewGuid();
         public Guid CoinID { get; set; }
         public Coin CoinType { get; set; }
         public Guid UserID { get; set; }
@@ -19,7 +18,7 @@ namespace CryptoAvenue.Domain.Models
         public override bool Equals(object? obj)
         {
             return obj is Wallet wallet &&
-                   WalletID.Equals(wallet.WalletID) &&
+                   Id.Equals(wallet.Id) &&
                    CoinID.Equals(wallet.CoinID) &&
                    EqualityComparer<Coin>.Default.Equals(CoinType, wallet.CoinType) &&
                    UserID.Equals(wallet.UserID) &&
@@ -29,7 +28,7 @@ namespace CryptoAvenue.Domain.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(WalletID, CoinID, CoinType, UserID, WalletOwner, CoinAmount);
+            return HashCode.Combine(Id, CoinID, CoinType, UserID, WalletOwner, CoinAmount);
         }
         #endregion
     }

@@ -17,7 +17,7 @@ namespace CryptoAvenue.Dal.Repositories
         }
         public Coin GetCoinByAbreviation(string abreviation)
         {
-            throw new NotImplementedException();
+            return context.Coins.SingleOrDefault(x => x.Abreviation == abreviation);
         }
     }
 }

@@ -21,11 +21,14 @@ namespace CryptoAvenue.Application.CommandHandlers
 
         public async Task<Coin> Handle(CreateCoin request, CancellationToken cancellationToken)
         {
-            var addedCoin = new Coin() { Name = request.Name , Abreviation = request.Abreviation, ValueInEUR = request.ValueInEUR, ValueInUSD = request.ValueInUSD, ValueInBTC = request.ValueInUSD};
+            var coin = new Coin() { Name = request.Name , Abreviation = request.Abreviation, ValueInEUR = request.ValueInEUR, ValueInUSD = request.ValueInUSD, ValueInBTC = request.ValueInUSD};
 
-            repository.InsertCoin(addedCoin);
-            await repository.SaveAsync(cancellationToken);
-            return addedCoin;
+            if (coin == null) return null;
+
+            repository.Insert(coin);
+            repository.SaveChanges();
+
+            return coin;
         }
     }
 }

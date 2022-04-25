@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.QueryHandlers.UserQueryHandlers
 
         public async Task<User> Handle(GetUserByID request, CancellationToken cancellationToken)
         {
-            var user = context.Users.SingleOrDefault(x => x.UserID == request.UserID);
+            var user = context.Users.SingleOrDefault(x => x.Id == request.UserID);
             return user;
         }
     }

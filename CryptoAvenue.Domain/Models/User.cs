@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Domain.Models
 {
-    public class User
+    public class User : BaseEntity
     {
-        public Guid UserID { get; set; } = Guid.NewGuid();
         public string Email { get; set; }
         public string Password { get; set; }
         public int Age { get; set; }
@@ -19,23 +18,25 @@ namespace CryptoAvenue.Domain.Models
         #region Nav Properties 
         public ICollection<TradeOffer> OffersSent { get; set; } = new List<TradeOffer>();
         public ICollection<TradeOffer> OffersReceived { get; set; } = new List<TradeOffer>();
+
+        
         #endregion
 
         #region ToString()
         public override string ToString()
         {
-            return $"Email: {Email}\nPassword: {Password}\nAge: {Age}\nUserID: {UserID}\nSecurity Question: {SecurityQuestion}\nSecurity Answer: {SecurityAnswer}\nPrivate profile:{PrivateProfile}\n";
+            return $"Email: {Email}\nPassword: {Password}\nAge: {Age}\nUserID: {Id}\nSecurity Question: {SecurityQuestion}\nSecurity Answer: {SecurityAnswer}\nPrivate profile:{PrivateProfile}\n";
         }
         #endregion
 
         #region Equals and GetHashCode
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is User user &&
+                   Id.Equals(user.Id) &&
                    Email == user.Email &&
                    Password == user.Password &&
                    Age == user.Age &&
-                   UserID.Equals(user.UserID) &&
                    SecurityQuestion == user.SecurityQuestion &&
                    SecurityAnswer == user.SecurityAnswer &&
                    PrivateProfile == user.PrivateProfile &&
@@ -46,10 +47,10 @@ namespace CryptoAvenue.Domain.Models
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
+            hash.Add(Id);
             hash.Add(Email);
             hash.Add(Password);
             hash.Add(Age);
-            hash.Add(UserID);
             hash.Add(SecurityQuestion);
             hash.Add(SecurityAnswer);
             hash.Add(PrivateProfile);

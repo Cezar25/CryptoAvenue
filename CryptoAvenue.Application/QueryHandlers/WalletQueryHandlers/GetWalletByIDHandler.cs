@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.QueryHandlers.WalletQueryHandlers
 
         public async Task<Wallet> Handle(GetWalletByID request, CancellationToken cancellationToken)
         {
-            var wallet = context.Wallets.SingleOrDefault(x => x.WalletID == request.WalletID);
+            var wallet = context.Wallets.SingleOrDefault(x => x.Id == request.WalletID);
             return wallet;
         }
     }
