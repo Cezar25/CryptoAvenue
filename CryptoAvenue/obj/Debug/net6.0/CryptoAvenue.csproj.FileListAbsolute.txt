@@ -68,3 +68,7 @@ C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Deb
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\AWSSDK.Core.dll
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\MediatR.dll
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\MediatR.Contracts.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
