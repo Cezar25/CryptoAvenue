@@ -27,7 +27,8 @@ namespace CryptoAvenue.Application.CommandHandlers
                 Password = request.Password,
                 Age = request.Age,
                 SecurityQuestion = request.SecurityQuestion,
-                SecurityAnswer = request.SecurityAnswer
+                SecurityAnswer = request.SecurityAnswer,
+                PrivateProfile = request.PrivateProfile
             };
             if (user == null) return null;
 

@@ -1,4 +1,5 @@
 using CryptoAvenue.Application.CommandHandlers;
+using CryptoAvenue.Application.Commands;
 using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Dal;
 using CryptoAvenue.Dal.Repositories;
@@ -29,9 +30,11 @@ builder.Services.AddScoped<ITradeOfferRepository, TradeOfferRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddMediatR(typeof(CreateCoin));
+builder.Services.AddMediatR(typeof(CreateUser));
+builder.Services.AddMediatR(typeof(CreateWallet));
 //builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
-//builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddDbContext<CryptoAvenueContext>(options
  => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));

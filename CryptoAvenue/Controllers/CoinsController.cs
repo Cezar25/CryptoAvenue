@@ -68,6 +68,27 @@ namespace CryptoAvenue.Controllers
             return Ok(foundCoin);
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateCoin(Guid id,[FromBody] CoinPutPostDto updatedCoin)
+        {
+            var command = new UpdateCoin
+            {
+                Name = updatedCoin.Name,
+                Abreviation = updatedCoin.Abreviation,
+                ValueInEUR = updatedCoin.ValueInEUR,
+                ValueInUSD = updatedCoin.ValueInUSD,
+                ValueInBTC = updatedCoin.ValueInBTC
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
+        }
+
         [HttpDelete]
         [Route("id")]
         public async Task<IActionResult> DeleteCoin(Guid id)
