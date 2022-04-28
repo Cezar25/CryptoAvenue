@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CryptoAvenue.Application.Commands.CoinCommands;
 using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Application.Queries.CoinQueries;
 using CryptoAvenue.Domain.Models;
@@ -20,20 +21,6 @@ namespace CryptoAvenue.Controllers
         {
             _mediator = mediator;
             _mapper = mapper;
-        }
-
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            var query = new GetCoinByID { CoinId = id };
-            var coin = await _mediator.Send(query);
-
-            if(coin == null)
-                return NotFound();
-
-            var foundCoin = _mapper.Map<CoinGetDto>(coin);
-            return Ok(foundCoin);
         }
 
         [HttpPost]
@@ -58,48 +45,40 @@ namespace CryptoAvenue.Controllers
             return CreatedAtAction(nameof(GetById), new { id = coin.Id }, coin);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllCoins()
+        {
+            var coins = await _mediator.Send(new GetAllCoins());
 
+            var foundCoins = _mapper.Map<List<CoinGetDto>>(coins);
+            return Ok(foundCoins);
+        }
 
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var query = new GetCoinByID { CoinId = id };
+            var coin = await _mediator.Send(query);
 
+            if (coin == null)
+                return NotFound();
 
+            var foundCoin = _mapper.Map<CoinGetDto>(coin);
+            return Ok(foundCoin);
+        }
 
+        [HttpDelete]
+        [Route("id")]
+        public async Task<IActionResult> DeleteCoin(Guid id)
+        {
+            var command = new DeleteCoin { CoinId = id };
+            var foundCoin = await _mediator.Send(command);
 
+            if (foundCoin == null) return NotFound();
 
+            return NoContent();
+        }
 
-        //[HttpGet]
-        //    public IActionResult GetCoinById()
-        //    {
-        //        var coin = new Coin()
-        //        {
-        //            Name = "Dollar",
-        //            Abreviation = "USD",
-        //            ValueInEUR = 0.8,
-        //            ValueInUSD = 1,
-        //            ValueInBTC = 2
-        //        };
-        //        return Ok(coin);
-        //    }
-
-        //    [HttpPost]
-        //    public IActionResult CreateCoin(CoinDto newCoin)
-        //    {
-        //        return CreatedAtAction(nameof(GetCoinById), newCoin);
-        //    }
-
-        //    [HttpGet]
-        //    [Route("{id}")]
-        //    public IActionResult GetCoinById(Guid id)
-        //    {
-        //        var coin = new Coin()
-        //        {
-        //            Name = "Dollar",
-        //            Abreviation = "USD",
-        //            ValueInEUR = 0.8,
-        //            ValueInUSD = 1,
-        //            ValueInBTC = 2,
-        //            Id = id
-        //        };
-        //        return Ok(coin);
-        //    }
     }
 }
