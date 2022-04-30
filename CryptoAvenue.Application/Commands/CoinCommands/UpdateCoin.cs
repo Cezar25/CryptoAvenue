@@ -10,6 +10,7 @@ namespace CryptoAvenue.Application.Commands.CoinCommands
 {
     public class UpdateCoin : IRequest<Coin>
     {
+        public Guid CoinId { get; set; }
         public string Name { get; set; }
         public string Abreviation { get; set; }
         public double ValueInEUR { get; set; }

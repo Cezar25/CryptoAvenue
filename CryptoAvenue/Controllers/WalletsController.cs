@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CryptoAvenue.Application.Commands;
 using CryptoAvenue.Application.Commands.UserWalletCommands;
+using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Application.Queries.WalletQueries;
 using CryptoAvenue.Domain.Models;
 using CryptoAvenue.Dtos.WalletDtos;
@@ -55,12 +56,42 @@ namespace CryptoAvenue.Controllers
             return Ok(foundWallet);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllWallets()
+        {
+            var wallets = await _mediator.Send(new GetAllWallets());
+
+            var foundWallets = _mapper.Map<List<WalletGetDto>>(wallets);
+            return Ok(foundWallets);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateWallet(Guid id, WalletPutPostDto updatedWallet)
+        {
+            var command = new UpdateWallet
+            {
+                WalletId = id,
+                CoinID = updatedWallet.CoinID,
+                UserID = updatedWallet.UserID,
+                CoinAmount = updatedWallet.CoinAmount
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
+        }
+
         [HttpPut]
         [Route("{id}/{amount}")]
         public async Task<IActionResult> UpdateWalletCoinAmount(Guid id, WalletPutPostDto updatedWallet, double amount)
         {
             var command = new UpdateWallet
             {
+                WalletId=id,
                 CoinID = updatedWallet.CoinID,
                 UserID = updatedWallet.UserID,
                 CoinAmount = amount

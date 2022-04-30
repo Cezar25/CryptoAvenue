@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CryptoAvenue.Application.Commands;
 using CryptoAvenue.Application.Commands.UserCommands;
+using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Application.Queries.UserQueries;
 using CryptoAvenue.Domain.Models;
 using CryptoAvenue.Dtos.UserDtos;
@@ -58,34 +59,45 @@ namespace CryptoAvenue.Controllers
             return Ok(foundUser);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _mediator.Send(new GetAllUsers());
+            
+            var foundUsers = _mapper.Map<List<UserGetDto>>(users);
+            return Ok(foundUsers);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserPutPostDto updatedUser)
+        {
+            var command = new UpdateUser
+            {
+                UserId = id,
+                Email = updatedUser.Email,
+                Password = updatedUser.Password,
+                SecurityQuestion = updatedUser.SecurityQuestion,
+                SecurityAnswer = updatedUser.SecurityAnswer,
+                PrivateProfile = updatedUser.PrivateProfile
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
+        }
+
         [HttpPut]
         [Route("{id}/{email}")]
-        public async Task<IActionResult> UpdateUserEmail(Guid id,UserPutPostDto updatedUser, string email)
+        public async Task<IActionResult> UpdateUserEmail(Guid id, UserPutPostDto updatedUser, string email)
         {
             var command = new UpdateUser
             {
                 Email = email,
                 Password = updatedUser.Password,
-                SecurityQuestion= updatedUser.SecurityQuestion,
-                SecurityAnswer= updatedUser.SecurityAnswer,
-                PrivateProfile= updatedUser.PrivateProfile
-            };
-
-            var result = await _mediator.Send(command);
-
-            if (result == null)
-                return NotFound();
-
-            return NoContent();
-        }
-        [HttpPut]
-        [Route("{id}/{password}")]
-        public async Task<IActionResult> UpdateUserPassword(Guid id, UserPutPostDto updatedUser, string password)
-        {
-            var command = new UpdateUser
-            {
-                Email = updatedUser.Email,
-                Password = password,
                 SecurityQuestion = updatedUser.SecurityQuestion,
                 SecurityAnswer = updatedUser.SecurityAnswer,
                 PrivateProfile = updatedUser.PrivateProfile
@@ -98,48 +110,68 @@ namespace CryptoAvenue.Controllers
 
             return NoContent();
         }
+        //[HttpPut]
+        //[Route("{id}/{password}")]
+        //public async Task<IActionResult> UpdateUserPassword(Guid id, UserPutPostDto updatedUser, string password)
+        //{
+        //    var command = new UpdateUser
+        //    {
+        //        Email = updatedUser.Email,
+        //        Password = password,
+        //        SecurityQuestion = updatedUser.SecurityQuestion,
+        //        SecurityAnswer = updatedUser.SecurityAnswer,
+        //        PrivateProfile = updatedUser.PrivateProfile
+        //    };
 
-        [HttpPut]
-        [Route("{id}/{question}/{answer}")]
-        public async Task<IActionResult> UpdateUserQnA(Guid id, UserPutPostDto updatedUser, string question, string answer)
-        {
-            var command = new UpdateUser
-            {
-                Email = updatedUser.Email,
-                Password = updatedUser.Password,
-                SecurityQuestion = question,
-                SecurityAnswer = answer,
-                PrivateProfile = updatedUser.PrivateProfile
-            };
+        //    var result = await _mediator.Send(command);
 
-            var result = await _mediator.Send(command);
+        //    if (result == null)
+        //        return NotFound();
 
-            if (result == null)
-                return NotFound();
+        //    return NoContent();
+        //}
 
-            return NoContent();
-        }
+        //[HttpPut]
+        //[Route("{id}/{question}/{answer}")]
+        //public async Task<IActionResult> UpdateUserQnA(Guid id, UserPutPostDto updatedUser, string question, string answer)
+        //{
+        //    var command = new UpdateUser
+        //    {
+        //        Email = updatedUser.Email,
+        //        Password = updatedUser.Password,
+        //        SecurityQuestion = question,
+        //        SecurityAnswer = answer,
+        //        PrivateProfile = updatedUser.PrivateProfile
+        //    };
 
-        [HttpPut]
-        [Route("{id}/{profileType}")]
-        public async Task<IActionResult> UpdateUserProfileType(Guid id, UserPutPostDto updatedUser, bool profileType)
-        {
-            var command = new UpdateUser
-            {
-                Email = updatedUser.Email,
-                Password = updatedUser.Password,
-                SecurityQuestion = updatedUser.SecurityQuestion,
-                SecurityAnswer = updatedUser.SecurityAnswer,
-                PrivateProfile = profileType
-            };
+        //    var result = await _mediator.Send(command);
 
-            var result = await _mediator.Send(command);
+        //    if (result == null)
+        //        return NotFound();
 
-            if (result == null)
-                return NotFound();
+        //    return NoContent();
+        //}
 
-            return NoContent();
-        }
+        //[HttpPut]
+        //[Route("{id}/{profileType}")]
+        //public async Task<IActionResult> UpdateUserProfileType(Guid id, UserPutPostDto updatedUser, bool profileType)
+        //{
+        //    var command = new UpdateUser
+        //    {
+        //        Email = updatedUser.Email,
+        //        Password = updatedUser.Password,
+        //        SecurityQuestion = updatedUser.SecurityQuestion,
+        //        SecurityAnswer = updatedUser.SecurityAnswer,
+        //        PrivateProfile = profileType
+        //    };
+
+        //    var result = await _mediator.Send(command);
+
+        //    if (result == null)
+        //        return NotFound();
+
+        //    return NoContent();
+        //}
 
         [HttpDelete]
         [Route("id")]

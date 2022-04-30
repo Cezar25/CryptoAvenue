@@ -74,6 +74,7 @@ namespace CryptoAvenue.Controllers
         {
             var command = new UpdateCoin
             {
+                CoinId = id,
                 Name = updatedCoin.Name,
                 Abreviation = updatedCoin.Abreviation,
                 ValueInEUR = updatedCoin.ValueInEUR,

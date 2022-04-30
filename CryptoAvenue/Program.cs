@@ -32,6 +32,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddMediatR(typeof(CreateCoin));
 builder.Services.AddMediatR(typeof(CreateUser));
 builder.Services.AddMediatR(typeof(CreateWallet));
+builder.Services.AddMediatR(typeof(CreateTradeOffer));
 //builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddMediatR(typeof(Program));

@@ -22,6 +22,7 @@ namespace CryptoAvenue.Application.CommandHandlers.CoinCommandHandlers
         public Task<Coin> Handle(UpdateCoin request, CancellationToken cancellationToken)
         {
             var updated = new Coin();
+            updated.Id = request.CoinId;
             updated.Name = request.Name;
             updated.Abreviation = request.Abreviation;
             updated.ValueInEUR = request.ValueInEUR;

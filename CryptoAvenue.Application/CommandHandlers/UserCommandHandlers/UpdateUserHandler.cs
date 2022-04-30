@@ -22,6 +22,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserCommandHandlers
         public Task<User> Handle(UpdateUser request, CancellationToken cancellationToken)
         {
             var updated = new User();
+            updated.Id = request.UserId;
             updated.Email = request.Email;
             updated.Password = request.Password;
             updated.SecurityQuestion = request.SecurityQuestion;
