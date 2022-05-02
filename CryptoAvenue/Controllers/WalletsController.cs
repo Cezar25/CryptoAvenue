@@ -43,7 +43,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("get-wallet-by-id/{id}")]
         public async Task<IActionResult> GetWalletById(Guid id)
         {
             var query = new GetWalletByID { WalletId = id };
@@ -57,6 +57,34 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpGet]
+        [Route("get-wallets-by-coin-id/{id}")]
+        public async Task<IActionResult> GetWalletsByCoinId(Guid id)
+        {
+            var query = new GetWalletsByCoinID { CoinId = id };
+            var wallets = await _mediator.Send(query);
+
+            if (wallets == null)
+                return NotFound();
+
+            var foundWallets = _mapper.Map<List<WalletGetDto>>(wallets);
+            return Ok(foundWallets);
+        }
+
+        [HttpGet]
+        [Route("get-wallets-by-user-id/{id}")]
+        public async Task<IActionResult> GetWalletsByUserId(Guid id)
+        {
+            var query = new GetWalletsByUserID { UserId = id };
+            var wallets = await _mediator.Send(query);
+
+            if (wallets == null)
+                return NotFound();
+
+            var foundWallets = _mapper.Map<List<WalletGetDto>>(wallets);
+            return Ok(foundWallets);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllWallets()
         {
             var wallets = await _mediator.Send(new GetAllWallets());
@@ -66,7 +94,37 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("deposit-money/{userId}/{coinId}/{depositedAmount}")]
+        public async Task<IActionResult> DepositToWallet(Guid userId, Guid coinId, double depositedAmount)
+        {
+            var command = new DepositToUserAccount
+            {
+                UserId = userId,
+                CoinId = coinId,
+                Amount = depositedAmount
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPatch]
+        [Route("withdraw-money/{userId}/{coinId}/{withdrawnAmount}")]
+        public async Task<IActionResult> WithdrawFromWallet(Guid userId, Guid coinId, double withdrawnAmount)
+        {
+            var command = new WithdrawFromUserAccount
+            {
+                UserId = userId,
+                CoinId = coinId,
+                Amount = withdrawnAmount
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPatch]
+        [Route("update-wallet/{id}")]
         public async Task<IActionResult> UpdateWallet(Guid id, WalletPutPostDto updatedWallet)
         {
             var command = new UpdateWallet
@@ -85,7 +143,7 @@ namespace CryptoAvenue.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Route("{id}/{amount}")]
         public async Task<IActionResult> UpdateWalletCoinAmount(Guid id, WalletPutPostDto updatedWallet, double amount)
         {
@@ -106,7 +164,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpDelete]
-        [Route("id")]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteWallet(Guid id)
         {
             var command = new DeleteWallet { WalletId = id };

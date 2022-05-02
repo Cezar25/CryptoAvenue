@@ -24,7 +24,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserCommandHandlers
             var user = repository.GetEntityByID(request.UserID);
 
             user.Id = request.UserID;
-            user.PrivateProfile = request.ProfileType;
+            user.PrivateProfile = !user.PrivateProfile;
 
             repository.Update(user);
             repository.SaveChanges();

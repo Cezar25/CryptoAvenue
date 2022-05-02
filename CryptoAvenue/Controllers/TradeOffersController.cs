@@ -51,7 +51,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("get-trade-offer-by-id/{id}")]
         public async Task<IActionResult> GetTradeOfferById(Guid id)
         {
             var query = new GetTradeOfferByID { TradeOfferId = id };
@@ -64,7 +64,63 @@ namespace CryptoAvenue.Controllers
             return Ok(foundTradeOffer);
         }
 
-        [HttpPut]
+        [HttpGet]
+        [Route("get-trade-offers-by-sender-id/{senderId}")]
+        public async Task<IActionResult> GetTradeOfferBySenderId(Guid senderId)
+        {
+            var query = new GetTradeOffersBySenderID { SenderId = senderId };
+            var tradeOffers = await _mediator.Send(query);
+
+            if (tradeOffers == null)
+                return NotFound();
+
+            var foundTradeOffers = _mapper.Map<List<TradeOfferGetDto>>(tradeOffers);
+            return Ok(foundTradeOffers);
+        }
+
+        [HttpGet]
+        [Route("get-trade-offers-by-recipient-id/{recipientId}")]
+        public async Task<IActionResult> GetTradeOfferByRecipientId(Guid recipientId)
+        {
+            var query = new GetTradeOffersByRecipientID { RecipientId = recipientId };
+            var tradeOffers = await _mediator.Send(query);
+
+            if (tradeOffers == null)
+                return NotFound();
+
+            var foundTradeOffers = _mapper.Map<List<TradeOfferGetDto>>(tradeOffers);
+            return Ok(foundTradeOffers);
+        }
+
+        [HttpGet]
+        [Route("get-trade-offers-by-sent-coin-id/{recipientId}")]
+        public async Task<IActionResult> GetTradeOfferBySentCoinId(Guid sentCoinId)
+        {
+            var query = new GetTradeOffersBySentCoinID { SentCoinId = sentCoinId };
+            var tradeOffers = await _mediator.Send(query);
+
+            if (tradeOffers == null)
+                return NotFound();
+
+            var foundTradeOffers = _mapper.Map<List<TradeOfferGetDto>>(tradeOffers);
+            return Ok(foundTradeOffers);
+        }
+
+        [HttpGet]
+        [Route("get-trade-offers-by-received-coin-id/{receivedCoinId}")]
+        public async Task<IActionResult> GetTradeOfferByReceivedCoinId(Guid receivedCoinId)
+        {
+            var query = new GetTradeOffersByReceivedCoinID { ReceivedCoinId = receivedCoinId };
+            var tradeOffers = await _mediator.Send(query);
+
+            if (tradeOffers == null)
+                return NotFound();
+
+            var foundTradeOffers = _mapper.Map<List<TradeOfferGetDto>>(tradeOffers);
+            return Ok(foundTradeOffers);
+        }
+
+        [HttpPatch]
         [Route("apply-trade-offer-to-users/{id}")]
         public async Task<IActionResult> AcceptTradeOffer(Guid id)
         {

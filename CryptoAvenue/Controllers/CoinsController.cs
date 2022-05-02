@@ -55,7 +55,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("get-coin-by-id/{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var query = new GetCoinByID { CoinId = id };
@@ -68,8 +68,8 @@ namespace CryptoAvenue.Controllers
             return Ok(foundCoin);
         }
 
-        [HttpPut]
-        [Route("{id}")]
+        [HttpPatch]
+        [Route("update-coin/{id}")]
         public async Task<IActionResult> UpdateCoin(Guid id,[FromBody] CoinPutPostDto updatedCoin)
         {
             var command = new UpdateCoin

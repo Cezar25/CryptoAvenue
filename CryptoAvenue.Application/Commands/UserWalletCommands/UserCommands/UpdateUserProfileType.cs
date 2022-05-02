@@ -11,6 +11,5 @@ namespace CryptoAvenue.Application.Commands.UserCommands
     public class UpdateUserProfileType : IRequest<User>
     {
         public Guid UserID { get; set; }
-        public bool ProfileType { get; set; }
     }
 }
