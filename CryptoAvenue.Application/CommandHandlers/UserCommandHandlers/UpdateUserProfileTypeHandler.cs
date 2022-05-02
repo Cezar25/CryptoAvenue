@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserCommandHandlers
 
         public Task<User> Handle(UpdateUserProfileType request, CancellationToken cancellationToken)
         {
-            var user = new User();
+            var user = repository.GetEntityByID(request.UserID);
 
             user.Id = request.UserID;
             user.PrivateProfile = request.ProfileType;

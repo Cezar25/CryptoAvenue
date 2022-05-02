@@ -5,8 +5,10 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace CryptoAvenue.Application.CommandHandlers
 {
@@ -30,6 +32,12 @@ namespace CryptoAvenue.Application.CommandHandlers
                 SecurityAnswer = request.SecurityAnswer,
                 PrivateProfile = request.PrivateProfile
             };
+            if(repository.GetAll().Any(x => x.Email == request.Email))
+            {
+                throw new Exception("Email already in use!");
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
             if (user == null) return null;
 
             repository.Insert(user);

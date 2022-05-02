@@ -1,5 +1,4 @@
 ﻿using CryptoAvenue.Application.Commands.UserWalletCommands;
-using CryptoAvenue.Application.IndependentBLL;
 using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Domain.Models;
 using MediatR;
@@ -24,17 +23,13 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 
         public Task<Unit> Handle(AddCopiedPortofolioToUser request, CancellationToken cancellationToken)
         {
-            var bll = new BLL(walletRepository);
-
-            var user = userRepository.GetEntityByID(request.CopiedId);
-
-            var coinPercentage = bll.GetCoinPercentage(user);
+            var coinPercentage = walletRepository.GetCoinPercentage(request.CopierId);
 
             foreach (var pair in coinPercentage)
             {
                 if (walletRepository.GetAll().Any(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation))
                 {
-                    var foundWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation);
+                    var foundWallet = walletRepository.GetAll().SingleOrDefault(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation);
 
                     double addedAmount = ((pair.Value / 100) * request.Amount) / foundWallet.CoinType.ValueInEUR;
                     foundWallet.CoinAmount += addedAmount;

@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Commands.UserWalletCommands;
 using CryptoAvenue.Domain.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using CryptoAvenue.Domain.Models;
 using MediatR;
 using System;
@@ -24,7 +25,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
             double totalUserWalletsValueEUR = 0;
 
             foreach (var wallet in repository.GetWalletsByUserID(request.UserId))
-            {
+            { 
                 totalUserWalletsValueEUR += wallet.CoinType.ValueInEUR * wallet.CoinAmount;
             }
 

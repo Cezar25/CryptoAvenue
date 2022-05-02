@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
             this.walletRepository = walletRepository;
         }
 
-        public Task<Unit> Handle(ApplyTradeOfferToUsers request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ApplyTradeOfferToUsers request, CancellationToken cancellationToken)
         {
             var tradeOffer = tradeOfferRepository.GetEntityByID(request.TradeOfferId);
 
@@ -98,7 +98,7 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
             tradeOfferRepository.Delete(tradeOffer);
             tradeOfferRepository.SaveChanges();
 
-            return (Task<Unit>)Task.CompletedTask;
+            return Unit.Value;
         }
     }
 }

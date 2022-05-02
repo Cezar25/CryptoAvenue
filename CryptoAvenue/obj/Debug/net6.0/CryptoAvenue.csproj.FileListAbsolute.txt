@@ -72,3 +72,9 @@ C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Deb
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\System.Web.Http.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

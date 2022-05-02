@@ -19,7 +19,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserCommandHandlers
         }
         public Task<User> Handle(UpdateUserQnA request, CancellationToken cancellationToken)
         {
-            var user = new User();
+            var user = repository.GetEntityByID(request.UserId);
             user.Id = request.UserId;
             user.SecurityQuestion = request.UserSecurityQuestion;
             user.SecurityAnswer = request.UserSecurityAnswer;

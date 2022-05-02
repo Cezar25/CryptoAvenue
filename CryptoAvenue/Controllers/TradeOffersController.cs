@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CryptoAvenue.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("CryptoAvenue/[controller]")]
     [ApiController]
     public class TradeOffersController : ControllerBase
     {
@@ -23,6 +23,11 @@ namespace CryptoAvenue.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Does smth
+        /// </summary>
+        /// <param name="newTradeOffer"></param>
+        /// <returns>return smth</returns>
         [HttpPost]
         public async Task<IActionResult> CreateTradeOffer(TradeOfferPutPostDto newTradeOffer)
         {
@@ -57,6 +62,19 @@ namespace CryptoAvenue.Controllers
 
             var foundTradeOffer = _mapper.Map<TradeOfferGetDto>(tradeOffer);
             return Ok(foundTradeOffer);
+        }
+
+        [HttpPut]
+        [Route("apply-trade-offer-to-users/{id}")]
+        public async Task<IActionResult> AcceptTradeOffer(Guid id)
+        {
+            var command = new ApplyTradeOfferToUsers
+            {
+                TradeOfferId = id
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
         }
 
         [HttpGet]

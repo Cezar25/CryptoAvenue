@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using CryptoAvenue.Application.Commands;
 using CryptoAvenue.Application.Commands.UserCommands;
+using CryptoAvenue.Application.Commands.UserWalletCommands;
 using CryptoAvenue.Application.Queries;
 using CryptoAvenue.Application.Queries.UserQueries;
 using CryptoAvenue.Domain.Models;
 using CryptoAvenue.Dtos.UserDtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+//using System.Web.Http;
 
 namespace CryptoAvenue.Controllers
 {
@@ -40,13 +42,24 @@ namespace CryptoAvenue.Controllers
             };
 
             var user = _mapper.Map<UserPutPostDto, User>(newUser);
-            var createdUser = await _mediator.Send(command);
+
+            User createdUser = null;
+
+            try
+            {
+                createdUser = await _mediator.Send(command);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return NotFound();
+            }
 
             return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, createdUser);
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("get-user-by-id/{id}")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
             var query = new GetUserByID { UserId = id };
@@ -57,6 +70,16 @@ namespace CryptoAvenue.Controllers
 
             var foundUser = _mapper.Map<UserGetDto>(user);
             return Ok(foundUser);
+        }
+
+        [HttpGet]
+        [Route("get-user-portofolio-value-eur/{id}")]
+        public async Task<IActionResult> GetTotalPortofolioValueEURById(Guid id)
+        {
+            var command = new GetTotalUserWalletsValueEUR { UserId = id };
+            var amount = await _mediator.Send(command);
+
+            return Ok(amount);
         }
 
         [HttpGet]
@@ -90,17 +113,14 @@ namespace CryptoAvenue.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPatch]
         [Route("{id}/{email}")]
-        public async Task<IActionResult> UpdateUserEmail(Guid id, UserPutPostDto updatedUser, string email)
+        public async Task<IActionResult> UpdateUserEmail(Guid id, string email)
         {
-            var command = new UpdateUser
+            var command = new UpdateUserEmail
             {
-                Email = email,
-                Password = updatedUser.Password,
-                SecurityQuestion = updatedUser.SecurityQuestion,
-                SecurityAnswer = updatedUser.SecurityAnswer,
-                PrivateProfile = updatedUser.PrivateProfile
+                UserId = id,
+                UserEmail = email
             };
 
             var result = await _mediator.Send(command);

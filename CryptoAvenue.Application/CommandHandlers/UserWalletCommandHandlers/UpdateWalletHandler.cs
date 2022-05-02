@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 
         public Task<Wallet> Handle(UpdateWallet request, CancellationToken cancellationToken)
         {
-            var updated = new Wallet();
+            var updated = repository.GetEntityByID(request.WalletId);
             updated.Id = request.WalletId;
             updated.CoinID = request.CoinID;
             updated.UserID = request.UserID;

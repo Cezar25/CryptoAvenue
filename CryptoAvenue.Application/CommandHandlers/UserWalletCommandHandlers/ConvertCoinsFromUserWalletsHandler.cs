@@ -13,13 +13,13 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
     public class ConvertCoinsFromUserWalletsHandler : IRequestHandler<ConvertCoinsFromUserWallets>
     {
         private readonly IWalletRepository repository;
-        public Task<Unit> Handle(ConvertCoinsFromUserWallets request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ConvertCoinsFromUserWallets request, CancellationToken cancellationToken)
         {
             var soldCoinWallet = repository.GetEntityByID(request.WalletId);
 
             if (request.AmountOfSoldCoin > soldCoinWallet.CoinAmount)
             {
-                return null;
+                return Unit.Value;
             }
             else
             {
@@ -46,7 +46,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
                 repository.SaveChanges();
             }
 
-            return (Task<Unit>)Task.CompletedTask;
+            return Unit.Value;
         }
     }
 }

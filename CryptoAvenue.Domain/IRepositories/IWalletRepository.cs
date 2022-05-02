@@ -11,5 +11,7 @@ namespace CryptoAvenue.Domain.IRepositories
     {
         IEnumerable<Wallet> GetWalletsByUserID(Guid userID);
         IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID);
+        Dictionary<Coin, double> GetCoinPercentage(Guid userId);
+
     }
 }
