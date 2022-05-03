@@ -22,7 +22,7 @@ namespace CryptoAvenue.Application.QueryHandlers.TradeOfferQueryHandlers
 
         public Task<List<TradeOffer>> Handle(GetTradeOffersByRecipientID request, CancellationToken cancellationToken)
         {
-            var tradeOffers = repository.GetAll().Where(x => x.RecipientID == request.RecipientId).ToList();
+            var tradeOffers = repository.FindAll(x => x.RecipientID == request.RecipientId).ToList();
             return Task.FromResult(tradeOffers);
         }
     }

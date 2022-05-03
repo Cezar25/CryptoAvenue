@@ -27,9 +27,9 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 
             foreach (var pair in coinPercentage)
             {
-                if (walletRepository.GetAll().Any(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation))
+                if (walletRepository.Any(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation))
                 {
-                    var foundWallet = walletRepository.GetAll().SingleOrDefault(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation);
+                    var foundWallet = walletRepository.GetEntityBy(x => x.UserID == request.CopierId && x.CoinType.Abreviation == pair.Key.Abreviation);
 
                     double addedAmount = ((pair.Value / 100) * request.Amount) / foundWallet.CoinType.ValueInEUR;
                     foundWallet.CoinAmount += addedAmount;

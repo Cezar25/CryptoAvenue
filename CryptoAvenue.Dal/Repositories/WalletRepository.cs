@@ -14,6 +14,7 @@ namespace CryptoAvenue.Dal.Repositories
     {
         public WalletRepository(CryptoAvenueContext context) : base(context)
         {
+
         }
 
         public Dictionary<Coin, double> GetCoinPercentage(Guid userId)
@@ -41,14 +42,25 @@ namespace CryptoAvenue.Dal.Repositories
             return coinPercentage;
         }
 
-        public IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID)
+        public IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID, bool includeAll = false)
         {
-            return context.Wallets.Where(x => x.CoinID == coinID).ToList();
+            var query = context.Wallets.Where(x => x.CoinID == coinID);
+            if (includeAll)
+            {
+                query = query.Include(x => x.CoinType).Include(x => x.WalletOwner);
+            }
+
+            return query.ToList();
         }
 
-        public IEnumerable<Wallet> GetWalletsByUserID(Guid userID)
+        public IEnumerable<Wallet> GetWalletsByUserID(Guid userID, bool includeAll = false)
         {
-            return context.Wallets.Where(x => x.UserID == userID).ToList();
+            var query = context.Wallets.Where(x => x.UserID == userID);
+            if (includeAll)
+            {
+                query = query.Include(x => x.CoinType).Include(x => x.WalletOwner);
+            }
+            return query.ToList();
         }
     }
 }

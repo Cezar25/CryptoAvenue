@@ -22,7 +22,7 @@ namespace CryptoAvenue.Application.QueryHandlers.WalletQueryHandlers
 
         public Task<List<Wallet>> Handle(GetWalletsByCoinID request, CancellationToken cancellationToken)
         {
-            var wallets = repository.GetAll().Where(x => x.CoinID == request.CoinId).ToList();
+            var wallets = repository.FindAll(x => x.CoinID == request.CoinId).ToList();
             return Task.FromResult(wallets);
         }
     }

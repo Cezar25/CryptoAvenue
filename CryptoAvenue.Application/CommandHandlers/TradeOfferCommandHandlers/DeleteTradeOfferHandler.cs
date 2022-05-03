@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
 
         public Task<TradeOffer> Handle(DeleteTradeOffer request, CancellationToken cancellationToken)
         {
-            var tradeOffer = repository.GetAll().SingleOrDefault(x => x.Id == request.TradeOfferId);
+            var tradeOffer = repository.GetEntityBy(x => x.Id == request.TradeOfferId);
 
             if (tradeOffer == null) return null;
 

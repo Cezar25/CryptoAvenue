@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.CoinCommandHandlers
 
         public Task<Coin> Handle(DeleteCoin request, CancellationToken cancellationToken)
         {
-            var coin = repository.GetAll().SingleOrDefault(x => x.Id == request.CoinId);
+            var coin = repository.GetEntityByID(request.CoinId);
 
             if (coin == null) return null;
 

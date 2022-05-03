@@ -22,7 +22,7 @@ namespace CryptoAvenue.Application.Validators
 
         public async Task<bool> IsEmailAlreadyUsed(CreateUser user, CancellationToken cancellationToken)
         {
-            return repository.GetAll().Any(x => x.Email == user.Email);
+            return repository.Any(x => x.Email == user.Email);
         }
     }
 }

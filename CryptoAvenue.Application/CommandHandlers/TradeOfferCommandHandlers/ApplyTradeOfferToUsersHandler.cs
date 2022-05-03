@@ -25,16 +25,19 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
         {
             var tradeOffer = tradeOfferRepository.GetEntityByID(request.TradeOfferId);
 
-            if (walletRepository.GetAll().Any(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin) && walletRepository.GetAll().Any(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin))
+            var condition1 = walletRepository.Any(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin);
+            var condition2 = walletRepository.Any(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin);
+
+            if (condition1 && condition2)
             {
-                var senderReceivedWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin);
-                var recipientSentWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin);
+                var senderReceivedWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin);
+                var recipientSentWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin);
 
                 senderReceivedWallet.CoinAmount += tradeOffer.ReceivedAmount;
                 recipientSentWallet.CoinAmount += tradeOffer.SentAmount;
 
-                var senderSentWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
-                var recipientReceivedWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
+                var senderSentWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
+                var recipientReceivedWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
 
                 senderSentWallet.CoinAmount -= tradeOffer.SentAmount;
                 recipientReceivedWallet.CoinAmount -= tradeOffer.ReceivedAmount;
@@ -44,15 +47,15 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
                 walletRepository.Update(senderSentWallet);
                 walletRepository.Update(recipientReceivedWallet);
             }
-            else if (!walletRepository.GetAll().Any(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin) && walletRepository.GetAll().Any(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin))
+            else if (!condition1 && condition2)
             {
                 walletRepository.Insert(new Wallet() { CoinID = tradeOffer.ReceivedCoinID, UserID = tradeOffer.SenderID, CoinAmount = tradeOffer.ReceivedAmount });
 
-                var recipientSentWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin);
+                var recipientSentWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin);
                 recipientSentWallet.CoinAmount += tradeOffer.SentAmount;
 
-                var senderSentWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
-                var recipientReceivedWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
+                var senderSentWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
+                var recipientReceivedWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
 
                 senderSentWallet.CoinAmount -= tradeOffer.SentAmount;
                 recipientReceivedWallet.CoinAmount -= tradeOffer.ReceivedAmount;
@@ -61,15 +64,15 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
                 walletRepository.Update(senderSentWallet);
                 walletRepository.Update(recipientReceivedWallet);
             }
-            else if (walletRepository.GetAll().Any(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin) && !walletRepository.GetAll().Any(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.SentCoin))
+            else if (condition1 && !condition2)
             {
-                var senderReceivedWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin);
+                var senderReceivedWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.ReceivedCoin);
 
                 senderReceivedWallet.CoinAmount += tradeOffer.ReceivedAmount;
                 walletRepository.Insert(new Wallet() { CoinID = tradeOffer.SentCoinID, UserID = tradeOffer.RecipientID, CoinAmount = tradeOffer.SentAmount });
 
-                var senderSentWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
-                var recipientReceivedWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
+                var senderSentWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
+                var recipientReceivedWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
 
                 senderSentWallet.CoinAmount -= tradeOffer.SentAmount;
                 recipientReceivedWallet.CoinAmount -= tradeOffer.ReceivedAmount;
@@ -83,8 +86,8 @@ namespace CryptoAvenue.Application.CommandHandlers.TradeOfferCommandHandlers
                 walletRepository.Insert(new Wallet() { CoinID = tradeOffer.ReceivedCoinID, UserID = tradeOffer.SenderID, CoinAmount = tradeOffer.ReceivedAmount });
                 walletRepository.Insert(new Wallet() { CoinID = tradeOffer.SentCoinID, UserID = tradeOffer.RecipientID, CoinAmount = tradeOffer.SentAmount });
 
-                var senderSentWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
-                var recipientReceivedWallet = walletRepository.GetAll().FirstOrDefault(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
+                var senderSentWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.SenderID && x.CoinType == tradeOffer.SentCoin);
+                var recipientReceivedWallet = walletRepository.GetEntityBy(x => x.UserID == tradeOffer.RecipientID && x.CoinType == tradeOffer.ReceivedCoin);
 
                 senderSentWallet.CoinAmount -= tradeOffer.SentAmount;
                 recipientReceivedWallet.CoinAmount -= tradeOffer.ReceivedAmount;

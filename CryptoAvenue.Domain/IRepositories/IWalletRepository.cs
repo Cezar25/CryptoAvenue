@@ -9,8 +9,8 @@ namespace CryptoAvenue.Domain.IRepositories
 {
     public interface IWalletRepository : IGenericRepository<Wallet>
     {
-        IEnumerable<Wallet> GetWalletsByUserID(Guid userID);
-        IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID);
+        IEnumerable<Wallet> GetWalletsByUserID(Guid userID, bool includeAll = false);
+        IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID, bool includeAll = false);
         Dictionary<Coin, double> GetCoinPercentage(Guid userId);
 
     }

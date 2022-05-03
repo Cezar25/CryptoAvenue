@@ -24,7 +24,7 @@ namespace CryptoAvenue.Dal
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlServer(@"Server=ROMOB41211\SQLEXPRESS01;Database=TestDB;Trusted_Connection=True;", b => b.MigrationsAssembly("CryptoAvenue.Dal"))
+                .UseSqlServer(@"Server=ROMOB41211\SQLEXPRESS01;Database=Test2DB;Trusted_Connection=True;", b => b.MigrationsAssembly("CryptoAvenue.Dal"))
                 .EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

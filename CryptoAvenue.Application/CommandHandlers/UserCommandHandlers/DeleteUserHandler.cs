@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserCommandHandlers
 
         public Task<User> Handle(DeleteUser request, CancellationToken cancellationToken)
         {
-            var user = repository.GetAll().SingleOrDefault(x => x.Id == request.UserId);
+            var user = repository.GetEntityBy(x => x.Id == request.UserId);
 
             if (user == null) return null;
 

@@ -20,7 +20,7 @@ namespace CryptoAvenue.Application.QueryHandlers.UserQueryHandlers
         }
         public Task<User> Handle(GetUserByEmail request, CancellationToken cancellationToken)
         {
-            var user = repository.GetAll().SingleOrDefault(x => x.Email == request.UserEmail);
+            var user = repository.GetUserByEmail(request.UserEmail);
             return Task.FromResult(user);
         }
     }

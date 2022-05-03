@@ -13,6 +13,7 @@ namespace CryptoAvenue.Dal.Repositories
     {
         public UserRepository(CryptoAvenueContext context) : base(context)
         {
+
         }
 
         public User GetUserByEmail(string email)

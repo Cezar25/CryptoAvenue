@@ -25,7 +25,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 
             double portofolioValueInEUR = 0;
 
-            foreach (var wallet in repository.GetAll().Where(x => x.UserID == request.UserId))
+            foreach (var wallet in repository.FindAll(x => x.UserID == request.UserId))
             {
                 if (wallet.CoinAmount > 0)
                 {
@@ -33,7 +33,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
                 }
             }
 
-            foreach (var wallet in repository.GetAll().Where(x => x.UserID == request.UserId))
+            foreach (var wallet in repository.FindAll(x => x.UserID == request.UserId))
             {
                 if (wallet.CoinAmount > 0)
                 {

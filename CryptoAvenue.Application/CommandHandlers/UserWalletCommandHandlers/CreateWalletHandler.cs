@@ -14,10 +14,14 @@ namespace CryptoAvenue.Application.CommandHandlers
     public class CreateWalletHandler : IRequestHandler<CreateWallet, Wallet>
     {
         private readonly IWalletRepository repository;
+        private readonly IUserRepository userRepository;
+        private readonly ICoinRepository coinRepository;
 
-        public CreateWalletHandler(IWalletRepository repository)
+        public CreateWalletHandler(IWalletRepository repository, IUserRepository userRepository, ICoinRepository coinRepository)
         {
             this.repository = repository;
+            this.userRepository = userRepository;
+            this.coinRepository = coinRepository;
         }
 
         public Task<Wallet> Handle(CreateWallet request, CancellationToken cancellationToken)
@@ -25,7 +29,9 @@ namespace CryptoAvenue.Application.CommandHandlers
             var wallet = new Wallet()
             {
                 CoinID = request.CoinId,
+                CoinType = coinRepository.GetEntityByID(request.CoinId),
                 UserID = request.UserId,
+                WalletOwner = userRepository.GetEntityByID(request.UserId),
                 CoinAmount = request.CoinAmount
             };
 

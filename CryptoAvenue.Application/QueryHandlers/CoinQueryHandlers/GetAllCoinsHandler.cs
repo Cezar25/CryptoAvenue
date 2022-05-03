@@ -23,7 +23,7 @@ namespace CryptoAvenue.Application.QueryHandlers.CoinQueryHandlers
 
         public Task<List<Coin>> Handle(GetAllCoins request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(repository.GetAll().ToList());
+            return Task.FromResult(repository.FindAll().ToList());
         }
     }
 }

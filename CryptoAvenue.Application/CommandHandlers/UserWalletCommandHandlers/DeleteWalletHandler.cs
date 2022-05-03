@@ -21,7 +21,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 
         public Task<Wallet> Handle(DeleteWallet request, CancellationToken cancellationToken)
         {
-            var wallet = repository.GetAll().SingleOrDefault(x => x.Id == request.WalletId);
+            var wallet = repository.GetEntityBy(x => x.Id == request.WalletId);
 
             if (wallet == null) return null;
 

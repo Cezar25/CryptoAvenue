@@ -23,14 +23,14 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 
         public Task<Unit> Handle(DepositToUserAccount request, CancellationToken cancellationToken)
         {           
-            var coin = coinRepository.GetAll().FirstOrDefault(x => x.Id == request.CoinId);
+            var coin = coinRepository.GetEntityBy(x => x.Id == request.CoinId);
             if(coin == null || coin.Abreviation != "EUR" || coin.Abreviation != "USD")
                 return null;
             else
             {
-                if (walletRepository.GetAll().Any(x => x.CoinID == request.CoinId && x.UserID == request.UserId))
+                if (walletRepository.Any(x => x.CoinID == request.CoinId && x.UserID == request.UserId))
                 {
-                    var wallet = walletRepository.GetAll().FirstOrDefault(x => x.CoinID == request.CoinId && x.UserID == request.UserId);
+                    var wallet = walletRepository.GetEntityBy(x => x.CoinID == request.CoinId && x.UserID == request.UserId);
                     wallet.CoinAmount += request.Amount;
 
                     walletRepository.Update(wallet);

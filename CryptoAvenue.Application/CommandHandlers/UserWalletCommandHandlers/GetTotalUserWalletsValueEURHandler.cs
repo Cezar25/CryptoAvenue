@@ -24,7 +24,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
         {
             double totalUserWalletsValueEUR = 0;
 
-            foreach (var wallet in repository.GetWalletsByUserID(request.UserId))
+            foreach (var wallet in repository.GetWalletsByUserID(request.UserId, true))
             { 
                 totalUserWalletsValueEUR += wallet.CoinType.ValueInEUR * wallet.CoinAmount;
             }

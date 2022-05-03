@@ -36,8 +36,11 @@ namespace CryptoAvenue.Controllers
                 CoinAmount = newWallet.CoinAmount,
             };
 
-            var wallet = _mapper.Map<WalletPutPostDto, Wallet>(newWallet);
             var createdWallet = await _mediator.Send(command);
+
+            var wallet = _mapper.Map<WalletPutPostDto, Wallet>(newWallet);
+
+            
 
             return CreatedAtAction(nameof(GetWalletById), new { id = wallet.Id }, createdWallet);
         }
@@ -122,6 +125,9 @@ namespace CryptoAvenue.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
+
+        //[HttpPatch]
+        //[Route("add-copied-portofolio/{userId}")]
 
         [HttpPatch]
         [Route("update-wallet/{id}")]

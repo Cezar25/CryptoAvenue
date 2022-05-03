@@ -15,24 +15,48 @@ namespace CryptoAvenue.Dal.Repositories
         {
         }
 
-        public IEnumerable<TradeOffer> GetOffersByReceivedCoinID(Guid receivedCoinID)
+        public IEnumerable<TradeOffer> GetOffersByReceivedCoinID(Guid receivedCoinID, bool includeAll = false)
         {
-            return context.Offers.Where(x => x.ReceivedCoinID == receivedCoinID).ToList();
+            var query = context.Offers.Where(x => x.ReceivedCoinID == receivedCoinID);
+            if(includeAll == true)
+            {
+                query = query.Include(x => x.Sender).Include(x => x.Recipient).Include(x => x.SentCoin).Include(x => x.ReceivedCoin);
+            }
+
+            return query.ToList();
         }
 
-        public IEnumerable<TradeOffer> GetOffersByRecipientID(Guid recipientID)
+        public IEnumerable<TradeOffer> GetOffersByRecipientID(Guid recipientID, bool includeAll = false)
         {
-            return context.Offers.Where(x => x.RecipientID == recipientID).ToList();
+            var query = context.Offers.Where(x => x.RecipientID == recipientID);
+            if(includeAll == true)
+            {
+                query = query.Include(x => x.Sender).Include(x => x.Recipient).Include(x => x.SentCoin).Include(x => x.ReceivedCoin);
+            }
+
+            return query.ToList();
         }
 
-        public IEnumerable<TradeOffer> GetOffersBySenderID(Guid senderID)
+        public IEnumerable<TradeOffer> GetOffersBySenderID(Guid senderID, bool includeAll = false)
         {
-            return context.Offers.Where(x => x.SenderID == senderID).ToList();
+            var query = context.Offers.Where(x => x.SenderID == senderID);
+            if(includeAll == true)
+            {
+                query = query.Include(x => x.Sender).Include(x => x.Recipient).Include(x => x.SentCoin).Include(x => x.ReceivedCoin);
+            }
+
+            return query.ToList();
         }
 
-        public IEnumerable<TradeOffer> GetOffersBySentCoinID(Guid sentCoinID)
+        public IEnumerable<TradeOffer> GetOffersBySentCoinID(Guid sentCoinID, bool includeAll = false)
         {
-            return context.Offers.Where(x => x.SentCoinID == sentCoinID).ToList();
+            var query = context.Offers.Where(x => x.SentCoinID == sentCoinID);
+            if (includeAll == true)
+            {
+                query = query.Include(x => x.Sender).Include(x => x.Recipient).Include(x => x.SentCoin).Include(x => x.ReceivedCoin);
+            }
+
+            return query.ToList();
         }
     }
 }

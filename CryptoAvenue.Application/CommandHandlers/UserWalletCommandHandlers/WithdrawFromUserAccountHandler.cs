@@ -20,12 +20,12 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
         }
         public Task<Unit> Handle(WithdrawFromUserAccount request, CancellationToken cancellationToken)
         {
-            var coin = coinRepository.GetAll().FirstOrDefault(x => x.Id == request.CoinId);
+            var coin = coinRepository.GetEntityBy(x => x.Id == request.CoinId);
             if (coin == null || coin.Abreviation != "EUR" || coin.Abreviation != "USD")
                 return null;
             else
             {
-                var wallet = walletRepository.GetAll().FirstOrDefault(x => x.CoinID == request.CoinId);
+                var wallet = walletRepository.GetEntityBy(x => x.CoinID == request.CoinId);
 
                 if(wallet.CoinAmount >= request.Amount)
                     walletRepository.Delete(wallet);

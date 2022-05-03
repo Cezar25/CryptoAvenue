@@ -25,9 +25,9 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
             {
                 double amountOfCoinSoldInEUR = request.AmountOfSoldCoin * soldCoinWallet.CoinType.ValueInEUR;
 
-                if (repository.GetAll().Any(x => x.UserID == request.UserId && x.CoinID == request.BoughtCoinID))
+                if (repository.Any(x => x.UserID == request.UserId && x.CoinID == request.BoughtCoinID))
                 {
-                    var receivedCoinWallet = repository.GetAll().FirstOrDefault(x => x.UserID == request.UserId && x.CoinID == request.BoughtCoinID);
+                    var receivedCoinWallet = repository.GetEntityBy(x => x.UserID == request.UserId && x.CoinID == request.BoughtCoinID);
 
                     double amountOfCoinBought = amountOfCoinSoldInEUR / receivedCoinWallet.CoinType.ValueInEUR;
                     receivedCoinWallet.CoinAmount += amountOfCoinBought;
@@ -36,7 +36,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
                 }
                 else
                 {
-                     double amountOfCoinBought = amountOfCoinSoldInEUR / repository.GetAll().FirstOrDefault(x => x.CoinID == request.BoughtCoinID).CoinType.ValueInEUR;
+                     double amountOfCoinBought = amountOfCoinSoldInEUR / repository.GetEntityBy(x => x.CoinID == request.BoughtCoinID).CoinType.ValueInEUR;
                      repository.Insert(new Wallet() { CoinID = request.BoughtCoinID, UserID = request.UserId, CoinAmount = amountOfCoinBought });
                 }
 

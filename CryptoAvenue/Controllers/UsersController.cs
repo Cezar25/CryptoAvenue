@@ -231,19 +231,5 @@ namespace CryptoAvenue.Controllers
             return NoContent();
         }
 
-        //[HttpGet]
-        //[Route("{email}")]
-        //public async Task<IActionResult> GetUserByEmail(string email)
-        //{
-        //    var query = new GetUserByEmail { UserEmail = email };
-        //    var user = await _mediator.Send(query);
-
-        //    if (user == null)
-        //        return NotFound();
-
-        //    var foundUser = _mapper.Map<UserGetDto>(user);
-        //    return Ok(foundUser);
-        //}
-
     }
 }

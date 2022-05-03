@@ -22,7 +22,7 @@ namespace CryptoAvenue.Application.QueryHandlers.UserQueryHandlers
 
         public Task<User> Handle(GetUserByID request, CancellationToken cancellationToken)
         {
-            var user = repository.GetAll().SingleOrDefault(x => x.Id == request.UserId);
+            var user = repository.GetEntityByID(request.UserId);
             return Task.FromResult(user);
         }
     }

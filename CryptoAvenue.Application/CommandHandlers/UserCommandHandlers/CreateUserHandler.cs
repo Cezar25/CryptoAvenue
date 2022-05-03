@@ -32,7 +32,7 @@ namespace CryptoAvenue.Application.CommandHandlers
                 SecurityAnswer = request.SecurityAnswer,
                 PrivateProfile = request.PrivateProfile
             };
-            if(repository.GetAll().Any(x => x.Email == request.Email))
+            if(repository.Any(x => x.Email == request.Email))
             {
                 throw new Exception("Email already in use!");
                 //throw new HttpResponseException(HttpStatusCode.NotFound);
