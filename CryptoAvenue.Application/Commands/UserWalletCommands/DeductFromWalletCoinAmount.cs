@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.Commands.UserWalletCommands
 {
-    public class UpdateWalletCoinAmount : IRequest<Wallet>
+    public class DeductFromWalletCoinAmount : IRequest<Wallet>
     {
-
+        public Guid WalletId { get; set; }
+        public double DeductedAmount { get; set; }
     }
 }

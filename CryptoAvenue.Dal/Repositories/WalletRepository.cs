@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,16 @@ namespace CryptoAvenue.Dal.Repositories
             }
 
             return coinPercentage;
+        }
+
+        public Wallet GetWalletByIdIncluded(Guid id)
+        {
+            return context.Wallets.Include(x => x.CoinType).Include(x => x.WalletOwner).SingleOrDefault(x => x.Id == id);
+        }
+
+        public Wallet GetWalletByIncluded(Expression<Func<Wallet, bool>> predicate)
+        {
+            return context.Wallets.Include(x => x.CoinType).Include(x => x.WalletOwner).SingleOrDefault(predicate);
         }
 
         public IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID, bool includeAll = false)

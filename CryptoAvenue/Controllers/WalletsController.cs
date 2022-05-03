@@ -96,39 +96,6 @@ namespace CryptoAvenue.Controllers
             return Ok(foundWallets);
         }
 
-        [HttpPut]
-        [Route("deposit-money/{userId}/{coinId}/{depositedAmount}")]
-        public async Task<IActionResult> DepositToWallet(Guid userId, Guid coinId, double depositedAmount)
-        {
-            var command = new DepositToUserAccount
-            {
-                UserId = userId,
-                CoinId = coinId,
-                Amount = depositedAmount
-            };
-
-            await _mediator.Send(command);
-            return NoContent();
-        }
-
-        [HttpPatch]
-        [Route("withdraw-money/{userId}/{coinId}/{withdrawnAmount}")]
-        public async Task<IActionResult> WithdrawFromWallet(Guid userId, Guid coinId, double withdrawnAmount)
-        {
-            var command = new WithdrawFromUserAccount
-            {
-                UserId = userId,
-                CoinId = coinId,
-                Amount = withdrawnAmount
-            };
-
-            await _mediator.Send(command);
-            return NoContent();
-        }
-
-        //[HttpPatch]
-        //[Route("add-copied-portofolio/{userId}")]
-
         [HttpPatch]
         [Route("update-wallet/{id}")]
         public async Task<IActionResult> UpdateWallet(Guid id, WalletPutPostDto updatedWallet)
@@ -169,6 +136,59 @@ namespace CryptoAvenue.Controllers
             return NoContent();
         }
 
+        [HttpPatch]
+        [Route("add-amount-to-wallet/{id}/{amount}")]
+        public async Task<IActionResult> AddAmountToWallet(Guid id, double amount)
+        {
+            var command = new AddToWalletCoinAmount
+            {
+                WalletId = id,
+                AddedAmount = amount
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [HttpPatch]
+        [Route("deduct-amount-from-wallet/{id}/{amount}")]
+        public async Task<IActionResult> DeductAmountToWallet(Guid id, double amount)
+        {
+            var command = new DeductFromWalletCoinAmount
+            {
+                WalletId = id,
+                DeductedAmount = amount
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [HttpPatch]
+        [Route("convert-coins-in-user-wallet/{userId}/{walletId}/{boughtCoinId}/{soldCoinAmount}")]
+        public async Task<IActionResult> ConvertCoinsInUserWallet(Guid userId, Guid walletId, Guid boughtCoinId, double soldCoinAmount)
+        {
+            var command = new ConvertCoinsFromUserWallets
+            {
+                UserId = userId,
+                WalletId = walletId,
+                BoughtCoinID = boughtCoinId,
+                AmountOfSoldCoin = soldCoinAmount
+            };
+
+            var result = await _mediator.Send(command);
+
+            return NoContent();
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteWallet(Guid id)
@@ -180,5 +200,35 @@ namespace CryptoAvenue.Controllers
 
             return NoContent();
         }
+
+        //[HttpPut]
+        //[Route("deposit-money/{userId}/{coinId}/{depositedAmount}")]
+        //public async Task<IActionResult> DepositToWallet(Guid userId, Guid coinId, double depositedAmount)
+        //{
+        //    var command = new DepositToUserAccount
+        //    {
+        //        UserId = userId,
+        //        CoinId = coinId,
+        //        Amount = depositedAmount
+        //    };
+
+        //    await _mediator.Send(command);
+        //    return NoContent();
+        //}
+
+        //[HttpPatch]
+        //[Route("withdraw-money/{userId}/{coinId}/{withdrawnAmount}")]
+        //public async Task<IActionResult> WithdrawFromWallet(Guid userId, Guid coinId, double withdrawnAmount)
+        //{
+        //    var command = new WithdrawFromUserAccount
+        //    {
+        //        UserId = userId,
+        //        CoinId = coinId,
+        //        Amount = withdrawnAmount
+        //    };
+
+        //    await _mediator.Send(command);
+        //    return NoContent();
+        //}
     }
 }

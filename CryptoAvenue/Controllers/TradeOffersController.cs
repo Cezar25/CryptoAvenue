@@ -23,11 +23,6 @@ namespace CryptoAvenue.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// Does smth
-        /// </summary>
-        /// <param name="newTradeOffer"></param>
-        /// <returns>return smth</returns>
         [HttpPost]
         public async Task<IActionResult> CreateTradeOffer(TradeOfferPutPostDto newTradeOffer)
         {
