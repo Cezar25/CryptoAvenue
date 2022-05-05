@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CryptoAvenueFe": {
+    "CryptoAvenueFE": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -27,7 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "CryptoAvenueFe:build:production"
+              "browserTarget": "CryptoAvenueFE:build:production"
             },
             "development": {
-              "browserTarget": "CryptoAvenueFe:build:development"
+              "browserTarget": "CryptoAvenueFE:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CryptoAvenueFe:build"
+            "browserTarget": "CryptoAvenueFE:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -104,5 +104,5 @@
       }
     }
   },
-  "defaultProject": "CryptoAvenueFe"
+  "defaultProject": "CryptoAvenueFE"
 }
