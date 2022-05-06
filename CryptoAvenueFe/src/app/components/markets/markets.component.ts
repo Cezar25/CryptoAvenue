@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./markets.component.css']
 })
 export class MarketsComponent implements OnInit {
+  selectedCurrency: string = "EUR";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  sendCurrency(event: string){
+    console.log(event);
   }
 
 }
