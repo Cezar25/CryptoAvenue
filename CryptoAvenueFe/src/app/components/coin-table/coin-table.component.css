@@ -1,0 +1,84 @@
+
+.header{
+  height: 100px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  color: rebeccapurple;
+}
+
+/*
+.header h2{
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 3.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.0083rem;
+}
+*/
+
+.header h6{
+  color: rebeccapurple;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.57;
+  letter-spacing: 0.0071rem;
+}
+
+.banner{
+  background-image: url("../../../assets/marquee_background.jpg");
+  height: 400px;
+  width: 100%;
+}
+
+.sub-header{
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.card{
+  border: 0;
+  background: transparent;
+  color: purple;
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+}
+
+.card img{
+  width: 70px;
+}
+
+.card h5{
+  font-weight: 500;
+}
+
+.card p{
+  font-weight: 700;
+}
+/*
+.col-1{
+  margin-left: 40px;
+  margin-right: 20px;
+}*/
+
+.col-1 {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
