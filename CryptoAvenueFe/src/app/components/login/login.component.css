@@ -1,6 +1,8 @@
 .login mat-card {
   padding: 0;
+  border: 3px solid #673ab7;
 }
 .login-form {
   padding: 20px;
 }
+
