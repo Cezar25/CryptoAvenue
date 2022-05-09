@@ -9,6 +9,9 @@ import { MatInputModule} from "@angular/material/input";
 import { HttpClientModule} from "@angular/common/http";
 import { MatTableModule} from "@angular/material/table";
 import { MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import {MatGridListModule} from "@angular/material/grid-list";
+import { MatCardModule} from "@angular/material/card";
 
 
 import { AppComponent } from './app.component';
@@ -23,9 +26,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import {FormsModule} from "@angular/forms";
 import { CoinTableComponent } from './components/coin-table/coin-table.component';
 import { CoinDetailsComponent } from './components/coin-details/coin-details.component';
-import {MatSortModule} from "@angular/material/sort";
-import {MatGridListModule} from "@angular/material/grid-list";
-
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -54,7 +57,11 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
