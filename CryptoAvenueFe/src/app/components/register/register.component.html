@@ -1,9 +1,10 @@
 <div class="register" fxLayoutAlign="center center" fxFlexFill>
-  <mat-card fxFlex="45">
+  <mat-card fxFlex="45" class="mat-elevation-z8">
     <mat-toolbar color="primary">Register Page</mat-toolbar>
     <form class="register-form" fxLayoutAlign="stretch" fxLayout="column">
       <mat-form-field>
         <input matInput placeholder="Email" required minlength="8" maxlength="30" name="email" ngModel #email="ngModel">
+        <mat-icon matSuffix>mail</mat-icon>
         <mat-error *ngIf="email.errors && email.errors.required">Email is required!</mat-error>
         <mat-error *ngIf="email.errors && email.errors.minlength">Email must be at least 8 characters long!</mat-error>
         <mat-error *ngIf="email.errors && email.errors.maxlength">Email must be maximum 30 characters long!</mat-error>
@@ -11,6 +12,7 @@
 
       <mat-form-field>
         <input matInput type="password" placeholder="Password" required minlength="8" maxlength="30" name="password" ngModel #password="ngModel">
+        <mat-icon matSuffix>lock</mat-icon>
         <mat-error *ngIf="password.errors && password.errors.required">Password is required!</mat-error>
         <mat-error *ngIf="password.errors && password.errors.minlength">Password must be at least 8 characters long!</mat-error>
         <mat-error *ngIf="password.errors && password.errors.maxlength">Password must be maximum 30 characters long!</mat-error>
@@ -18,17 +20,20 @@
 
       <mat-form-field>
         <input matInput type="password" placeholder="Age" required name="age" ngModel #age="ngModel">
+        <mat-icon matSuffix>person</mat-icon>
         <mat-error *ngIf="age.errors && age.errors.required">Age is required!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput type="password" placeholder="Security Question" required maxlength="30" name="question" ngModel #question="ngModel">
+        <mat-icon matSuffix>lock</mat-icon>
         <mat-error *ngIf="question.errors && question.errors.required">Security question is required!</mat-error>
         <mat-error *ngIf="question.errors && question.errors.maxlength">Security question must be maximum 30 characters long!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput type="password" placeholder="Security Answer" required maxlength="30" name="answer" ngModel #answer="ngModel">
+        <mat-icon matSuffix>lock</mat-icon>
         <mat-error *ngIf="answer.errors && answer.errors.required">Security answer is required!</mat-error>
         <mat-error *ngIf="answer.errors && answer.errors.maxlength">Security answer must be maximum 30 characters long!</mat-error>
       </mat-form-field>
