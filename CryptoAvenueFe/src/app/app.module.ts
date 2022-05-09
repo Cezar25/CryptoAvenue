@@ -24,6 +24,7 @@ import {FormsModule} from "@angular/forms";
 import { CoinTableComponent } from './components/coin-table/coin-table.component';
 import { CoinDetailsComponent } from './components/coin-details/coin-details.component';
 import {MatSortModule} from "@angular/material/sort";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {MatSortModule} from "@angular/material/sort";
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
