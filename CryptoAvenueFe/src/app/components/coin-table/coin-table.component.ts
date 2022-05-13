@@ -53,7 +53,7 @@ export class CoinTableComponent implements OnInit {
   }
 
   goToCoinDetails(row: any){
-    this.router.navigate(['coin-details/:id', row.id]);
+    this.router.navigate(['coin-details', row.id]);
   }
 
 }

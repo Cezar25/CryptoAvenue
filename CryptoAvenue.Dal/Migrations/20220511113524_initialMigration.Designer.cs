@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CryptoAvenue.Dal.Migrations
 {
     [DbContext(typeof(CryptoAvenueContext))]
-    [Migration("20220420163633_initialMigration")]
+    [Migration("20220511113524_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace CryptoAvenue.Dal.Migrations
 
             modelBuilder.Entity("CryptoAvenue.Domain.Models.Coin", b =>
                 {
-                    b.Property<Guid>("CoinID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -47,14 +47,14 @@ namespace CryptoAvenue.Dal.Migrations
                     b.Property<double>("ValueInUSD")
                         .HasColumnType("float");
 
-                    b.HasKey("CoinID");
+                    b.HasKey("Id");
 
                     b.ToTable("Coins");
                 });
 
             modelBuilder.Entity("CryptoAvenue.Domain.Models.TradeOffer", b =>
                 {
-                    b.Property<Guid>("TradeOfferID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -76,7 +76,7 @@ namespace CryptoAvenue.Dal.Migrations
                     b.Property<Guid>("SentCoinID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("TradeOfferID");
+                    b.HasKey("Id");
 
                     b.HasIndex("ReceivedCoinID");
 
@@ -91,7 +91,7 @@ namespace CryptoAvenue.Dal.Migrations
 
             modelBuilder.Entity("CryptoAvenue.Domain.Models.User", b =>
                 {
-                    b.Property<Guid>("UserID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -117,14 +117,14 @@ namespace CryptoAvenue.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserID");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CryptoAvenue.Domain.Models.Wallet", b =>
                 {
-                    b.Property<Guid>("WalletID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -137,7 +137,7 @@ namespace CryptoAvenue.Dal.Migrations
                     b.Property<Guid>("UserID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("WalletID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CoinID");
 

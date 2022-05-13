@@ -13,7 +13,7 @@ namespace CryptoAvenue.Dal.Migrations
                 name: "Coins",
                 columns: table => new
                 {
-                    CoinID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Abreviation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ValueInEUR = table.Column<double>(type: "float", nullable: false),
@@ -22,14 +22,14 @@ namespace CryptoAvenue.Dal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Coins", x => x.CoinID);
+                    table.PrimaryKey("PK_Coins", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
@@ -39,14 +39,14 @@ namespace CryptoAvenue.Dal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserID);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Offers",
                 columns: table => new
                 {
-                    TradeOfferID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SentAmount = table.Column<double>(type: "float", nullable: false),
                     ReceivedAmount = table.Column<double>(type: "float", nullable: false),
                     SenderID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -56,30 +56,30 @@ namespace CryptoAvenue.Dal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Offers", x => x.TradeOfferID);
+                    table.PrimaryKey("PK_Offers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Offers_Coins_ReceivedCoinID",
                         column: x => x.ReceivedCoinID,
                         principalTable: "Coins",
-                        principalColumn: "CoinID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Offers_Coins_SentCoinID",
                         column: x => x.SentCoinID,
                         principalTable: "Coins",
-                        principalColumn: "CoinID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Offers_Users_RecipientID",
                         column: x => x.RecipientID,
                         principalTable: "Users",
-                        principalColumn: "UserID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Offers_Users_SenderID",
                         column: x => x.SenderID,
                         principalTable: "Users",
-                        principalColumn: "UserID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -87,25 +87,25 @@ namespace CryptoAvenue.Dal.Migrations
                 name: "Wallets",
                 columns: table => new
                 {
-                    WalletID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CoinID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CoinAmount = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wallets", x => x.WalletID);
+                    table.PrimaryKey("PK_Wallets", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Wallets_Coins_CoinID",
                         column: x => x.CoinID,
                         principalTable: "Coins",
-                        principalColumn: "CoinID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Wallets_Users_UserID",
                         column: x => x.UserID,
                         principalTable: "Users",
-                        principalColumn: "UserID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

@@ -12,6 +12,7 @@ import { MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { MatCardModule} from "@angular/material/card";
+import { NgChartsModule} from "ng2-charts";
 
 
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { CoinDetailsComponent } from './components/coin-details/coin-details.com
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSidenavModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
