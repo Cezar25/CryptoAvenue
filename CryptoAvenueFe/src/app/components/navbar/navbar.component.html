@@ -1,3 +1,4 @@
+
 <!--
 <div>
   <mat-toolbar color="primary" class="mat-elevation-z8">
@@ -10,10 +11,14 @@ currency_bitcoin
     <a mat-button routerLink="about-us">About Us</a>
 
     <div class="navbar-spacer"></div>
+>
+
+
 
     <a mat-button routerLink="login">Login</a>
     <a mat-raised-button color="accent" routerLink="register">Register</a>
   </mat-toolbar>
+
 
 
   <mat-sidenav-container fxFlexFill class="example-container">
@@ -34,13 +39,14 @@ currency_bitcoin
   </mat-sidenav-container>
 
 
+
 </div>
 -->
 
 <div class="navbar-menu">
   <mat-toolbar color="primary" class="mat-elevation-z8">
     <div fxShow="true" fxHide.gt-sm="true">
-      <button mat-icon-button>
+      <button mat-icon-button >
         <mat-icon>menu</mat-icon>
       </button>
     </div>
@@ -50,19 +56,19 @@ currency_bitcoin
     </a>
 
     <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="home">Home</a>
-      <a mat-button routerLink="markets">Markets</a>
-      <a mat-button routerLink="about-us">About Us</a>
+      <a mat-button routerLink="/home">Home</a>
+      <a mat-button routerLink="/markets">Markets</a>
+      <a mat-button routerLink="/about-us">About Us</a>
 
     </div>
-    <span class="example-spacer"></span>
+    <div class="navbar-spacer"></div>
     <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="login">Login</a>
-      <a mat-raised-button color="accent" routerLink="register">Register</a>
+      <a mat-button routerLink="/login">Login</a>
+      <a mat-raised-button color="accent" routerLink="/register">Register</a>
     </div>
 
   </mat-toolbar>
-  <!--
+
   <mat-sidenav-container fxFlexFill class="example-container">
 
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
@@ -76,7 +82,6 @@ currency_bitcoin
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
     </mat-sidenav-content>
-  </mat-sidenav-container> -->
+  </mat-sidenav-container>
 </div>
-
 

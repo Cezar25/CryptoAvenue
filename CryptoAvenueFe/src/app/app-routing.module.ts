@@ -11,7 +11,6 @@ import {CoinDetailsComponent} from "./components/coin-details/coin-details.compo
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch:'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'home2', component: HomeComponent},
   {path: 'markets', component: MarketsComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'login', component: LoginComponent},

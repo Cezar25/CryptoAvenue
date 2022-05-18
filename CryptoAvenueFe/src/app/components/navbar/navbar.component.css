@@ -1,17 +1,19 @@
-/*
+
 .navbar-spacer {
   flex: 1 1 auto;
 }
 div {
   overflow: inherit;
 }
+/*
 .mat-sidenav-container{
   background-color: lightskyblue;
   min-height: 93vh !important;
-}*/
+} */
 .companyName{
   font-size: 150%;
 }
+/*
 
 .mat-toolbar{
   height: 10vh;
@@ -48,3 +50,5 @@ button{
   font-size: 200%;
   text-align: center;
 }
+*/
+

@@ -55,6 +55,7 @@ export class CoinDetailsComponent implements OnInit {
       this.coinId = val['id'];
     })
     this.getCoinData();
+    this.getGraphData();
   }
 
   getCoinData() {
@@ -63,6 +64,12 @@ export class CoinDetailsComponent implements OnInit {
         this.coinData = res;
         console.log(this.coinData);
       })
+  }
+
+  getGraphData() {
+    this.api.getGraphicalData(this.coinId,"EUR",1).subscribe(res => {
+      console.log(res);
+    })
   }
 
 }

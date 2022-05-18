@@ -1,19 +1,18 @@
 <div class="login" fxLayoutAlign="center center" fxFlexFill >
   <mat-card fxFlex="45" class="mat-elevation-z8">
     <mat-toolbar color="primary">Login Page</mat-toolbar>
-    <form class="login-form" fxLayoutAlign="stretch" fxLayout="column">
+    <form [formGroup]="loginForm" class="login-form" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="login()">
       <mat-form-field>
-        <input matInput placeholder="Email" required name="email" ngModel #email="ngModel">
+        <input matInput placeholder="Email" required name="email" formControlName="email">
         <mat-icon matSuffix>mail</mat-icon>
-        <mat-error *ngIf="email.invalid">Email is required!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="password" placeholder="Password" required name="password" ngModel #password="ngModel">
+        <input matInput type="password" placeholder="Password" required name="password" formControlName="password">
         <mat-icon matSuffix>lock</mat-icon>
-        <mat-error *ngIf="password.invalid">Password is required!</mat-error>
       </mat-form-field>
-      <a mat-raised-button type="submit" color="primary" routerLink="home">Login</a>
+      <button mat-raised-button type="submit" color="primary">Login</button>
     </form>
+    <a routerLink="/register">Don't have an account? Click to register!</a>
   </mat-card>
 </div>

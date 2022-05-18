@@ -1,1 +1,21 @@
 <p>home works!</p>
+
+<div id="test-div">
+  <mat-card *ngFor="let user of users" >
+    <mat-card-title>title</mat-card-title>
+    <mat-card-content>{{user.email}}</mat-card-content>
+    <mat-card-content>{{user.password}}</mat-card-content>
+    <mat-card-content>{{user.age}}</mat-card-content>
+    <mat-card-content>{{user.securityQuestion}}</mat-card-content>
+    <mat-card-content>{{user.securityAnswer}}</mat-card-content>
+  </mat-card>
+
+
+</div>
+
+
+
+<pre>{{users | json}}</pre>
+<pre>&nbsp;&<></pre>
+
+

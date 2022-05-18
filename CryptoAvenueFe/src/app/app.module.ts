@@ -24,13 +24,16 @@ import { MarketsComponent } from './components/markets/markets.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CoinTableComponent } from './components/coin-table/coin-table.component';
 import { CoinDetailsComponent } from './components/coin-details/coin-details.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {LoggerService} from "./services/logger.service";
+import {CoinGeckoApiService} from "./services/coin-gecko-api.service";
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -65,9 +68,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatCheckboxModule,
     FlexLayoutModule,
     MatSidenavModule,
-    NgChartsModule
+    NgChartsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoggerService, CoinGeckoApiService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
