@@ -39,4 +39,11 @@ export class UserService {
         return res;
       }))
   }
+
+  getUserIdByEmail(email: string){
+    return this.httpClient.get<UserInterface[]>("https://localhost:7268/api/Users/get-user-id-by-email/" + email)
+      .pipe(map((res: any) => {
+        return res;
+      }))
+  }
 }

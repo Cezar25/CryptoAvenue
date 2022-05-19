@@ -125,6 +125,23 @@ namespace CryptoAvenue.Controllers
             return Ok(foundUsers);
         }
 
+        [HttpGet]
+        [Route("get-user-id-by-email/{email}")]
+        public async Task<IActionResult> GetUserIdByEmail(string email)
+        {
+            var query = new GetUserIdByEmail
+            {
+                UserEmail = email
+            };
+
+            var id = await _mediator.Send(query);
+
+            if(id == Guid.Empty)
+                return NoContent();
+
+            return Ok(id);
+        }
+
 
         [HttpPut]
         [Route("{id}")]

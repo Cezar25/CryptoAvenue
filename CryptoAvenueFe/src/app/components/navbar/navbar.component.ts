@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("userId");
     this.router.navigate(["/home"]);
   }
 

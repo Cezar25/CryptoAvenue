@@ -36,6 +36,7 @@ import {CoinGeckoApiService} from "./services/coin-gecko-api.service";
 import {UserService} from "./services/user.service";
 import {CookieService} from "ngx-cookie-service";
 import {JwtModule} from "@auth0/angular-jwt";
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -51,7 +52,8 @@ export function tokenGetter() {
     RegisterComponent,
     AboutUsComponent,
     CoinTableComponent,
-    CoinDetailsComponent
+    CoinDetailsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

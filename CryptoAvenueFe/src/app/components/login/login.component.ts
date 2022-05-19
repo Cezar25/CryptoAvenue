@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   users: UserInterface[] = [];
+  userId!: string;
 
   invalidLogin!: boolean;
 
@@ -82,7 +83,17 @@ export class LoginComponent implements OnInit {
     this.httpClient.post("https://localhost:7268/api/auth/login/", credentials)
       .subscribe( res => {
         const token = (<any>res).token;
+
         localStorage.setItem("jwt", token);
+
+        this.usersService.getUserIdByEmail(credentials.email).subscribe(res => {
+          this.userId = res;
+          console.log(res);
+          localStorage.setItem("userId", this.userId);
+        })
+
+
+
         this.invalidLogin = false;
         this.router.navigate(["/home"]);
       }, err => {
