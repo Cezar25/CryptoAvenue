@@ -34,9 +34,7 @@ export class UserService {
   }
 
   getUsers() {
-    return this.httpClient.get<UserInterface[]>("https://localhost:7268/api/Users/", {
-      withCredentials: true
-    })
+    return this.httpClient.get<UserInterface[]>("https://localhost:7268/api/Users/")
       .pipe(map((res: UserInterface[]) => {
         return res;
       }))

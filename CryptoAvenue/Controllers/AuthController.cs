@@ -33,9 +33,9 @@ namespace CryptoAvenue.Controllers
                 Password = inputUser.Password
             };
 
-            var user = await _mediator.Send(query);
+            var isLoggedIn = await _mediator.Send(query);
 
-            if (user == null)
+            if (!isLoggedIn)
                 return NotFound();
             else
             {

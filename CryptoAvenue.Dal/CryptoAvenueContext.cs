@@ -16,7 +16,6 @@ namespace CryptoAvenue.Dal
         public DbSet<User> Users { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<TradeOffer> Offers { get; set; }
-        public DbSet<LoginModel> Tokens { get; set; }
         public CryptoAvenueContext(DbContextOptions options) : base(options)
         {
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.QueryHandlers.UserQueryHandlers
 {
-    public class LoginUserHandler : IRequestHandler<LoginUser, LoginModel>
+    public class LoginUserHandler : IRequestHandler<LoginUser, bool>
     {
         private readonly IUserRepository repository;
 
@@ -19,19 +19,11 @@ namespace CryptoAvenue.Application.QueryHandlers.UserQueryHandlers
             this.repository = repository;
         }
 
-        public Task<LoginModel> Handle(LoginUser request, CancellationToken cancellationToken)
+        public Task<bool> Handle(LoginUser request, CancellationToken cancellationToken)
         {
-            var user = repository.GetEntityBy(x => x.Email == request.Email && x.Password == request.Password);
-            if (user == null)
-                return null;
+            var isInRepository = repository.Any(x => x.Email == request.Email && x.Password == request.Password);
 
-            var sentLoginModel = new LoginModel
-            {
-                Email = request.Email,
-                Password = request.Password
-            };
-
-            return Task.FromResult(sentLoginModel);
+            return Task.FromResult(isInRepository);
         }
 
         //public Task<User> Handle(LoginUser request, CancellationToken cancellationToken)

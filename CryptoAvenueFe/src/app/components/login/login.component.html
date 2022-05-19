@@ -1,7 +1,7 @@
 <div class="login" fxLayoutAlign="center center" fxFlexFill >
   <mat-card fxFlex="45" class="mat-elevation-z8">
     <mat-toolbar color="primary">Login Page</mat-toolbar>
-    <form [formGroup]="loginForm" class="login-form" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" class="login-form" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="login2(loginForm)">
       <mat-form-field>
         <input matInput placeholder="Email" required name="email" formControlName="email">
         <mat-icon matSuffix>mail</mat-icon>

@@ -35,6 +35,11 @@ import {LoggerService} from "./services/logger.service";
 import {CoinGeckoApiService} from "./services/coin-gecko-api.service";
 import {UserService} from "./services/user.service";
 import {CookieService} from "ngx-cookie-service";
+import {JwtModule} from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -70,7 +75,14 @@ import {CookieService} from "ngx-cookie-service";
     FlexLayoutModule,
     MatSidenavModule,
     NgChartsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["http://localhost:4200/"],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [LoggerService, CoinGeckoApiService, UserService, CookieService],
   bootstrap: [AppComponent]

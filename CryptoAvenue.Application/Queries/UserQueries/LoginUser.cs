@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.Queries.UserQueries
 {
-    public class LoginUser : IRequest<LoginModel>
+    public class LoginUser : IRequest<bool>
     {
         public string Email { get; set; }
         public string Password { get; set; }

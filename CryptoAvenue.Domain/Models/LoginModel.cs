@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Domain.Models
 {
-    public class LoginModel : BaseEntity
+    public class LoginModel 
     {
         public string Email { get; set; }
         public string Password { get; set; }
