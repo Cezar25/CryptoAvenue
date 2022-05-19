@@ -125,6 +125,7 @@ namespace CryptoAvenue.Controllers
             return Ok(foundUsers);
         }
 
+
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserPutPostDto updatedUser)

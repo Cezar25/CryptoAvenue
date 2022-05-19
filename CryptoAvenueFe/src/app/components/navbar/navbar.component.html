@@ -43,12 +43,13 @@ currency_bitcoin
 </div>
 -->
 
+<!--
 <div class="navbar-menu">
   <mat-toolbar color="primary" class="mat-elevation-z8">
     <div fxShow="true" fxHide.gt-sm="true">
-      <button mat-icon-button >
+      <a mat-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
-      </button>
+      </a>
     </div>
 
     <a mat-button class="companyName" routerLink="">
@@ -78,6 +79,54 @@ currency_bitcoin
         <a mat-button routerLink="about-us">About Us</a>
         <a mat-button routerLink="login">Login</a>
         <a mat-button routerLink="register">Register</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+-->
+
+
+<div>
+  <mat-toolbar color="primary">
+
+    <div fxShow="true" fxHide.gt-sm="true">
+      <a mat-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </a>
+    </div>
+
+    <mat-icon><span class="material-symbols-outlined">
+currency_bitcoin
+</span></mat-icon>Crypto Avenue
+
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="home">Home</a>
+      <a mat-button routerLink="/markets">Markets</a>
+      <a mat-button routerLink="/about-us">About Us</a>
+
+    </div>
+
+    <span class="navbar-spacer"></span>
+
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/login">Login</a>
+      <a mat-raised-button color="accent" routerLink="register">Register</a>
+    </div>
+
+
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav #sidenav fxLayout="column">
+      <div fxLayout="column">
+        <a (click)="sidenav.toggle()" mat-button>Close</a>
+        <a mat-button routerLink="/home">Home</a>
+        <a mat-button routerLink="/markets">Markets</a>
+        <a mat-button routerLink="/about-us">About Us</a>
+        <a mat-button routerLink="/login">Login</a>
+        <a mat-button routerLink="/register">Register</a>
       </div>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

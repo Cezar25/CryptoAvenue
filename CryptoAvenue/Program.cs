@@ -7,7 +7,10 @@ using CryptoAvenue.Domain.IRepositories;
 using CryptoAvenue.Middleware;
 using CryptoAvenue.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +43,36 @@ builder.Services.AddMediatR(typeof(Program));
 builder.Services.AddDbContext<CryptoAvenueContext>(options
  => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = "http://localhost:4200/",
+            ValidAudience = "http://localhost:4200/",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@346"))
+        };
+    });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("EnableCORS", corsBuilder =>
+    {
+        corsBuilder.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,12 +80,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
 }
+
+app.UseCors("EnableCORS");
+
+//app.UseCookiePolicy();
 
 app.UseHttpsRedirection();
 

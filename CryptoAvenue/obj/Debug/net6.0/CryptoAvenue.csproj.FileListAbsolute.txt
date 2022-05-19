@@ -78,3 +78,4 @@ C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Deb
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\System.Web.Http.dll
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\cezar.buna\Desktop\AmdarisMainProject\CryptoAvenue\CryptoAvenue\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

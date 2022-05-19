@@ -4,6 +4,7 @@ import {UserService} from "../../services/user.service";
 import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserInterface} from "../../interfaces/user-interface";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,12 @@ export class LoginComponent implements OnInit {
 
   users: UserInterface[] = [];
 
-  constructor(private router: Router, private usersService: UserService, private httpClient: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(
+    private router: Router,
+    private usersService: UserService,
+    private httpClient: HttpClient,
+    private formBuilder: FormBuilder,
+    private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe(res => {

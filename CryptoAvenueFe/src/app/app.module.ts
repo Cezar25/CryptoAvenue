@@ -34,6 +34,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {LoggerService} from "./services/logger.service";
 import {CoinGeckoApiService} from "./services/coin-gecko-api.service";
 import {UserService} from "./services/user.service";
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {UserService} from "./services/user.service";
     NgChartsModule,
     ReactiveFormsModule
   ],
-  providers: [LoggerService, CoinGeckoApiService, UserService],
+  providers: [LoggerService, CoinGeckoApiService, UserService, CookieService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

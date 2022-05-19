@@ -11,7 +11,9 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   postUser(data: UserInterface) {
-    return this.httpClient.post<UserInterface>("https://localhost:7268/api/Users/", data)
+    return this.httpClient.post<UserInterface>("https://localhost:7268/api/Users/", data, {
+      withCredentials: true
+    })
       .pipe(map((res: UserInterface) => {
         return res;
       }))
@@ -32,7 +34,9 @@ export class UserService {
   }
 
   getUsers() {
-    return this.httpClient.get<UserInterface[]>("https://localhost:7268/api/Users/")
+    return this.httpClient.get<UserInterface[]>("https://localhost:7268/api/Users/", {
+      withCredentials: true
+    })
       .pipe(map((res: UserInterface[]) => {
         return res;
       }))
