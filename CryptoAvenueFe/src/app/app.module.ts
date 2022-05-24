@@ -38,6 +38,7 @@ import {CookieService} from "ngx-cookie-service";
 import {JwtModule} from "@auth0/angular-jwt";
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { CreditCardInfoComponent } from './components/credit-card-info/credit-card-info.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -54,7 +55,8 @@ export function tokenGetter() {
     AboutUsComponent,
     CoinTableComponent,
     CoinDetailsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CreditCardInfoComponent
   ],
   imports: [
     BrowserModule,
