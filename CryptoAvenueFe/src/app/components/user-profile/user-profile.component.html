@@ -1,1 +1,27 @@
-<p>user-profile works!</p>
+<div class="editProfile" fxLayoutAlign="center center" fxFlexFill>
+  <mat-card fxFlex="45" class="mat-elevation-z8">
+    <mat-toolbar color="primary">Edit your profile</mat-toolbar>
+    <form [formGroup]="editProfileForm" (ngSubmit)="updateUser()" class="editProfile-form" fxLayoutAlign="stretch" fxLayout="column">
+      <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email" required minlength="8" maxlength="30">
+        <mat-icon matSuffix>mail</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" formControlName="password" required minlength="8" maxlength="30">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" formControlName="securityQuestion" placeholder="Security Question" required maxlength="30">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" placeholder="Security Answer" required maxlength="30" formControlName="securityAnswer">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>

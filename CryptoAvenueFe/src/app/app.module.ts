@@ -37,6 +37,7 @@ import {UserService} from "./services/user.service";
 import {CookieService} from "ngx-cookie-service";
 import {JwtModule} from "@auth0/angular-jwt";
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -84,7 +85,8 @@ export function tokenGetter() {
         allowedDomains: ["http://localhost:4200/"],
         disallowedRoutes: []
       }
-    })
+    }),
+    MatSlideToggleModule
   ],
   providers: [LoggerService, CoinGeckoApiService, UserService, CookieService],
   bootstrap: [AppComponent]

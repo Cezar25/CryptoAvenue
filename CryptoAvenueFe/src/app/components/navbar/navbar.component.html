@@ -111,9 +111,9 @@ currency_bitcoin
     <span class="navbar-spacer"></span>
 
     <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="/login">Login</a>
-      <a mat-raised-button color="accent" routerLink="register">Register</a>
-      <a mat-button (click)="logOut()" color="warn">Log Out</a>
+      <a mat-button routerLink="/login" *ngIf="!isUserLoggedIn()">Login</a>
+      <a mat-raised-button color="accent" routerLink="register" *ngIf="!isUserLoggedIn()">Register</a>
+      <a mat-raised-button (click)="logOut()" color="warn" *ngIf="isUserLoggedIn()">Log Out</a>
 
     </div>
 

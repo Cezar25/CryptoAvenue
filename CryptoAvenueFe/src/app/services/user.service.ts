@@ -26,9 +26,16 @@ export class UserService {
       }))
   }
 
-  updateUser(data: any, id: string) {
-    return this.httpClient.patch<any>("" + id, data)
-      .pipe(map((res: any) => {
+  updateUser(data: UserInterface, id: string) {
+    return this.httpClient.put<any>("https://localhost:7268/api/Users/" + id, data)
+      .pipe(map((res: UserInterface) => {
+        return res;
+      }))
+  }
+
+  updateUserEmail( id: string, newEmail: any) {
+    return this.httpClient.patch<UserInterface>(`https://localhost:7268/api/Users/${id}/update-user-email/`, newEmail)
+      .pipe(map((res: UserInterface) => {
         return res;
       }))
   }
@@ -42,6 +49,13 @@ export class UserService {
 
   getUserIdByEmail(email: string){
     return this.httpClient.get<UserInterface[]>("https://localhost:7268/api/Users/get-user-id-by-email/" + email)
+      .pipe(map((res: any) => {
+        return res;
+      }))
+  }
+
+  getUserById(id: string){
+    return this.httpClient.get<UserInterface>("https://localhost:7268/api/Users/get-user-by-id/" + id)
       .pipe(map((res: any) => {
         return res;
       }))

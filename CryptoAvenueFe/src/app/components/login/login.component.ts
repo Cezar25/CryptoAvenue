@@ -95,8 +95,11 @@ export class LoginComponent implements OnInit {
 
 
         this.invalidLogin = false;
+
+        alert("Login succesful!");
         this.router.navigate(["/home"]);
       }, err => {
+        alert("Invalid user credentials!");
         this.invalidLogin = true;
       })
   }

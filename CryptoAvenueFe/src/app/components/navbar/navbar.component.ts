@@ -25,7 +25,11 @@ export class NavbarComponent implements OnInit {
   }
 
   isUserLoggedIn(): boolean {
-    console.log("isLoggedIn method triggered.");
+    if(this.isLoggedIn){
+      console.log("User is logged in");
+    }else{
+      console.log("User is not logged in");
+    }
     return this.isLoggedIn;
   }
 

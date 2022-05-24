@@ -1,0 +1,8 @@
+.editProfile mat-card {
+  padding: 0;
+  border: 3px solid #673ab7;
+  min-width: 265px;
+}
+.editProfile-form {
+  padding: 20px;
+}

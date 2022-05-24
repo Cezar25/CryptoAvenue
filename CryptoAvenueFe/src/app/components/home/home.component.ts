@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/user.model";
 import {Observable} from "rxjs";
 import {UserInterface} from "../../interfaces/user-interface";
+import {UserService} from "../../services/user.service";
+import {tokenGetter} from "../../app.module";
 
 @Component({
   selector: 'app-home',
@@ -10,15 +12,23 @@ import {UserInterface} from "../../interfaces/user-interface";
 })
 export class HomeComponent implements OnInit {
 
-  users : UserInterface[] = [
-    /*{ Email: "email", Password: "Password1", Age: 12, SecurityQuestion: "q1", SecurityAnswer: "a1",
-    Id: "12312312", PrivateProfile: false}*/
-  ];
+  users : UserInterface[] = [];
 
-  constructor() { }
+  user!: UserInterface;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUsers().subscribe(res => {
+      this.users = res;
+      console.log(res);
+    })
 
+    //this.userId = localStorage.getItem("userId")!;
+
+    this.userService.getUserById(localStorage.getItem("userId")!).subscribe(res => {
+      console.log(res);
+    })
   }
 
 }
