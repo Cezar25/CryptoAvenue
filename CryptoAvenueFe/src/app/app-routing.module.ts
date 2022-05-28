@@ -8,6 +8,8 @@ import {RegisterComponent} from "./components/register/register.component";
 import {CoinDetailsComponent} from "./components/coin-details/coin-details.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 import {CreditCardInfoComponent} from "./components/credit-card-info/credit-card-info.component";
+import {BankTransferInfoComponent} from "./components/bank-transfer-info/bank-transfer-info.component";
+import {BalanceComponent} from "./components/balance/balance.component";
 
 
 const routes: Routes = [
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'coin-details/:id', component: CoinDetailsComponent},
   {path: 'user-profile', component: UserProfileComponent},
-  {path: 'credit-card-info', component: CreditCardInfoComponent}
+  {path: 'credit-card-info', component: CreditCardInfoComponent},
+  {path: 'bank-transfer-info', component: BankTransferInfoComponent},
+  {path: 'balance/:id', component: BalanceComponent}
 ];
 
 @NgModule({

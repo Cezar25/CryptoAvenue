@@ -60,4 +60,25 @@ export class UserService {
         return res;
       }))
   }
+
+  getUserTotalPortofolioValueEUR(id: string) {
+    return this.httpClient.get<number>("https://localhost:7268/api/Users/get-user-portofolio-value-eur/" + id)
+      .pipe(map((res: any) => {
+        return res;
+      }))
+  }
+
+  getUserTotalPortofolioValueUSD(id: string) {
+    return this.httpClient.get<number>("https://localhost:7268/api/Users/get-user-portofolio-value-usd/" + id)
+      .pipe(map((res: any) => {
+        return res;
+      }))
+  }
+
+  getUserTotalPortofolioValueBTC(id: string) {
+    return this.httpClient.get<number>("https://localhost:7268/api/Users/get-user-portofolio-value-btc/" + id)
+      .pipe(map((res: any) => {
+        return res;
+      }))
+  }
 }

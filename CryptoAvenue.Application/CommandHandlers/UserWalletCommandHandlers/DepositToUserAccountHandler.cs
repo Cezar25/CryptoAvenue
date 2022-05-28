@@ -10,45 +10,44 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 {
-    public class DepositToUserAccountHandler : IRequestHandler<DepositToUserAccount>
+    public class DepositToUserAccountHandler : IRequestHandler<DepositToUserAccount, Wallet>
     {
+        private readonly IUserRepository userRepository;
         private readonly IWalletRepository walletRepository;
-        private readonly ICoinRepository coinRepository;
 
-        public DepositToUserAccountHandler(IWalletRepository walletRepository, ICoinRepository coinRepository)
+        public DepositToUserAccountHandler(IUserRepository userRepository, IWalletRepository walletRepository)
         {
+            this.userRepository = userRepository;
             this.walletRepository = walletRepository;
-            this.coinRepository = coinRepository;
         }
 
-        public Task<Unit> Handle(DepositToUserAccount request, CancellationToken cancellationToken)
-        {           
-            var coin = coinRepository.GetEntityBy(x => x.Id == request.CoinId);
-            if(coin == null || coin.Abreviation != "EUR" || coin.Abreviation != "USD")
-                return null;
+        public Task<Wallet> Handle(DepositToUserAccount request, CancellationToken cancellationToken)
+        {
+            if(walletRepository.Any(x => x.CoinID == request.CoinId && x.UserID == request.UserId))
+            {
+                var wallet = walletRepository.GetEntityBy(x => x.CoinID == request.CoinId && x.UserID == request.UserId);
+
+                wallet.CoinAmount += request.Amount;
+
+                walletRepository.Update(wallet);
+                walletRepository.SaveChanges();
+
+                return Task.FromResult(wallet);
+            }
             else
             {
-                if (walletRepository.Any(x => x.CoinID == request.CoinId && x.UserID == request.UserId))
+                var newWallet = new Wallet
                 {
-                    var wallet = walletRepository.GetEntityBy(x => x.CoinID == request.CoinId && x.UserID == request.UserId);
-                    wallet.CoinAmount += request.Amount;
-
-                    walletRepository.Update(wallet);
-                    walletRepository.SaveChanges();
-                }
-                else
-                {
-                    walletRepository.Insert(new Wallet()
-                    {
-                        CoinID = request.CoinId,
-                        UserID = request.UserId,
-                        CoinAmount = request.Amount
-                    });
-                    walletRepository.SaveChanges();
+                    UserID = request.UserId,
+                    CoinID = request.CoinId,
+                    CoinAmount = request.Amount
                 };
-                return (Task<Unit>)Task.CompletedTask;
-            }          
-            
+
+                walletRepository.Insert(newWallet);
+                walletRepository.SaveChanges();
+
+                return Task.FromResult(newWallet);
+            }
         }
     }
 }

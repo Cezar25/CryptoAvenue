@@ -91,17 +91,19 @@ currency_bitcoin
 <div>
   <mat-toolbar color="primary">
 
-    <div fxShow="true" fxHide.gt-sm="true">
-      <a mat-button (click)="sidenav.toggle()">
+    <!--<div fxShow="true" fxHide.gt-sm="true">
+      <a mat-button>
         <mat-icon>menu</mat-icon>
       </a>
-    </div>
+    </div>-->
 
     <mat-icon><span class="material-symbols-outlined">
 currency_bitcoin
 </span></mat-icon>Crypto Avenue
 
-    <div fxShow="true" fxHide.lt-md="true">
+    <div>
+      <!--fxShow="true" fxHide.lt-md="true" -->
+
       <a mat-button routerLink="home">Home</a>
       <a mat-button routerLink="/markets">Markets</a>
       <a mat-button routerLink="/about-us">About Us</a>
@@ -110,7 +112,9 @@ currency_bitcoin
 
     <span class="navbar-spacer"></span>
 
-    <div fxShow="true" fxHide.lt-md="true">
+    <div fxShow="true">
+      <!--fxHide.lt-md="true" -->
+      <a mat-button *ngIf="isUserLoggedIn()" (click)="goToBalancePage()">Balance</a>
       <a mat-button routerLink="/login" *ngIf="!isUserLoggedIn()">Login</a>
       <a mat-raised-button color="accent" routerLink="register" *ngIf="!isUserLoggedIn()">Register</a>
       <a mat-raised-button (click)="logOut()" color="warn" *ngIf="isUserLoggedIn()">Log Out</a>
@@ -120,8 +124,8 @@ currency_bitcoin
 
   </mat-toolbar>
 
-  <mat-sidenav-container fxFlexFill class="example-container">
-    <mat-sidenav #sidenav fxLayout="column">
+  <!--<mat-sidenav-container fxFlexFill class="example-container">
+  &lt;!&ndash;  <mat-sidenav #sidenav fxLayout="column">
       <div fxLayout="column">
         <a (click)="sidenav.toggle()" mat-button>Close</a>
         <a mat-button routerLink="/home">Home</a>
@@ -133,6 +137,6 @@ currency_bitcoin
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+  </mat-sidenav-container>&ndash;&gt;-->
 </div>
 

@@ -39,6 +39,8 @@ import {JwtModule} from "@auth0/angular-jwt";
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { CreditCardInfoComponent } from './components/credit-card-info/credit-card-info.component';
+import { BankTransferInfoComponent } from './components/bank-transfer-info/bank-transfer-info.component';
+import { BalanceComponent } from './components/balance/balance.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -56,7 +58,9 @@ export function tokenGetter() {
     CoinTableComponent,
     CoinDetailsComponent,
     UserProfileComponent,
-    CreditCardInfoComponent
+    CreditCardInfoComponent,
+    BankTransferInfoComponent,
+    BalanceComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.Commands.UserWalletCommands
 {
-    public class DepositToUserAccount : IRequest
+    public class DepositToUserAccount : IRequest<Wallet>
     {
         public Guid UserId { get; set; }
         public Guid CoinId { get; set; }
