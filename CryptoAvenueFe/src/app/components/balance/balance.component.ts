@@ -22,13 +22,23 @@ export class BalanceComponent implements OnInit {
       console.log("Logged user ID from balance component:");
       console.log(this.userId);
     })
+
+    this.userService.getUserTotalPortofolioValueEUR(this.userId).subscribe(res => {
+      console.log(res);
+      this.totalBalanceInEUR = res;
+    })
+
+    this.userService.getUserTotalPortofolioValueUSD(this.userId).subscribe(res => {
+      console.log(res);
+      this.totalBalanceInUSD = res;
+    })
   }
 
   ngOnDestroy(): void{
     this.route.params.subscribe().unsubscribe();
   }
 
-  getTotalBalanceAmountInEUR(): number{
+  /*getTotalBalanceAmountInEUR(): number{
     this.userService.getUserTotalPortofolioValueEUR(this.userId).subscribe(res => {
       console.log(res);
       this.totalBalanceInEUR = res;
@@ -38,13 +48,13 @@ export class BalanceComponent implements OnInit {
   }
 
   getTotalBalanceAmountInUSD(): number{
-    this.userService.getUserTotalPortofolioValueEUR(this.userId).subscribe(res => {
+    this.userService.getUserTotalPortofolioValueUSD(this.userId).subscribe(res => {
       console.log(res);
       this.totalBalanceInUSD = res;
     })
 
     return this.totalBalanceInUSD;
-  }
+  }*/
 
 }
 
