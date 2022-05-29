@@ -32,6 +32,8 @@ export class BalanceComponent implements OnInit {
       console.log(res);
       this.totalBalanceInUSD = res;
     })
+
+    localStorage.setItem("isOnBalancePage", "true");
   }
 
   ngOnDestroy(): void{

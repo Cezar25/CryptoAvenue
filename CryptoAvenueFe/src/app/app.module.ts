@@ -41,6 +41,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { CreditCardInfoComponent } from './components/credit-card-info/credit-card-info.component';
 import { BankTransferInfoComponent } from './components/bank-transfer-info/bank-transfer-info.component';
 import { BalanceComponent } from './components/balance/balance.component';
+import { DepositComponent } from './components/deposit/deposit.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -60,7 +61,8 @@ export function tokenGetter() {
     UserProfileComponent,
     CreditCardInfoComponent,
     BankTransferInfoComponent,
-    BalanceComponent
+    BalanceComponent,
+    DepositComponent
   ],
   imports: [
     BrowserModule,

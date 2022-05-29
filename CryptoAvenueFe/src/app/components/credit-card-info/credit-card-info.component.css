@@ -2,3 +2,12 @@
   background-color: #673ab7;
   color: white;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.spacer2 {
+  display: flex;
+  justify-content: space-between;
+}

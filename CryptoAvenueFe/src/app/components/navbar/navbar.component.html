@@ -114,6 +114,8 @@ currency_bitcoin
 
     <div fxShow="true">
       <!--fxHide.lt-md="true" -->
+      <a mat-button *ngIf="isOnBalancePage()" (click)="goToDepositPage()">Deposit</a>
+      <a mat-button *ngIf="isOnBalancePage()" routerLink="/bank-transfer-info">Withdraw</a>
       <a mat-button *ngIf="isUserLoggedIn()" (click)="goToBalancePage()">Balance</a>
       <a mat-button routerLink="/login" *ngIf="!isUserLoggedIn()">Login</a>
       <a mat-raised-button color="accent" routerLink="register" *ngIf="!isUserLoggedIn()">Register</a>

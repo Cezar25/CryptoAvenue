@@ -16,4 +16,12 @@ export class CreditCardInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  submit() {
+    this.router.navigate(['/balance', localStorage.getItem("userId")]);
+  }
+
+  cancel() {
+    this.router.navigate(['/balance', localStorage.getItem("userId")]);
+  }
+
 }

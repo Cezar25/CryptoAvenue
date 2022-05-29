@@ -26,7 +26,7 @@
           <!-- credit card info-->
           <div id="nav-tab-card" class="tab-pane fade show active">
             <p class="alert alert-success" >Fill in your credit card information below:</p>
-            <form role="form">
+            <form role="form" (ngSubmit)="submit()">
               <div class="form-group">
                 <label >Full name (on the card)</label>
                 <input type="text" name="username" placeholder="Jason Doe" required class="form-control">
@@ -66,7 +66,8 @@
 
 
               </div>
-              <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  </button>
+              <button mat-raised-button type="button" (click)="cancel()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" style="background-color: red"> Cancel  </button>
+              <button mat-raised-button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" style="background-color: #ffd740"> Confirm  </button>
             </form>
           </div>
           <!-- End -->

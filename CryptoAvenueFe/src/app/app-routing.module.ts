@@ -10,6 +10,7 @@ import {UserProfileComponent} from "./components/user-profile/user-profile.compo
 import {CreditCardInfoComponent} from "./components/credit-card-info/credit-card-info.component";
 import {BankTransferInfoComponent} from "./components/bank-transfer-info/bank-transfer-info.component";
 import {BalanceComponent} from "./components/balance/balance.component";
+import {DepositComponent} from "./components/deposit/deposit.component";
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'user-profile', component: UserProfileComponent},
   {path: 'credit-card-info', component: CreditCardInfoComponent},
   {path: 'bank-transfer-info', component: BankTransferInfoComponent},
-  {path: 'balance/:id', component: BalanceComponent}
+  {path: 'balance/:id', component: BalanceComponent},
+  {path: 'deposit/:d', component: DepositComponent}
 ];
 
 @NgModule({

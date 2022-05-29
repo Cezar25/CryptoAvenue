@@ -33,6 +33,10 @@ export class NavbarComponent implements OnInit {
     return this.isLoggedIn;
   }
 
+  isOnBalancePage(): boolean {
+    return !!localStorage.getItem("isOnBalancePage");
+  }
+
   goToHomePage() {
     this.router.navigate(['home']);
   }
@@ -41,6 +45,12 @@ export class NavbarComponent implements OnInit {
     let userId = localStorage.getItem("userId")!;
 
     this.router.navigate(['/balance', userId]);
+  }
+
+  goToDepositPage() {
+    let userId = localStorage.getItem("userId")!;
+
+    this.router.navigate(['/deposit', userId]);
   }
 
 }
