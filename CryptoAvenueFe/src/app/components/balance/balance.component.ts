@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {WalletService} from "../../services/wallet.service";
 
 @Component({
   selector: 'app-balance',
@@ -14,7 +15,7 @@ export class BalanceComponent implements OnInit {
   totalBalanceInEUR!: number;
   totalBalanceInUSD!: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private walletService: WalletService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -31,6 +32,11 @@ export class BalanceComponent implements OnInit {
     this.userService.getUserTotalPortofolioValueUSD(this.userId).subscribe(res => {
       console.log(res);
       this.totalBalanceInUSD = res;
+    })
+
+    this.walletService.getWalletsByUserId(this.userId).subscribe(res => {
+      console.log("Logged user wallets from balance component:");
+      console.log(res);
     })
 
     localStorage.setItem("isOnBalancePage", "true");

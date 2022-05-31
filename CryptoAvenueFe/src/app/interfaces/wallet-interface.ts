@@ -1,5 +1,6 @@
 export interface WalletInterface {
   id: string;
-  coinId: string;
-  userId: string;
+  coinID: string;
+  userID: string;
+  coinAmount: number;
 }
