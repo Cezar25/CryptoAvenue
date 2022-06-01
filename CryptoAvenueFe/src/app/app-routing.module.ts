@@ -22,10 +22,10 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'coin-details/:id', component: CoinDetailsComponent},
   {path: 'user-profile', component: UserProfileComponent},
-  {path: 'credit-card-info', component: CreditCardInfoComponent},
-  {path: 'bank-transfer-info', component: BankTransferInfoComponent},
+  {path: 'credit-card-info/:userId/:coinId/:coinAmount', component: CreditCardInfoComponent},
+  {path: 'bank-transfer-info/:userId/:coinId/:coinAmount', component: BankTransferInfoComponent},
   {path: 'balance/:id', component: BalanceComponent},
-  {path: 'deposit/:d', component: DepositComponent}
+  {path: 'deposit/:id', component: DepositComponent}
 ];
 
 @NgModule({

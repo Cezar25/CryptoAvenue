@@ -11,3 +11,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.cancel-btn {
+  background-color: red;
+  float: left;
+}
+
+.confirm-btn {
+  background-color: #ffd740;
+  float: right;
+}

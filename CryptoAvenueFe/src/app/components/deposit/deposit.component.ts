@@ -61,23 +61,6 @@ export class DepositComponent implements OnInit {
   }
 
   deposit(form: FormGroup){
-    //let depositData: number = 55;
-    const depositData: number = form.value.coinAmount.parseFloat;
-    console.log("Logged from coin amount: " + form.value.coinAmount);
-    console.log("Logged amount from deposit method:");
-    console.log(depositData);
-    //let depositData: number = 55;
-
-    this.walletService.depositToAccount(this.userId, this.coinId, depositData)
-      .subscribe(res => {
-        console.log("Response from deposit method: " + res);
-        alert("Deposit successful!");
-      }, err => {
-        alert("Deposit attempt unsuccessful! Please try again!");
-      })
-  }
-
-  deposit2(form: FormGroup){
     //const random
 
     this.coinService.getCoinIdByAbreviation(form.value.currency)
@@ -100,10 +83,12 @@ export class DepositComponent implements OnInit {
     //depositData.amount = Number(depositData.amount);
     //.log("Float deposit amount: " + depositData.amount);
 
-    this.walletService.depositToAccount(depositData.userId, depositData.coinId, depositData.amount)
+    /*this.walletService.depositToAccount(depositData.userId, depositData.coinId, depositData.amount)
       .subscribe(res => {
         console.log(res);
-      })
+      })*/
+
+    this.router.navigate(['/credit-card-info', depositData.userId, depositData.coinId, depositData.amount]);
 
     console.log(depositData);
   }
