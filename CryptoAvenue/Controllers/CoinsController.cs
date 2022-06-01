@@ -68,6 +68,19 @@ namespace CryptoAvenue.Controllers
             return Ok(foundCoin);
         }
 
+        [HttpGet]
+        [Route("get-coin-id-by-abrevation/{coinAbreviation}")]
+        public async Task<IActionResult> GetCoinIdByAbreviation(string coinAbreviation)
+        {
+            var query = new GetCoinIdByAbreviation { CoinAbreviation = coinAbreviation };
+            var coin = await _mediator.Send(query);
+
+            if (coin == null)
+                return NotFound();
+
+            return Ok(coin);
+        }
+
         [HttpPatch]
         [Route("update-coin/{id}")]
         public async Task<IActionResult> UpdateCoin(Guid id,[FromBody] CoinPutPostDto updatedCoin)
