@@ -11,6 +11,7 @@ import {CreditCardInfoComponent} from "./components/credit-card-info/credit-card
 import {BankTransferInfoComponent} from "./components/bank-transfer-info/bank-transfer-info.component";
 import {BalanceComponent} from "./components/balance/balance.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
+import {WithdrawComponent} from "./components/withdraw/withdraw.component";
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'credit-card-info/:userId/:coinId/:coinAmount', component: CreditCardInfoComponent},
   {path: 'bank-transfer-info/:userId/:coinId/:coinAmount', component: BankTransferInfoComponent},
   {path: 'balance/:id', component: BalanceComponent},
-  {path: 'deposit/:id', component: DepositComponent}
+  {path: 'deposit/:id', component: DepositComponent},
+  {path: 'withdraw/:id', component: WithdrawComponent}
 ];
 
 @NgModule({

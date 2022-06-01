@@ -96,6 +96,21 @@ namespace CryptoAvenue.Controllers
             return Ok(foundWallets);
         }
 
+        [HttpGet]
+        [Route("does-the-user-have-any-wallet-containing-searched-coin/{userId}/{coinId}")]
+        public async Task<IActionResult> DoesUserHaveAnyWalletContainingCoin(Guid userId, Guid coinId)
+        {
+            var query = new HasAnyWalletWithCoin
+            {
+                CoinId = coinId,
+                UserId = userId
+            };
+
+            var response = await _mediator.Send(query);
+
+            return Ok(response);
+        }
+
         [HttpPost]
         [HttpPatch]
         [Route("deposit-to-user-account/{userId}/{coinId}")]

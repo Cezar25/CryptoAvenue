@@ -14,7 +14,9 @@
         <mat-form-field appearance="fill">
           <mat-label>Currency</mat-label>
           <mat-select required formControlName="currency" [(value)]="selectedCurrency">
+            <mat-icon>euro</mat-icon>
             <mat-option [value]="this.eur">EUR</mat-option>
+            <mat-icon>attach_money</mat-icon>
             <mat-option [value]="this.usd">USD</mat-option>
           </mat-select>
         </mat-form-field>

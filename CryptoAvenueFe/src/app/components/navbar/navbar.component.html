@@ -104,9 +104,9 @@ currency_bitcoin
     <div>
       <!--fxShow="true" fxHide.lt-md="true" -->
 
-      <a mat-button routerLink="home">Home</a>
-      <a mat-button routerLink="/markets">Markets</a>
-      <a mat-button routerLink="/about-us">About Us</a>
+      <a mat-button (click)="goToHomePage()">Home</a>
+      <a mat-button (click)="goToMarketsPage()">Markets</a>
+      <a mat-button (click)="goToAboutUsPage()">About Us</a>
 
     </div>
 
@@ -115,7 +115,7 @@ currency_bitcoin
     <div fxShow="true">
       <!--fxHide.lt-md="true" -->
       <a mat-button *ngIf="isOnBalancePage()" (click)="goToDepositPage()">Deposit</a>
-      <a mat-button *ngIf="isOnBalancePage()" routerLink="/bank-transfer-info">Withdraw</a>
+      <a mat-button *ngIf="isOnBalancePage()" (click)="goToWithdrawPage()">Withdraw</a>
       <a mat-button *ngIf="isUserLoggedIn()" (click)="goToBalancePage()">Balance</a>
       <a mat-button routerLink="/login" *ngIf="!isUserLoggedIn()">Login</a>
       <a mat-raised-button color="accent" routerLink="register" *ngIf="!isUserLoggedIn()">Register</a>

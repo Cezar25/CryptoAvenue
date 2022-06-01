@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("jwt");
     localStorage.removeItem("userId");
     this.router.navigate(["/home"]);
+    localStorage.removeItem("isOnBalancePage");
   }
 
   isUserLoggedIn(): boolean {
@@ -38,7 +39,18 @@ export class NavbarComponent implements OnInit {
   }
 
   goToHomePage() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
+    localStorage.removeItem("isOnBalancePage");
+  }
+
+  goToMarketsPage() {
+    this.router.navigate(['/markets']);
+    localStorage.removeItem("isOnBalancePage");
+  }
+
+  goToAboutUsPage() {
+    this.router.navigate(['/about-us']);
+    localStorage.removeItem("isOnBalancePage");
   }
 
   goToBalancePage(){
@@ -52,5 +64,12 @@ export class NavbarComponent implements OnInit {
 
     this.router.navigate(['/deposit', userId]);
   }
+
+  goToWithdrawPage() {
+    let userId = localStorage.getItem("userId")!;
+
+    this.router.navigate(['/withdraw', userId]);
+  }
+
 
 }

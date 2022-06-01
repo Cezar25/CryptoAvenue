@@ -42,6 +42,7 @@ import { CreditCardInfoComponent } from './components/credit-card-info/credit-ca
 import { BankTransferInfoComponent } from './components/bank-transfer-info/bank-transfer-info.component';
 import { BalanceComponent } from './components/balance/balance.component';
 import { DepositComponent } from './components/deposit/deposit.component';
+import { WithdrawComponent } from './components/withdraw/withdraw.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -62,7 +63,8 @@ export function tokenGetter() {
     CreditCardInfoComponent,
     BankTransferInfoComponent,
     BalanceComponent,
-    DepositComponent
+    DepositComponent,
+    WithdrawComponent
   ],
   imports: [
     BrowserModule,
