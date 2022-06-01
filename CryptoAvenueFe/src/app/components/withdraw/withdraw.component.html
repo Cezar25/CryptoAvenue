@@ -1,1 +1,32 @@
-<p>withdraw works!</p>
+<div fxLayoutAlign="center center" fxFlexFill>
+  <mat-card>
+    <mat-toolbar color="primary">
+      Withdraw Page
+    </mat-toolbar>
+    <mat-card-header>
+      Select the currency you want to withdraw
+    </mat-card-header>
+    <br>
+    <br>
+    <form [formGroup]="withdrawDetails" (ngSubmit)="withdraw(withdrawDetails)" fxLayoutAlign="stretch" fxLayout="column">
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Currency</mat-label>
+          <mat-select required formControlName="currency" [(value)]="selectedCurrency">
+            <mat-icon>euro</mat-icon>
+            <mat-option  [value]="this.eur">EUR</mat-option>
+            <mat-icon>attach_money</mat-icon>
+            <mat-option  [value]="this.usd">USD</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Amount</mat-label>
+          <input matInput required formControlName="coinAmount">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button type="submit" color="primary">Withdraw</button>
+    </form>
+
+  </mat-card>
+</div>

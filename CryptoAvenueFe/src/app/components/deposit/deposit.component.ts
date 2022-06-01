@@ -44,20 +44,6 @@ export class DepositComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.testForm = this.formBuilder.group({
-      coinAmount: [0]
-    })
-
-  }
-
-  changeToEur(){
-    this.selectedCurrency = "EUR";
-    console.log("Changed selected currency to EUR");
-  }
-
-  changeToUsd(){
-    this.selectedCurrency = "USD";
-    console.log("Changed selected currency to USD");
   }
 
   deposit(form: FormGroup){
@@ -88,7 +74,7 @@ export class DepositComponent implements OnInit {
         console.log(res);
       })*/
 
-    this.router.navigate(['/credit-card-info', depositData.userId, depositData.coinId, depositData.amount]);
+    this.router.navigate(['/credit-card-info', depositData.userId, depositData.coinId, depositData.amount, "deposit"]);
 
     console.log(depositData);
   }

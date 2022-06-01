@@ -23,8 +23,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'coin-details/:id', component: CoinDetailsComponent},
   {path: 'user-profile', component: UserProfileComponent},
-  {path: 'credit-card-info/:userId/:coinId/:coinAmount', component: CreditCardInfoComponent},
-  {path: 'bank-transfer-info/:userId/:coinId/:coinAmount', component: BankTransferInfoComponent},
+  {path: 'credit-card-info/:userId/:coinId/:coinAmount/:type', component: CreditCardInfoComponent},
+  {path: 'bank-transfer-info/:userId/:coinId/:coinAmount/:type', component: BankTransferInfoComponent},
   {path: 'balance/:id', component: BalanceComponent},
   {path: 'deposit/:id', component: DepositComponent},
   {path: 'withdraw/:id', component: WithdrawComponent}

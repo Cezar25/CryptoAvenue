@@ -23,4 +23,18 @@ export class WalletService {
         return res;
       }))
   }
+
+  withdrawFromUserAccount(userId: string, coinId: string, data:number): Observable<WalletInterface> {
+    return this.httpClient.patch<WalletInterface>("https://localhost:7268/api/Wallets/withdraw-from-user-account/" + userId + "/" + coinId, data)
+      .pipe(map((res: WalletInterface) => {
+        return res;
+      }))
+  }
+
+  doesUserHaveCoin(userId: string, coinId: string) {
+    return this.httpClient.get<boolean>("https://localhost:7268/api/Wallets/does-the-user-have-any-wallet-containing-searched-coin/" + userId + "/" + coinId)
+      .pipe(map((res: boolean) => {
+        return res;
+      }))
+  }
 }
