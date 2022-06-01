@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoAvenue.Application.Commands.UserWalletCommands
+namespace CryptoAvenue.Application.Commands.UserWalletCommands.UserCommands
 {
     public class WithdrawFromUserAccount : IRequest<Wallet>
     {

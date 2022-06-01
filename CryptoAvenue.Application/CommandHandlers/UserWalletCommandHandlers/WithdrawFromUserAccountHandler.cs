@@ -1,5 +1,6 @@
 ﻿using CryptoAvenue.Application.Commands.UserWalletCommands;
 using CryptoAvenue.Domain.IRepositories;
+using CryptoAvenue.Domain.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,34 +10,43 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 {
-    public class WithdrawFromUserAccountHandler : IRequestHandler<WithdrawFromUserAccount>
+    public class WithdrawFromUserAccountHandler : IRequestHandler<WithdrawFromUserAccount, Wallet>
     {
+        private readonly IUserRepository userRepository;
         private readonly IWalletRepository walletRepository;
-        private readonly ICoinRepository coinRepository;
-        public WithdrawFromUserAccountHandler(IWalletRepository walletRepository, ICoinRepository coinRepository)
-        {
-            this.walletRepository = walletRepository;
-            this.coinRepository = coinRepository;
-        }
-        public Task<Unit> Handle(WithdrawFromUserAccount request, CancellationToken cancellationToken)
-        {
-            var coin = coinRepository.GetEntityBy(x => x.Id == request.CoinId);
-            if (coin == null || coin.Abreviation != "EUR" || coin.Abreviation != "USD")
-                return null;
-            else
-            {
-                var wallet = walletRepository.GetEntityBy(x => x.CoinID == request.CoinId);
 
-                if(wallet.CoinAmount >= request.Amount)
+        public WithdrawFromUserAccountHandler(IUserRepository userRepository, IWalletRepository walletRepository)
+        {
+            this.userRepository = userRepository;
+            this.walletRepository = walletRepository;
+        }
+
+        public Task<Wallet> Handle(WithdrawFromUserAccount request, CancellationToken cancellationToken)
+        {
+            var wallet = walletRepository.GetEntityBy(x => x.CoinID == request.CoinId && x.UserID == request.UserId);
+
+            if (wallet.CoinAmount >= request.Amount)
+            {
+                wallet.CoinAmount -= request.Amount;
+
+                if (wallet.CoinAmount == 0)
+                {
                     walletRepository.Delete(wallet);
+                    walletRepository.SaveChanges();
+                }
+
                 else
                 {
-                    wallet.CoinAmount -= request.Amount;
                     walletRepository.Update(wallet);
-                } 
-                walletRepository.SaveChanges();
+                    walletRepository.SaveChanges();
+                }
+
+                return Task.FromResult(wallet);
             }
-            return (Task<Unit>)Task.CompletedTask;
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -120,6 +120,29 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpPatch]
+        [HttpDelete]
+        [Route("withdraw-from-user-account/{userId}/{coinId}")]
+        public async Task<IActionResult> WithdrawFromUserAccount(Guid userId, Guid coinId, [FromBody] double coinAmount)
+        {
+            var command = new WithdrawFromUserAccount
+            {
+                UserId = userId,
+                CoinId = coinId,
+                Amount = coinAmount
+            };
+
+            var result = await _mediator.Send(command);
+
+            if (result == null)
+                return NotFound();
+            else
+            {
+                var resultedWallet = _mapper.Map<WalletGetDto>(result);
+                return Ok(resultedWallet);
+            }
+        }
+
+        [HttpPatch]
         [Route("update-wallet/{id}")]
         public async Task<IActionResult> UpdateWallet(Guid id, WalletPutPostDto updatedWallet)
         {
