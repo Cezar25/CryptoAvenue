@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs";
+import {map, Observable} from "rxjs";
 import {UserInterface} from "../interfaces/user-interface";
 
 @Injectable({
@@ -56,7 +56,14 @@ export class UserService {
 
   getUserById(id: string){
     return this.httpClient.get<UserInterface>("https://localhost:7268/api/Users/get-user-by-id/" + id)
-      .pipe(map((res: any) => {
+      .pipe(map((res: UserInterface) => {
+        return res;
+      }))
+  }
+
+  getUserByEmail(email: string): Observable<UserInterface> {
+    return this.httpClient.get<UserInterface>("https://localhost:7268/api/Users/get-user-by-email/" + email)
+      .pipe(map((res: UserInterface) => {
         return res;
       }))
   }

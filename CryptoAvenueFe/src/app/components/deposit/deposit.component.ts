@@ -21,7 +21,6 @@ export class DepositComponent implements OnInit {
   selectedAmount!: number;
 
   depositDetails!: FormGroup;
-  testForm!: FormGroup;
 
   constructor(private router: Router,
               private route: ActivatedRoute,

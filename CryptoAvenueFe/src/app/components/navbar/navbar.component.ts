@@ -59,6 +59,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/balance', userId]);
   }
 
+  goToUserSearchPage() {
+    this.router.navigate(['/search-for-user']);
+  }
+
   goToDepositPage() {
     let userId = localStorage.getItem("userId")!;
 

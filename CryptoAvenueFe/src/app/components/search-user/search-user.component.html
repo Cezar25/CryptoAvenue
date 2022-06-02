@@ -1,0 +1,22 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+  <mat-card>
+    <mat-toolbar color="primary">
+      User Search Page
+    </mat-toolbar>
+    <mat-card-header>
+      Type in the email of the user you want to find
+    </mat-card-header>
+    <br>
+    <form [formGroup]="searchDetails" (ngSubmit)="search(searchDetails)" fxLayoutAlign="stretch" fxLayout="column">
+      <mat-card-content>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Searched User Email</mat-label>
+          <input matInput required formControlName = "searchedEmail" type="email">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button type="submit" color="primary">Search</button>
+    </form>
+
+  </mat-card>
+</div>

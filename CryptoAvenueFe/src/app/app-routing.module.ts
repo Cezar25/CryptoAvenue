@@ -12,6 +12,7 @@ import {BankTransferInfoComponent} from "./components/bank-transfer-info/bank-tr
 import {BalanceComponent} from "./components/balance/balance.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
+import {SearchUserComponent} from "./components/search-user/search-user.component";
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'bank-transfer-info/:userId/:coinId/:coinAmount/:type', component: BankTransferInfoComponent},
   {path: 'balance/:id', component: BalanceComponent},
   {path: 'deposit/:id', component: DepositComponent},
-  {path: 'withdraw/:id', component: WithdrawComponent}
+  {path: 'withdraw/:id', component: WithdrawComponent},
+  {path: 'search-for-user', component: SearchUserComponent}
 ];
 
 @NgModule({

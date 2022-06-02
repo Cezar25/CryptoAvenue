@@ -43,6 +43,7 @@ import { BankTransferInfoComponent } from './components/bank-transfer-info/bank-
 import { BalanceComponent } from './components/balance/balance.component';
 import { DepositComponent } from './components/deposit/deposit.component';
 import { WithdrawComponent } from './components/withdraw/withdraw.component';
+import { SearchUserComponent } from './components/search-user/search-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -64,7 +65,8 @@ export function tokenGetter() {
     BankTransferInfoComponent,
     BalanceComponent,
     DepositComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    SearchUserComponent
   ],
   imports: [
     BrowserModule,
