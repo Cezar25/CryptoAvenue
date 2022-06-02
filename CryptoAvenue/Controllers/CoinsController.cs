@@ -81,6 +81,25 @@ namespace CryptoAvenue.Controllers
             return Ok(coin);
         }
 
+        [HttpGet]
+        [Route("get-all-coins-by-user-id/{userId}")]
+        public async Task<IActionResult> GetAllCoinsByUserId(Guid userId)
+        {
+            var query = new GetAllCoinsByUserId
+            {
+                UserId = userId
+            };
+
+            var coins = await _mediator.Send(query);
+
+            if(coins == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(coins);
+        }
+
         [HttpPatch]
         [Route("update-coin/{id}")]
         public async Task<IActionResult> UpdateCoin(Guid id,[FromBody] CoinPutPostDto updatedCoin)

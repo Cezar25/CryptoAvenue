@@ -45,6 +45,8 @@ export class SearchUserComponent implements OnInit {
           this.foundUserId = res.id;
           console.log(this.foundUserId);
 
+          this.router.navigate(['user-portfolio', this.foundUserId]);
+
         }, err => {
           alert("The email you typed in doesn't belong to any user in our database! Please try again!");
           this.searchDetails.reset();

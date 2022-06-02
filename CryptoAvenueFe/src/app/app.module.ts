@@ -44,6 +44,9 @@ import { BalanceComponent } from './components/balance/balance.component';
 import { DepositComponent } from './components/deposit/deposit.component';
 import { WithdrawComponent } from './components/withdraw/withdraw.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
+import { UserPortfolioComponent } from './components/user-portfolio/user-portfolio.component';
+import { UserTradeOffersComponent } from './components/user-trade-offers/user-trade-offers.component';
+import { TradeOfferDetailsComponent } from './components/trade-offer-details/trade-offer-details.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -66,7 +69,10 @@ export function tokenGetter() {
     BalanceComponent,
     DepositComponent,
     WithdrawComponent,
-    SearchUserComponent
+    SearchUserComponent,
+    UserPortfolioComponent,
+    UserTradeOffersComponent,
+    TradeOfferDetailsComponent
   ],
   imports: [
     BrowserModule,

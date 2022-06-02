@@ -10,5 +10,6 @@ namespace CryptoAvenue.Domain.IRepositories
     public interface ICoinRepository : IGenericRepository<Coin>
     {
         Coin GetCoinByAbreviation(string abreviation);
+        IEnumerable<Coin> GetAllCoinsByUserId(Guid userId);
     }
 }

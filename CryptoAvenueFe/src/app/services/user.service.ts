@@ -54,7 +54,7 @@ export class UserService {
       }))
   }
 
-  getUserById(id: string){
+  getUserById(id: string): Observable<UserInterface>{
     return this.httpClient.get<UserInterface>("https://localhost:7268/api/Users/get-user-by-id/" + id)
       .pipe(map((res: UserInterface) => {
         return res;

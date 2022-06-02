@@ -13,6 +13,9 @@ import {BalanceComponent} from "./components/balance/balance.component";
 import {DepositComponent} from "./components/deposit/deposit.component";
 import {WithdrawComponent} from "./components/withdraw/withdraw.component";
 import {SearchUserComponent} from "./components/search-user/search-user.component";
+import {UserPortfolioComponent} from "./components/user-portfolio/user-portfolio.component";
+import {UserTradeOffersComponent} from "./components/user-trade-offers/user-trade-offers.component";
+import {TradeOfferDetailsComponent} from "./components/trade-offer-details/trade-offer-details.component";
 
 
 const routes: Routes = [
@@ -29,7 +32,10 @@ const routes: Routes = [
   {path: 'balance/:id', component: BalanceComponent},
   {path: 'deposit/:id', component: DepositComponent},
   {path: 'withdraw/:id', component: WithdrawComponent},
-  {path: 'search-for-user', component: SearchUserComponent}
+  {path: 'search-for-user', component: SearchUserComponent},
+  {path: 'user-portfolio/:id', component: UserPortfolioComponent},
+  {path: 'user-trade-offers/:senderId/:recipientId', component: UserTradeOffersComponent},
+  {path: 'trade-offer-details/:tradeOfferId', component: TradeOfferDetailsComponent}
 ];
 
 @NgModule({

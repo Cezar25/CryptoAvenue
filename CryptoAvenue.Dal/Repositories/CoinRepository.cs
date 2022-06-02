@@ -15,6 +15,21 @@ namespace CryptoAvenue.Dal.Repositories
         {
 
         }
+
+        public IEnumerable<Coin> GetAllCoinsByUserId(Guid userId)
+        {
+            var wallets = context.Wallets.Where(x => x.UserID == userId).Include(x => x.CoinType);
+
+            var coins = new List<Coin>();
+
+            foreach (var wallet in wallets)
+            {
+                coins.Add(wallet.CoinType);
+            }
+
+            return coins;
+        }
+
         public Coin GetCoinByAbreviation(string abreviation)
         {
             return context.Coins.SingleOrDefault(x => x.Abreviation == abreviation);

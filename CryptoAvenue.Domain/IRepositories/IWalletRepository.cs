@@ -15,6 +15,5 @@ namespace CryptoAvenue.Domain.IRepositories
         Dictionary<Coin, double> GetCoinPercentage(Guid userId);
         Wallet GetWalletByIdIncluded(Guid id);
         Wallet GetWalletByIncluded(Expression<Func<Wallet, bool>> predicate);
-
     }
 }
