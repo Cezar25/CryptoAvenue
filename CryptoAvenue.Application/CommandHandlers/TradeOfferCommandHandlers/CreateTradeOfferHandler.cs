@@ -13,10 +13,12 @@ namespace CryptoAvenue.Application.CommandHandlers
     public class CreateTradeOfferHandler : IRequestHandler<CreateTradeOffer, TradeOffer>
     {
         private readonly ITradeOfferRepository repository;
+        private readonly ICoinRepository coinRepository;
 
-        public CreateTradeOfferHandler(ITradeOfferRepository repository)
+        public CreateTradeOfferHandler(ITradeOfferRepository repository, ICoinRepository coinRepository)
         {
             this.repository = repository;
+            this.coinRepository = coinRepository;
         }
 
         public Task<TradeOffer> Handle(CreateTradeOffer request, CancellationToken cancellationToken)
@@ -27,9 +29,17 @@ namespace CryptoAvenue.Application.CommandHandlers
                 RecipientID = request.RecipientId,
                 SentCoinID = request.SentCoinId,
                 ReceivedCoinID = request.ReceivedCoinId,
-                SentAmount = request.SentAmount,
-                ReceivedAmount = request.ReceivedAmount
+                SentAmount = request.SentAmount
             };
+
+            //var tempOffer = repository.GetOffersByRecipientID(request.RecipientId).SingleOrDefault(x => x.SenderID == request.SenderId && x.SentCoinID == request.SentCoinId && x.ReceivedCoinID == request.ReceivedCoinId);
+
+            var tempReceivedCoin = coinRepository.GetAllCoinsByUserId(request.SenderId).FirstOrDefault(x => x.Id == request.SentCoinId);
+            var tempSentCoin = coinRepository.GetAllCoinsByUserId(request.RecipientId).FirstOrDefault(x => x.Id == request.ReceivedCoinId);
+
+            tradeOffer.ReceivedAmount = (request.SentAmount * tempSentCoin.ValueInEUR) / tempReceivedCoin.ValueInEUR;
+
+            //tradeOffer.ReceivedAmount = (tempOffer.SentAmount * tempOffer.SentCoin.ValueInEUR) / tempOffer.ReceivedCoin.ValueInEUR;
 
             if (tradeOffer == null) return null;
 

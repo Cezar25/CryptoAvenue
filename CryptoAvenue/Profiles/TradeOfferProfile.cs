@@ -20,7 +20,7 @@ namespace CryptoAvenue.Profiles
 
             CreateMap<TradeOfferPutPostDto, TradeOffer>()
                 .ForMember(t => t.SentAmount, opt => opt.MapFrom(d => d.SentAmount))
-                .ForMember(t => t.ReceivedAmount, opt => opt.MapFrom(d => d.ReceivedAmount))
+                //.ForMember(t => t.ReceivedAmount, opt => opt.MapFrom(d => d.ReceivedAmount))
                 .ForMember(t => t.SenderID, opt => opt.MapFrom(d => d.SenderID))
                 .ForMember(t => t.RecipientID, opt => opt.MapFrom(d => d.RecipientID))
                 .ForMember(t => t.SentCoinID, opt => opt.MapFrom(d => d.SentCoinID))

@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("userId");
     this.router.navigate(["/home"]);
     localStorage.removeItem("isOnBalancePage");
+    this.ngOnInit();
   }
 
   isUserLoggedIn(): boolean {
@@ -41,38 +42,45 @@ export class NavbarComponent implements OnInit {
   goToHomePage() {
     this.router.navigate(['/home']);
     localStorage.removeItem("isOnBalancePage");
+    this.ngOnInit();
   }
 
   goToMarketsPage() {
     this.router.navigate(['/markets']);
     localStorage.removeItem("isOnBalancePage");
+    this.ngOnInit();
   }
 
   goToAboutUsPage() {
     this.router.navigate(['/about-us']);
     localStorage.removeItem("isOnBalancePage");
+    this.ngOnInit();
   }
 
   goToBalancePage(){
     let userId = localStorage.getItem("userId")!;
 
     this.router.navigate(['/balance', userId]);
+    this.ngOnInit();
   }
 
   goToUserSearchPage() {
     this.router.navigate(['/search-for-user']);
+    this.ngOnInit();
   }
 
   goToDepositPage() {
     let userId = localStorage.getItem("userId")!;
 
     this.router.navigate(['/deposit', userId]);
+    this.ngOnInit();
   }
 
   goToWithdrawPage() {
     let userId = localStorage.getItem("userId")!;
 
     this.router.navigate(['/withdraw', userId]);
+    this.ngOnInit();
   }
 
 

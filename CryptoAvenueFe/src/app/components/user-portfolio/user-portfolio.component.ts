@@ -5,6 +5,8 @@ import {UserService} from "../../services/user.service";
 import {WalletService} from "../../services/wallet.service";
 import {UserInterface} from "../../interfaces/user-interface";
 import {Observable} from "rxjs";
+import {CoinService} from "../../services/coin.service";
+import {CoinInterface} from "../../interfaces/coin-interface";
 
 @Component({
   selector: 'app-user-portfolio',
@@ -16,12 +18,14 @@ export class UserPortfolioComponent implements OnInit {
   user!: UserInterface;
   userId!: string;
   totalBalanceInEur!: number;
+  coins!: CoinInterface[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
               private userService: UserService,
-              private walletService: WalletService) { }
+              private walletService: WalletService,
+              private coinService: CoinService) { }
 
   ngOnInit(): void {
 
@@ -40,5 +44,15 @@ export class UserPortfolioComponent implements OnInit {
         console.log(this.totalBalanceInEur);
       })
 
+    this.coinService.getAllCoinsByUserId(this.userId)
+      .subscribe(res => {
+        console.log(res);
+        this.coins = res;
+      })
+
+  }
+
+  goToSendTradeOfferPage() {
+    this.router.navigate(['/send-trade-offer', localStorage.getItem("userId"), this.userId]);
   }
 }

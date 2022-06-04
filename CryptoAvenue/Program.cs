@@ -43,6 +43,10 @@ builder.Services.AddMediatR(typeof(Program));
 builder.Services.AddDbContext<CryptoAvenueContext>(options
  => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 builder.Services.AddAuthentication(opt =>
 {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

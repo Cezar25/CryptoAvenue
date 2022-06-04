@@ -8,4 +8,5 @@
 
 <p>{{user.email}}'s  total balance in EUR is {{totalBalanceInEur}}</p>
 <br>
-<button mat-raised-button color="primary">Trade</button>
+<p *ngFor="let coin of coins">{{coin.name}}</p>
+<button mat-raised-button color="primary" (click)="goToSendTradeOfferPage()">Trade</button>

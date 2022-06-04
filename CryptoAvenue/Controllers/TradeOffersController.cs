@@ -35,8 +35,7 @@ namespace CryptoAvenue.Controllers
                 RecipientId = newTradeOffer.RecipientID,
                 SentCoinId = newTradeOffer.SentCoinID,
                 ReceivedCoinId = newTradeOffer.ReceivedCoinID,
-                SentAmount = newTradeOffer.SentAmount,
-                ReceivedAmount = newTradeOffer.ReceivedAmount
+                SentAmount = newTradeOffer.SentAmount
             };
 
             var tradeOffer = _mapper.Map<TradeOfferPutPostDto, TradeOffer>(newTradeOffer);

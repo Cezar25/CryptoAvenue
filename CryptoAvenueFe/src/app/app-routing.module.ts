@@ -16,6 +16,7 @@ import {SearchUserComponent} from "./components/search-user/search-user.componen
 import {UserPortfolioComponent} from "./components/user-portfolio/user-portfolio.component";
 import {UserTradeOffersComponent} from "./components/user-trade-offers/user-trade-offers.component";
 import {TradeOfferDetailsComponent} from "./components/trade-offer-details/trade-offer-details.component";
+import {SendTradeOfferComponent} from "./components/send-trade-offer/send-trade-offer.component";
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
   {path: 'search-for-user', component: SearchUserComponent},
   {path: 'user-portfolio/:id', component: UserPortfolioComponent},
   {path: 'user-trade-offers/:senderId/:recipientId', component: UserTradeOffersComponent},
-  {path: 'trade-offer-details/:tradeOfferId', component: TradeOfferDetailsComponent}
+  {path: 'trade-offer-details/:tradeOfferId', component: TradeOfferDetailsComponent},
+  {path: 'send-trade-offer/:senderId/:recipientId', component: SendTradeOfferComponent}
 ];
 
 @NgModule({

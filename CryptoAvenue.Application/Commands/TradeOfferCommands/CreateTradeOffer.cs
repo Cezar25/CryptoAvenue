@@ -15,6 +15,6 @@ namespace CryptoAvenue.Application.Commands
         public Guid SentCoinId { get; set; }
         public Guid ReceivedCoinId { get; set; }
         public double SentAmount { get; set; }
-        public double ReceivedAmount { get; set; }
+        //public double ReceivedAmount { get; set; }
     }
 }
