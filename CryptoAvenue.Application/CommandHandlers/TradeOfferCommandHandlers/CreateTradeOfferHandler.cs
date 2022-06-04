@@ -34,8 +34,22 @@ namespace CryptoAvenue.Application.CommandHandlers
 
             //var tempOffer = repository.GetOffersByRecipientID(request.RecipientId).SingleOrDefault(x => x.SenderID == request.SenderId && x.SentCoinID == request.SentCoinId && x.ReceivedCoinID == request.ReceivedCoinId);
 
-            var tempReceivedCoin = coinRepository.GetAllCoinsByUserId(request.SenderId).FirstOrDefault(x => x.Id == request.SentCoinId);
-            var tempSentCoin = coinRepository.GetAllCoinsByUserId(request.RecipientId).FirstOrDefault(x => x.Id == request.ReceivedCoinId);
+            Coin tempReceivedCoin = null;
+            Coin tempSentCoin = null;
+
+            try
+            {
+                tempReceivedCoin = coinRepository.GetAllCoinsByUserId(request.SenderId).FirstOrDefault(x => x.Id == request.SentCoinId);
+                tempSentCoin = coinRepository.GetAllCoinsByUserId(request.RecipientId).FirstOrDefault(x => x.Id == request.ReceivedCoinId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return null;
+            }
+
+            /*var tempReceivedCoin = coinRepository.GetAllCoinsByUserId(request.SenderId).FirstOrDefault(x => x.Id == request.SentCoinId);
+            var tempSentCoin = coinRepository.GetAllCoinsByUserId(request.RecipientId).FirstOrDefault(x => x.Id == request.ReceivedCoinId);*/
 
             tradeOffer.ReceivedAmount = (request.SentAmount * tempSentCoin.ValueInEUR) / tempReceivedCoin.ValueInEUR;
 
@@ -47,6 +61,7 @@ namespace CryptoAvenue.Application.CommandHandlers
             repository.SaveChanges();
 
             return Task.FromResult(tradeOffer);
+
         }
     }
 }
