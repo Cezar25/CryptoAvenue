@@ -57,6 +57,11 @@ export class NavbarComponent implements OnInit {
     this.ngOnInit();
   }
 
+  goToNotificationsPage() {
+    this.router.navigate(['/notifications', localStorage.getItem("userId")]);
+    this.ngOnInit();
+  }
+
   goToBalancePage(){
     let userId = localStorage.getItem("userId")!;
 

@@ -1,1 +1,29 @@
-<p>trade-offer-details works!</p>
+<div class="container py-5">
+
+  <div class="row" >
+    <div class="col-lg-7 mx-auto" >
+      <div class="bg-yellow rounded-lg shadow-sm p-5" style="background-color: #673ab7" >
+        <!-- Credit card form content -->
+        <div class="bank-transfer-form">
+          <div class="tab-content" style="background-color: white">
+
+            <!-- bank transfer info -->
+            <div>
+              <dl>
+                <dt>Trade Offer Details</dt>
+                <dd>{{tradeOfferDetails}}</dd>
+              </dl>
+
+            </div>
+            <!-- End -->
+          </div>
+          <button mat-raised-button (click)="cancel()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Cancel  </button>
+          <button mat-raised-button (click)="createTradeOffer()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm confirm-btn"> Send  </button>
+        </div>
+        <!-- End -->
+
+      </div>
+    </div>
+  </div>
+</div>
+

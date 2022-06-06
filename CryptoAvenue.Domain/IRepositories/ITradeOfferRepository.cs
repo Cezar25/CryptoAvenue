@@ -13,5 +13,6 @@ namespace CryptoAvenue.Domain.IRepositories
         IEnumerable<TradeOffer> GetOffersByRecipientID(Guid recipientID, bool includeAll = false);
         IEnumerable<TradeOffer> GetOffersBySentCoinID(Guid sentCoinID, bool includeAll = false);
         IEnumerable<TradeOffer> GetOffersByReceivedCoinID(Guid receivedCoinID, bool includeAll = false);
+        TradeOffer GetTradeOfferById(Guid id);
     }
 }

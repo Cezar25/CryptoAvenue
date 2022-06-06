@@ -4,9 +4,10 @@ import {UserService} from "../../services/user.service";
 import {WalletService} from "../../services/wallet.service";
 import {CoinService} from "../../services/coin.service";
 import {TradeOfferService} from "../../services/trade-offer.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CoinInterface} from "../../interfaces/coin-interface";
 import {CreateTradeOfferModel} from "../../interfaces/create-trade-offer-model";
+import {TradeOfferInterface} from "../../interfaces/trade-offer-interface";
 
 @Component({
   selector: 'app-send-trade-offer',
@@ -23,10 +24,12 @@ export class SendTradeOfferComponent implements OnInit {
   sentCoinId!: string;
   receivedCoinId!: string;
 
+  createdOfferId!: string;
+
   senderCoins!: CoinInterface[];
   recipientCoins!: CoinInterface[];
 
-  sentTradeDetails!: CreateTradeOfferModel;
+  sentTradeDetails!: TradeOfferInterface;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -54,7 +57,9 @@ export class SendTradeOfferComponent implements OnInit {
 
     this.tradeDetails = this.formBuilder.group({
       sentCoinAbbreviation: [''],
-      sentCoinAmount: [0],
+      sentCoinAmount : new FormControl(0, [
+        Validators.pattern("^(?=.)([+-]?([0-9]*)(\\.([0-9]+))?)$")
+      ]),
       receivedCoinAbbreviation: ['']
     })
   }
@@ -88,7 +93,9 @@ export class SendTradeOfferComponent implements OnInit {
     }
 
     this.sentTradeDetails = {
+      id: "",
       sentAmount : sentOfferDetails.sentCoinAmount,
+      receivedAmount : 0,
       senderID : sentOfferDetails.senderId,
       recipientID : sentOfferDetails.recipientId,
       sentCoinID : sentOfferDetails.sentCoinId,
@@ -99,7 +106,32 @@ export class SendTradeOfferComponent implements OnInit {
 
     this.tradeOfferService.postTradeOffer(this.sentTradeDetails).subscribe(res => {
       console.log(res);
+      this.createdOfferId = res.id;
     })
+
+    console.log(this.createdOfferId);
+
+    this.router.navigate(['trade-offer-details', this.createdOfferId]);
+  }
+
+  submit(form: FormGroup){
+    this.coinService.getCoinIdByAbreviation(form.value.sentCoinAbbreviation).subscribe(res => {
+      this.sentCoinId = res;
+      //console.log("Logged sent coin abbreviation from sendOffer method "+ res);
+    })
+
+    this.coinService.getCoinIdByAbreviation(form.value.receivedCoinAbbreviation).subscribe(res => {
+      this.receivedCoinId = res;
+      //console.log("Logged received coin abbreviation from sendOffer method "+ res);
+    })
+
+    console.log("sent coin:");
+    console.log(this.sentCoinId);
+    console.log("received coin:")
+    console.log(this.receivedCoinId);
+
+    this.router.navigate(['/trade-offer-details', this.senderId, this.recipientId, this.sentCoinId, this.receivedCoinId, form.value.sentCoinAmount]);
+
   }
 
 }

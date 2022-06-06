@@ -59,6 +59,29 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpGet]
+        [Route("get-trade-offer-details/{id}")]
+        public async Task<IActionResult> GetTradeOfferDetails(Guid id)
+        {
+            var query = new GetTradeOfferDetails { TradeOfferId = id };
+
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet]
+        [Route("get-trade-offer-details2/{sentCoinId}/{receivedCoinId}/{sentAmount}")]
+        public async Task<IActionResult> GetTradeOfferDetails2(Guid sentCoinId, Guid receivedCoinId, double sentAmount)
+        {
+            var query = new GetTradeOfferDetails2 
+            {
+                SentCoinId = sentCoinId,
+                ReceivedCoinId = receivedCoinId,
+                SentAmount = sentAmount
+            };
+
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet]
         [Route("get-trade-offers-by-sender-id/{senderId}")]
         public async Task<IActionResult> GetTradeOfferBySenderId(Guid senderId)
         {

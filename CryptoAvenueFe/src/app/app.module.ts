@@ -48,6 +48,7 @@ import { UserPortfolioComponent } from './components/user-portfolio/user-portfol
 import { UserTradeOffersComponent } from './components/user-trade-offers/user-trade-offers.component';
 import { TradeOfferDetailsComponent } from './components/trade-offer-details/trade-offer-details.component';
 import { SendTradeOfferComponent } from './components/send-trade-offer/send-trade-offer.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -74,7 +75,8 @@ export function tokenGetter() {
     UserPortfolioComponent,
     UserTradeOffersComponent,
     TradeOfferDetailsComponent,
-    SendTradeOfferComponent
+    SendTradeOfferComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

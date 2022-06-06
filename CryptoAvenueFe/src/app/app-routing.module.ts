@@ -17,6 +17,7 @@ import {UserPortfolioComponent} from "./components/user-portfolio/user-portfolio
 import {UserTradeOffersComponent} from "./components/user-trade-offers/user-trade-offers.component";
 import {TradeOfferDetailsComponent} from "./components/trade-offer-details/trade-offer-details.component";
 import {SendTradeOfferComponent} from "./components/send-trade-offer/send-trade-offer.component";
+import {NotificationsComponent} from "./components/notifications/notifications.component";
 
 
 const routes: Routes = [
@@ -36,8 +37,9 @@ const routes: Routes = [
   {path: 'search-for-user', component: SearchUserComponent},
   {path: 'user-portfolio/:id', component: UserPortfolioComponent},
   {path: 'user-trade-offers/:senderId/:recipientId', component: UserTradeOffersComponent},
-  {path: 'trade-offer-details/:tradeOfferId', component: TradeOfferDetailsComponent},
-  {path: 'send-trade-offer/:senderId/:recipientId', component: SendTradeOfferComponent}
+  {path: 'trade-offer-details/:senderId/:recipientId/:sentCoinId/:receivedCoinId/:sentAmount', component: TradeOfferDetailsComponent},
+  {path: 'send-trade-offer/:senderId/:recipientId', component: SendTradeOfferComponent},
+  {path: 'notifications/:userId', component: NotificationsComponent}
 ];
 
 @NgModule({

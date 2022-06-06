@@ -58,5 +58,17 @@ namespace CryptoAvenue.Dal.Repositories
 
             return query.ToList();
         }
+
+        public TradeOffer GetTradeOfferById(Guid id)
+        {
+            var foundTradeOffer = context.Offers.Where(x => x.Id == id)
+                .Include(x => x.Sender)
+                .Include(x => x.Recipient)
+                .Include(x => x.SentCoin)
+                .Include(x => x.ReceivedCoin)
+                .SingleOrDefault();
+
+            return foundTradeOffer;
+        }
     }
 }
