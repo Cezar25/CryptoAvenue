@@ -40,7 +40,7 @@ namespace CryptoAvenue.Controllers
 
             var wallet = _mapper.Map<WalletPutPostDto, Wallet>(newWallet);
 
-            
+
 
             return CreatedAtAction(nameof(GetWalletById), new { id = wallet.Id }, createdWallet);
         }
@@ -109,6 +109,20 @@ namespace CryptoAvenue.Controllers
             var response = await _mediator.Send(query);
 
             return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("get-wallet-by-coin-id-and-user-id/{coinId}/{userId}")]
+        public async Task<IActionResult> GetWalletByCoinIdAndUserId(Guid coinId, Guid userId)
+        {
+            var query = new GetWalletByCoinIdAndUserId { CoinId = coinId, UserId = userId };
+
+            var foundWallet = await _mediator.Send(query);
+
+            if(foundWallet == null)
+                return NotFound();
+
+            return Ok(foundWallet);
         }
 
         [HttpPost]
@@ -183,7 +197,7 @@ namespace CryptoAvenue.Controllers
         {
             var command = new UpdateWallet
             {
-                WalletId=id,
+                WalletId = id,
                 CoinID = updatedWallet.CoinID,
                 UserID = updatedWallet.UserID,
                 CoinAmount = amount
@@ -233,9 +247,10 @@ namespace CryptoAvenue.Controllers
             return NoContent();
         }
 
+        [HttpPost]
         [HttpPatch]
-        [Route("convert-coins-in-user-wallet/{userId}/{walletId}/{boughtCoinId}/{soldCoinAmount}")]
-        public async Task<IActionResult> ConvertCoinsInUserWallet(Guid userId, Guid walletId, Guid boughtCoinId, double soldCoinAmount)
+        [Route("convert-coins-in-user-wallet/{userId}/{walletId}/{boughtCoinId}")]
+        public async Task<IActionResult> ConvertCoinsInUserWallet(Guid userId, Guid walletId, Guid boughtCoinId, [FromBody] double soldCoinAmount)
         {
             var command = new ConvertCoinsFromUserWallets
             {

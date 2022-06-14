@@ -10,6 +10,13 @@ export class CoinService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllCoins(): Observable<CoinInterface[]> {
+    return this.httpClient.get<CoinInterface[]>("https://localhost:7268/api/Coins/")
+      .pipe(map((res: CoinInterface[]) => {
+        return res;
+      }))
+  }
+
   getCoinIdByAbreviation(abbreviation: string): Observable<string>{
     return this.httpClient.get<string>("https://localhost:7268/api/Coins/get-coin-id-by-abrevation/" + abbreviation)
       .pipe(map((res: string) => {

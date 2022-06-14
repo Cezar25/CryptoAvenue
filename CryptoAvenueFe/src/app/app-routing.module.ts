@@ -18,13 +18,15 @@ import {UserTradeOffersComponent} from "./components/user-trade-offers/user-trad
 import {TradeOfferDetailsComponent} from "./components/trade-offer-details/trade-offer-details.component";
 import {SendTradeOfferComponent} from "./components/send-trade-offer/send-trade-offer.component";
 import {NotificationsComponent} from "./components/notifications/notifications.component";
+import {AppTradeComponent} from "./components/app-trade/app-trade.component";
+import {AppTradeDetailsComponent} from "./components/app-trade-details/app-trade-details.component";
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch:'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'markets', component: MarketsComponent},
-  {path: 'about-us', component: AboutUsComponent},
+  {path: 'home', component: MarketsComponent},
+  /*{path: 'markets', component: MarketsComponent},
+  {path: 'about-us', component: AboutUsComponent},*/
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'coin-details/:id', component: CoinDetailsComponent},
@@ -39,7 +41,9 @@ const routes: Routes = [
   {path: 'user-trade-offers/:senderId/:recipientId', component: UserTradeOffersComponent},
   {path: 'trade-offer-details/:senderId/:recipientId/:sentCoinId/:receivedCoinId/:sentAmount', component: TradeOfferDetailsComponent},
   {path: 'send-trade-offer/:senderId/:recipientId', component: SendTradeOfferComponent},
-  {path: 'notifications/:userId', component: NotificationsComponent}
+  {path: 'notifications/:userId', component: NotificationsComponent},
+  {path: 'app-trade/:userId', component: AppTradeComponent},
+  {path: 'app-trade-details/:userId/:soldCoinWalletId/:soldCoinId/:boughtCoinId/:boughtAmount', component: AppTradeDetailsComponent}
 ];
 
 @NgModule({

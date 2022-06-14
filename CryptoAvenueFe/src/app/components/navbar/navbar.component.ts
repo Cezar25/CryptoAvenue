@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
     this.ngOnInit();
   }
 
-  goToMarketsPage() {
+  /*goToMarketsPage() {
     this.router.navigate(['/markets']);
     localStorage.removeItem("isOnBalancePage");
     this.ngOnInit();
@@ -55,10 +55,15 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/about-us']);
     localStorage.removeItem("isOnBalancePage");
     this.ngOnInit();
-  }
+  }*/
 
   goToNotificationsPage() {
     this.router.navigate(['/notifications', localStorage.getItem("userId")]);
+    this.ngOnInit();
+  }
+
+  goToTradePage() {
+    this.router.navigate(['/app-trade', localStorage.getItem("userId")]);
     this.ngOnInit();
   }
 

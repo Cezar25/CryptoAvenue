@@ -1,0 +1,39 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+  <mat-card>
+    <mat-toolbar color="primary">
+      App Trade Page
+    </mat-toolbar>
+    <p>Select the currency you want to buy</p>
+    <br>
+    <form [formGroup]="tradeForm" (ngSubmit)="goToTradeDetails(tradeForm)" fxLayoutAlign="stretch" fxLayout="column">
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Bought Currency</mat-label>
+          <mat-select required formControlName="boughtCoin" [(value)]="selectedBoughtCoinAbbreviation">
+            <mat-option *ngFor="let coin of allCoins" [value]="coin.abreviation">
+              {{coin.abreviation}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Bought Amount</mat-label>
+          <input matInput required formControlName="boughtAmount">
+        </mat-form-field>
+        <br>
+        <p>Select the currency you want to sell</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Sold Currency</mat-label>
+          <mat-select required formControlName="sentCoin" [(value)]="selectedSoldCoinAbbreviation">
+            <mat-option *ngFor="let coin of ownedCoins" [value]="coin.abreviation">
+              {{coin.abreviation}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-card-content>
+      <button mat-raised-button type="submit" color="primary">Trade</button>
+    </form>
+
+  </mat-card>
+</div>

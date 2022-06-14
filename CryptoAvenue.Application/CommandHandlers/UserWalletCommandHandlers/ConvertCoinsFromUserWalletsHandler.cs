@@ -47,7 +47,17 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
                 }
 
                 soldCoinWallet.CoinAmount -= request.AmountOfSoldCoin;
-                repository.Update(soldCoinWallet);
+
+                if(soldCoinWallet.CoinAmount <= 0)
+                {
+                    repository.Delete(soldCoinWallet);
+                }
+                else
+                {
+                    repository.Update(soldCoinWallet);
+                }
+
+                //repository.Update(soldCoinWallet);
 
                 repository.SaveChanges();
             }

@@ -102,6 +102,8 @@ export class LoginComponent implements OnInit {
         alert("Invalid user credentials!");
         this.invalidLogin = true;
       })
+
+    this.ngOnInit();
   }
 
 

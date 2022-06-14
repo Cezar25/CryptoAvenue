@@ -10,15 +10,15 @@
             <!-- bank transfer info -->
             <div>
               <dl>
-                <dt style="text-align: center">Trade Offer Details</dt>
-                <dd style="text-align: center">{{tradeOfferDetails}}</dd>
+                <dt style="text-align: center">Trade Details</dt>
+                <dd style="text-align: center">{{tradeDetails}}</dd>
               </dl>
 
             </div>
             <!-- End -->
           </div>
           <button mat-raised-button (click)="cancel()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Cancel  </button>
-          <button mat-raised-button (click)="createTradeOffer()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm confirm-btn"> Send  </button>
+          <button mat-raised-button (click)="confirm()"  class="subscribe btn btn-primary btn-block rounded-pill shadow-sm confirm-btn"> Confirm  </button>
         </div>
         <!-- End -->
 
@@ -26,4 +26,3 @@
     </div>
   </div>
 </div>
-

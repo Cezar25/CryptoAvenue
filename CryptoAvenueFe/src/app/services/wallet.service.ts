@@ -37,4 +37,18 @@ export class WalletService {
         return res;
       }))
   }
+
+  getWalletByCoinAndUserId(coinId: string, userId: string): Observable<WalletInterface>{
+    return this.httpClient.get<WalletInterface>(`https://localhost:7268/api/Wallets/get-wallet-by-coin-id-and-user-id/${coinId}/${userId}`)
+      .pipe(map((res: WalletInterface) => {
+        return res;
+      }))
+  }
+
+  convertCoinsInUserWallet(userId: string, walletId: string, boughtCoinId: string, data: number): Observable<WalletInterface> {
+    return this.httpClient.post<WalletInterface>(`https://localhost:7268/api/Wallets/convert-coins-in-user-wallet/${userId}/${walletId}/${boughtCoinId}`, data)
+      .pipe(map((res: WalletInterface) => {
+        return res;
+      }))
+  }
 }
