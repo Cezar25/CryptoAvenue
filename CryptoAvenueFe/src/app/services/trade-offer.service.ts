@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {TradeOfferInterface} from "../interfaces/trade-offer-interface";
 import {map, Observable} from "rxjs";
 import {CreateTradeOfferModel} from "../interfaces/create-trade-offer-model";
+import {TradeOfferIncluded} from "../interfaces/trade-offer-included";
 
 @Injectable({
   providedIn: 'root'
@@ -47,9 +48,9 @@ export class TradeOfferService {
       }))
   }
 
-  getAllIncomingTradeOffers(userId: string): Observable<TradeOfferInterface[]> {
-    return this.httpClient.get<TradeOfferInterface[]>("https://localhost:7268/CryptoAvenue/TradeOffers/get-trade-offers-by-recipient-id/" + userId)
-      .pipe(map((res: TradeOfferInterface[]) => {
+  getAllIncomingTradeOffers(userId: string): Observable<TradeOfferIncluded[]> {
+    return this.httpClient.get<TradeOfferIncluded[]>("https://localhost:7268/CryptoAvenue/TradeOffers/get-trade-offers-by-recipient-id/" + userId)
+      .pipe(map((res: TradeOfferIncluded[]) => {
         return res;
       }))
   }

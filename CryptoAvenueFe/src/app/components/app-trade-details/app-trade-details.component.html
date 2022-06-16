@@ -1,28 +1,14 @@
-<div class="container py-5">
+<div class="trade-details">
+  <mat-card>
+    <mat-toolbar color="primary">
+      Trade Details
+    </mat-toolbar>
+    <br>
 
-  <div class="row" >
-    <div class="col-lg-7 mx-auto" >
-      <div class="bg-yellow rounded-lg shadow-sm p-5" style="background-color: #673ab7" >
-        <!-- Credit card form content -->
-        <div class="bank-transfer-form">
-          <div class="tab-content" style="background-color: white">
-
-            <!-- bank transfer info -->
-            <div>
-              <dl>
-                <dt style="text-align: center">Trade Details</dt>
-                <dd style="text-align: center">{{tradeDetails}}</dd>
-              </dl>
-
-            </div>
-            <!-- End -->
-          </div>
-          <button mat-raised-button (click)="cancel()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Cancel  </button>
-          <button mat-raised-button (click)="confirm()"  class="subscribe btn btn-primary btn-block rounded-pill shadow-sm confirm-btn"> Confirm  </button>
-        </div>
-        <!-- End -->
-
-      </div>
-    </div>
-  </div>
+    <mat-card-content>
+      <h6>{{tradeDetails}}</h6>
+      <button mat-raised-button color="warn" (click)="cancel()" class="cancel-btn">Cancel</button>
+      <button mat-raised-button color="primary" (click)="confirm()" class="confirm-btn">Confirm</button>
+    </mat-card-content>
+  </mat-card>
 </div>

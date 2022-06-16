@@ -29,7 +29,7 @@ namespace CryptoAvenue.Application.QueryHandlers.TradeOfferQueryHandlers
             string details = "";
             details += $"{request.SentAmount} {sentCoin.Abreviation} for {receivedAmount} {receivedCoin.Abreviation}";
             details += "\n";
-            details += $"1 {sentCoin.Abreviation} for {rate} {receivedCoin.Abreviation}";
+            details += $"1 {receivedCoin.Abreviation} for {rate} {sentCoin.Abreviation}";
 
             return Task.FromResult(details);
         }

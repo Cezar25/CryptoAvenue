@@ -8,6 +8,7 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {BalanceTableItem} from "../balance-table/balance-table-datasource";
 import {MatDialog} from "@angular/material/dialog";
 import {TradeOfferDetailsComponent} from "../trade-offer-details/trade-offer-details.component";
+import {TradeOfferIncluded} from "../../interfaces/trade-offer-included";
 
 @Component({
   selector: 'app-notifications',
@@ -16,7 +17,7 @@ import {TradeOfferDetailsComponent} from "../trade-offer-details/trade-offer-det
 })
 export class NotificationsComponent implements OnInit {
   userId!: string;
-  incomingTradeOffers!: TradeOfferInterface[];
+  incomingTradeOffers!: TradeOfferIncluded[];
 
   displayedColumns: string[] = ['senderId', 'sentCoinId', 'sentAmount', 'receivedCoinId', 'receivedAmount'];
 
