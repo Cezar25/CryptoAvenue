@@ -30,7 +30,7 @@ export class BalanceComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<BalanceTableItem>;
   dataSource!: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['id', 'coinAmount'];
+  displayedColumns: string[] = ['id', 'coinId', 'coinAmount'];
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private walletService: WalletService) { }
 
