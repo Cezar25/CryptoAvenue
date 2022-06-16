@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Route, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-search-user',
@@ -18,7 +19,8 @@ export class SearchUserComponent implements OnInit {
 
   constructor(private router: Router,
               private userService: UserService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -45,6 +47,7 @@ export class SearchUserComponent implements OnInit {
           this.foundUserId = res.id;
           console.log(this.foundUserId);
 
+          this.dialog.closeAll();
           this.router.navigate(['user-portfolio', this.foundUserId]);
 
         }, err => {

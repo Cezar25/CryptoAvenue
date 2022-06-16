@@ -1,0 +1,14 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+  background-color: #673ab7;
+}
+
+.footer-div {
+  text-align: center;
+}
+
+.footer p{
+  margin: auto;
+}

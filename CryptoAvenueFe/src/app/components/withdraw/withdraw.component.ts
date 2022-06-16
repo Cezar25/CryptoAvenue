@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {WalletService} from "../../services/wallet.service";
 import {CoinService} from "../../services/coin.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-withdraw',
@@ -29,7 +30,8 @@ export class WithdrawComponent implements OnInit {
               private formBuilder: FormBuilder,
               private userService: UserService,
               private walletService: WalletService,
-              private coinService: CoinService) { }
+              private coinService: CoinService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem("userId")!;
@@ -75,7 +77,9 @@ export class WithdrawComponent implements OnInit {
     //console.log(this.eurId);
     //console.log(this.usdId);
 
+
     this.router.navigate(['/credit-card-info', withdrawData.userId, withdrawData.coinId, withdrawData.amount, "withdraw"]);
+    this.dialog.closeAll();
 
     console.log(withdrawData);
   }

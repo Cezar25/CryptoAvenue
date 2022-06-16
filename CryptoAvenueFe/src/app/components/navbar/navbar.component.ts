@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {MatDialog} from "@angular/material/dialog";
+import {SearchUserComponent} from "../search-user/search-user.component";
+import {DepositComponent} from "../deposit/deposit.component";
+import {WithdrawComponent} from "../withdraw/withdraw.component";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +15,10 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn!: boolean;
 
-  constructor(private router: Router, private jwtHelper: JwtHelperService) { }
+  constructor(private router: Router,
+              private jwtHelper: JwtHelperService,
+              private dialogRef: MatDialog
+               ) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem("jwt");
@@ -75,21 +82,26 @@ export class NavbarComponent implements OnInit {
   }
 
   goToUserSearchPage() {
-    this.router.navigate(['/search-for-user']);
+    this.dialogRef.open(SearchUserComponent);
+    //this.router.navigate(['/search-for-user']);
     this.ngOnInit();
   }
 
   goToDepositPage() {
     let userId = localStorage.getItem("userId")!;
 
-    this.router.navigate(['/deposit', userId]);
+    this.dialogRef.open(DepositComponent);
+
+    //this.router.navigate(['/deposit', userId]);
     this.ngOnInit();
   }
 
   goToWithdrawPage() {
     let userId = localStorage.getItem("userId")!;
 
-    this.router.navigate(['/withdraw', userId]);
+    this.dialogRef.open(WithdrawComponent);
+
+    //this.router.navigate(['/withdraw', userId]);
     this.ngOnInit();
   }
 

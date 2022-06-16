@@ -13,6 +13,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { MatCardModule} from "@angular/material/card";
 import { NgChartsModule} from "ng2-charts";
+import { MatDialog} from "@angular/material/dialog";
+import { MatDialogModule} from "@angular/material/dialog";
 
 
 import { AppComponent } from './app.component';
@@ -51,6 +53,8 @@ import { SendTradeOfferComponent } from './components/send-trade-offer/send-trad
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { AppTradeComponent } from './components/app-trade/app-trade.component';
 import { AppTradeDetailsComponent } from './components/app-trade-details/app-trade-details.component';
+import { BalanceTableComponent } from './components/balance-table/balance-table.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -80,7 +84,9 @@ export function tokenGetter() {
     SendTradeOfferComponent,
     NotificationsComponent,
     AppTradeComponent,
-    AppTradeDetailsComponent
+    AppTradeDetailsComponent,
+    BalanceTableComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +111,7 @@ export function tokenGetter() {
     MatSidenavModule,
     NgChartsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

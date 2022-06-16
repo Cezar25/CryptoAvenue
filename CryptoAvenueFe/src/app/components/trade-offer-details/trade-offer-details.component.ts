@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
 import {UserService} from "../../services/user.service";
@@ -6,6 +6,7 @@ import {WalletService} from "../../services/wallet.service";
 import {CoinService} from "../../services/coin.service";
 import {TradeOfferService} from "../../services/trade-offer.service";
 import {TradeOfferInterface} from "../../interfaces/trade-offer-interface";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-trade-offer-details',
@@ -25,16 +26,26 @@ export class TradeOfferDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private tradeOfferService: TradeOfferService) { }
+              private tradeOfferService: TradeOfferService,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private dialog: MatDialog) {
+    this.senderId = data.senderId;
+    this.recipientId = data.recipientId;
+    this.sentCoinId = data.sentCoinId;
+    this.receivedCoinId = data.receivedCoinId;
+    this.sentAmount = data.sentCoinAmount;
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
+    /*this.route.params.subscribe((params: Params) => {
       this.senderId = params['senderId'];
       this.recipientId = params['recipientId'];
       this.sentCoinId = params['sentCoinId'];
       this.receivedCoinId = params['receivedCoinId'];
       this.sentAmount = params['sentAmount'];
-    })
+    })*/
+
+
 
     this.tradeOfferService.getTradeOfferDetails2(this.sentCoinId, this.receivedCoinId, this.sentAmount)
       .subscribe(res => {
@@ -64,6 +75,7 @@ export class TradeOfferDetailsComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         alert("Offer sent successfully! You are being redirected to the Balance page!");
+        this.dialog.closeAll();
         this.router.navigate(['/balance', this.senderId]);
       }, err => {
         alert("Offer sending unsuccessful! Please try again!");
@@ -73,6 +85,7 @@ export class TradeOfferDetailsComponent implements OnInit {
   }
 
   cancel() {
+    this.dialog.closeAll();
     this.router.navigate(['/balance', this.senderId]);
   }
 

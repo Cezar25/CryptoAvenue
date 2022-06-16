@@ -17,6 +17,13 @@ export class WalletService {
       }))
   }
 
+  getWalletValueInEur(walletId: string): Observable<number> {
+    return this.httpClient.get<number>("https://localhost:7268/api/Wallets/get-wallet-value-in-eur/" + walletId)
+      .pipe(map((res: number) => {
+        return res;
+      }))
+  }
+
   depositToAccount(userId: string, coinId: string, data: number): Observable<WalletInterface>{
     return this.httpClient.post<WalletInterface>("https://localhost:7268/api/Wallets/deposit-to-user-account/" + userId + "/" + coinId, data)
       .pipe(map((res: WalletInterface) => {

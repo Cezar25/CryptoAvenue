@@ -4,6 +4,7 @@ import {Form, FormBuilder, FormControl, FormGroup, Validators} from "@angular/fo
 import {UserService} from "../../services/user.service";
 import {WalletService} from "../../services/wallet.service";
 import {CoinService} from "../../services/coin.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-deposit',
@@ -27,7 +28,8 @@ export class DepositComponent implements OnInit {
               private formBuilder: FormBuilder,
               private userService: UserService,
               private walletService: WalletService,
-              private coinService: CoinService) { }
+              private coinService: CoinService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem("userId")!;
@@ -73,7 +75,9 @@ export class DepositComponent implements OnInit {
         console.log(res);
       })*/
 
+
     this.router.navigate(['/credit-card-info', depositData.userId, depositData.coinId, depositData.amount, "deposit"]);
+    this.dialog.closeAll();
 
     console.log(depositData);
   }

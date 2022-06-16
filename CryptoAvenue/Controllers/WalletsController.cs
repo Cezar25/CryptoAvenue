@@ -125,6 +125,20 @@ namespace CryptoAvenue.Controllers
             return Ok(foundWallet);
         }
 
+        [HttpGet]
+        [Route("get-wallet-value-in-eur/{walletId}")]
+        public async Task<IActionResult> GetWalletValueInEur(Guid walletId)
+        {
+            var query = new GetWalletValueInEur { WalletId = walletId };
+
+            var result = await _mediator.Send(query);
+
+            if (result <= 0)
+                return NotFound();
+
+            return Ok(result);
+        }
+
         [HttpPost]
         [HttpPatch]
         [Route("deposit-to-user-account/{userId}/{coinId}")]

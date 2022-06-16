@@ -7,6 +7,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {WalletInterface} from "../../interfaces/wallet-interface";
 import {CoinService} from "../../services/coin.service";
 import {CoinInterface} from "../../interfaces/coin-interface";
+import {MatDialog} from "@angular/material/dialog";
+import {AppTradeDetailsComponent} from "../app-trade-details/app-trade-details.component";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-app-trade',
@@ -33,7 +36,8 @@ export class AppTradeComponent implements OnInit {
               private walletService: WalletService,
               private tradeOfferService: TradeOfferService,
               private coinService: CoinService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -90,12 +94,24 @@ export class AppTradeComponent implements OnInit {
         this.router.navigate(['/balance', this.userId]);
       })*/
 
-    this.router.navigate(['/app-trade-details',
+    /*this.router.navigate(['/app-trade-details',
     this.userId,
     this.soldCoinWallet.id,
     this.selectedSoldCoinId,
     this.selectedBoughtCoinId,
-    form.value.boughtAmount])
+    form.value.boughtAmount])*/
+
+    this.dialog.open(AppTradeDetailsComponent, {
+      width: '35%',
+      height: '25%',
+      data: {
+          userId: this.userId,
+          soldCoinWalletId: this.soldCoinWallet.id,
+          selectedSoldCoinId: this.selectedSoldCoinId,
+          selectedBoughtCoinId: this.selectedBoughtCoinId,
+          boughtAmount: form.value.boughtAmount
+      }
+    } )
   }
 
   getCoinIds(form: FormGroup) {

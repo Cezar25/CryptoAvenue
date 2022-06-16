@@ -8,6 +8,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CoinInterface} from "../../interfaces/coin-interface";
 import {CreateTradeOfferModel} from "../../interfaces/create-trade-offer-model";
 import {TradeOfferInterface} from "../../interfaces/trade-offer-interface";
+import {MatDialog} from "@angular/material/dialog";
+import {TradeOfferDetailsComponent} from "../trade-offer-details/trade-offer-details.component";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-send-trade-offer',
@@ -37,7 +40,8 @@ export class SendTradeOfferComponent implements OnInit {
               private userService: UserService,
               private walletService: WalletService,
               private coinService: CoinService,
-              private tradeOfferService: TradeOfferService) { }
+              private tradeOfferService: TradeOfferService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -130,7 +134,23 @@ export class SendTradeOfferComponent implements OnInit {
     console.log("received coin:")
     console.log(this.receivedCoinId);
 
-    this.router.navigate(['/trade-offer-details', this.senderId, this.recipientId, this.sentCoinId, this.receivedCoinId, form.value.sentCoinAmount]);
+    /*this.router.navigate(['/trade-offer-details',
+      this.senderId,
+      this.recipientId,
+      this.sentCoinId,
+      this.receivedCoinId,
+      form.value.sentCoinAmount]);*/
+
+    this.dialog.open(TradeOfferDetailsComponent, {
+      width: 'auto',
+      data: {
+        senderId: this.senderId,
+        recipientId: this.recipientId,
+        sentCoinId: this.sentCoinId,
+        receivedCoinId: this.receivedCoinId,
+        sentCoinAmount: form.value.sentCoinAmount
+      }
+    })
 
   }
 
