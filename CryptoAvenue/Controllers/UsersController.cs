@@ -27,7 +27,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpPost]
-        [EnableCors("EnableCORS")]
+        //[EnableCors("EnableCORS")]
         public async Task<IActionResult> CreateUser(UserPutPostDto newUser)
         {
             if (!ModelState.IsValid)

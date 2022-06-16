@@ -64,6 +64,11 @@ namespace CryptoAvenue.Dal.Repositories
             return query.ToList();
         }
 
+        public IEnumerable<Wallet> GetWalletsByIncluded(Expression<Func<Wallet, bool>> includeAll)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Wallet> GetWalletsByUserID(Guid userID, bool includeAll = false)
         {
             var query = context.Wallets.Where(x => x.UserID == userID);

@@ -12,6 +12,7 @@ namespace CryptoAvenue.Domain.IRepositories
     {
         IEnumerable<Wallet> GetWalletsByUserID(Guid userID, bool includeAll = false);
         IEnumerable<Wallet> GetWalletsByCoinID(Guid coinID, bool includeAll = false);
+        IEnumerable<Wallet> GetWalletsByIncluded(Expression<Func<Wallet, bool>> includeAll);
         Dictionary<Coin, double> GetCoinPercentage(Guid userId);
         Wallet GetWalletByIdIncluded(Guid id);
         Wallet GetWalletByIncluded(Expression<Func<Wallet, bool>> predicate);

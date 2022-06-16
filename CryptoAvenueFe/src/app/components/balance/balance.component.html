@@ -9,23 +9,23 @@
     <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- Id Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <ng-container matColumnDef="coinName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Coin </th>
         <td mat-cell *matCellDef="let row">
-          {{row.id}}
+          {{row.coin.abreviation}}
         </td>
       </ng-container>
 
       <!-- Coin Column -->
-      <ng-container matColumnDef="coinId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Coin ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.coinID}} </td>
-      </ng-container>
-
-      <!-- Coin Amount Column -->
       <ng-container matColumnDef="coinAmount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
         <td mat-cell *matCellDef="let row"> {{row.coinAmount}} </td>
+      </ng-container>
+
+      <!-- Coin Amount Column -->
+      <ng-container matColumnDef="valueInEur">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Value In EUR </th>
+        <td mat-cell *matCellDef="let row"> {{getWalletValueInEur(row.coinAmount, row.coin.valueInEUR)}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

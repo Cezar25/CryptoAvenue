@@ -30,7 +30,7 @@ export class BalanceComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<BalanceTableItem>;
   dataSource!: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['id', 'coinId', 'coinAmount'];
+  displayedColumns: string[] = ['coinName', 'coinAmount', 'valueInEur'];
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private walletService: WalletService) { }
 
@@ -78,15 +78,8 @@ export class BalanceComponent implements OnInit {
     }
   }
 
-  getWalletValueInEur(walletId: string) {
-
-    /*this.valueInEurSubscription = this.walletService.getWalletValueInEur(walletId).subscribe(res => {
-      console.log("Fut:");
-      console.log(res);
-      return res;
-    })*/
-
-    return 0;
+  getWalletValueInEur(amount: number, coinValue: number): number {
+    return Math.round(amount * coinValue);
   }
 
   ngOnDestroy(): void{
