@@ -52,9 +52,9 @@ export class WalletService {
       }))
   }
 
-  convertCoinsInUserWallet(userId: string, walletId: string, boughtCoinId: string, data: number): Observable<WalletInterface> {
-    return this.httpClient.post<WalletInterface>(`https://localhost:7268/api/Wallets/convert-coins-in-user-wallet/${userId}/${walletId}/${boughtCoinId}`, data)
-      .pipe(map((res: WalletInterface) => {
+  convertCoinsInUserWallet(userId: string, walletId: string, boughtCoinId: string, data: number) {
+    return this.httpClient.post<any>(`https://localhost:7268/api/Wallets/convert-coins-in-user-wallet/${userId}/${walletId}/${boughtCoinId}`, data)
+      .pipe(map((res: any) => {
         return res;
       }))
   }
