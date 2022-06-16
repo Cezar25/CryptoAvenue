@@ -37,15 +37,6 @@ export class TradeOfferDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*this.route.params.subscribe((params: Params) => {
-      this.senderId = params['senderId'];
-      this.recipientId = params['recipientId'];
-      this.sentCoinId = params['sentCoinId'];
-      this.receivedCoinId = params['receivedCoinId'];
-      this.sentAmount = params['sentAmount'];
-    })*/
-
-
 
     this.tradeOfferService.getTradeOfferDetails2(this.sentCoinId, this.receivedCoinId, this.sentAmount)
       .subscribe(res => {
@@ -53,10 +44,6 @@ export class TradeOfferDetailsComponent implements OnInit {
         this.tradeOfferDetails = res;
         console.log(this.tradeOfferDetails);
       })
-
-    /*this.splitDetails = this.tradeOfferDetails.split("\n");
-    console.log(this.splitDetails[0]);
-    console.log(this.splitDetails[1]);*/
 
   }
 
@@ -87,6 +74,35 @@ export class TradeOfferDetailsComponent implements OnInit {
   cancel() {
     this.dialog.closeAll();
     this.router.navigate(['/balance', this.senderId]);
+  }
+
+  isAccepting(): boolean {
+    return !!localStorage.getItem("isOnAccept");
+  }
+
+  deny() {
+    this.tradeOfferService.deleteTradeOffer(localStorage.getItem("viewedOfferId")!)
+      .subscribe(res => {
+        console.log(res);
+      })
+    localStorage.removeItem("viewedOfferId");
+    localStorage.removeItem("isOnAccept");
+    this.dialog.closeAll();
+  }
+
+  accept() {
+    this.tradeOfferService.acceptTradeOffer(localStorage.getItem("viewedOfferId")!)
+      .subscribe(res => {
+        console.log("Deleted trade offer:");
+        console.log(res);
+        alert("Trade offer accepted successfully!");
+        this.dialog.closeAll();
+      }, err => {
+        alert("Trade offer cannot be accepted!");
+        this.dialog.closeAll();
+      })
+    localStorage.removeItem("viewedOfferId");
+    localStorage.removeItem("isOnAccept");
   }
 
 }

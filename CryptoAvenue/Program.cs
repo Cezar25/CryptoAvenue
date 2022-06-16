@@ -86,13 +86,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
 app.UseCors("EnableCORS");
 
 //app.UseCookiePolicy();
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.UseMyMiddleware();
 

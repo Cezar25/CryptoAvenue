@@ -33,6 +33,13 @@ export class TradeOfferService {
       }))
   }
 
+  getTradeOfferById(id: string): Observable<TradeOfferInterface> {
+    return this.httpClient.get<TradeOfferInterface>("https://localhost:7268/CryptoAvenue/TradeOffers/get-trade-offer-by-id/" + id)
+      .pipe(map((res: TradeOfferInterface) => {
+        return res;
+      }))
+  }
+
   deleteTradeOffer(tradeOfferId: string): Observable<TradeOfferInterface> {
     return this.httpClient.delete<TradeOfferInterface>("https://localhost:7268/CryptoAvenue/TradeOffers/" + tradeOfferId)
       .pipe(map((res: TradeOfferInterface) => {
@@ -43,6 +50,13 @@ export class TradeOfferService {
   getAllIncomingTradeOffers(userId: string): Observable<TradeOfferInterface[]> {
     return this.httpClient.get<TradeOfferInterface[]>("https://localhost:7268/CryptoAvenue/TradeOffers/get-trade-offers-by-recipient-id/" + userId)
       .pipe(map((res: TradeOfferInterface[]) => {
+        return res;
+      }))
+  }
+
+  acceptTradeOffer(tradeOfferId: string): Observable<TradeOfferInterface> {
+    return this.httpClient.delete<TradeOfferInterface>("https://localhost:7268/CryptoAvenue/TradeOffers/apply-trade-offer-to-users/" + tradeOfferId)
+      .pipe(map((res: TradeOfferInterface) => {
         return res;
       }))
   }

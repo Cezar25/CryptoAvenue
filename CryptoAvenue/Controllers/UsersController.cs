@@ -7,6 +7,7 @@ using CryptoAvenue.Application.Queries.UserQueries;
 using CryptoAvenue.Domain.Models;
 using CryptoAvenue.Dtos.UserDtos;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 //using System.Web.Http;
 
@@ -26,6 +27,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpPost]
+        [EnableCors("EnableCORS")]
         public async Task<IActionResult> CreateUser(UserPutPostDto newUser)
         {
             if (!ModelState.IsValid)

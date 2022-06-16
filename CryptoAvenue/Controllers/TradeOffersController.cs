@@ -138,6 +138,7 @@ namespace CryptoAvenue.Controllers
         }
 
         [HttpPatch]
+        [HttpDelete]
         [Route("apply-trade-offer-to-users/{id}")]
         public async Task<IActionResult> AcceptTradeOffer(Guid id)
         {

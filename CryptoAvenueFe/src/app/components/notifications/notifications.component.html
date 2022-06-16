@@ -1,3 +1,4 @@
+
 <div class="container">
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
@@ -7,52 +8,47 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
-      <div *ngFor="let offer of incomingTradeOffers">
+      <!-- Sender Id Column -->
+      <ng-container matColumnDef="senderId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sender ID </th>
+        <td mat-cell *matCellDef="let row">
+          {{row.senderID}}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="sender">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sender</th>
-          <td mat-cell *matCellDef>{{offer.senderID}}</td>
-        </ng-container>
+      <!--Sent Coin Id Column -->
+      <ng-container matColumnDef="sentCoinId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sent Coin ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.sentCoinID}} </td>
+      </ng-container>
 
-        <!--&lt;!&ndash; Sender Column &ndash;&gt;
-        <ng-container matColumnDef="sender">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sender </th>
-          <td mat-cell *matCellDef="let row">
-            <span class="mx-2">{{row.symbol | uppercase}}</span>
-          </td>
-        </ng-container>
+      <!--Sent Coin Amount Column -->
+      <ng-container matColumnDef="sentAmount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sent Amount </th>
+        <td mat-cell *matCellDef="let row"> {{row.sentAmount}} </td>
+      </ng-container>
 
-        &lt;!&ndash; Sent Coin Column &ndash;&gt;
-        <ng-container matColumnDef="sent_coin">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sent Coin </th>
-          <td mat-cell *matCellDef="let row"> {{row.current_price}} </td>
-        </ng-container>
+      <!--Received Coin ID Amount Column -->
+      <ng-container matColumnDef="receivedCoinId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Received Coin ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.receivedCoinID}} </td>
+      </ng-container>
 
-        &lt;!&ndash; Received Coin Column &ndash;&gt;
-        <ng-container matColumnDef="received_coin">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Received Coin </th>
-          <td mat-cell *matCellDef="let row"> {{row.price_change_percentage_24h}}% </td>
-        </ng-container>
+      <!-- Received Coin Amount Column -->
+      <ng-container matColumnDef="receivedAmount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Received Amount </th>
+        <td mat-cell *matCellDef="let row"> {{row.receivedAmount}} </td>
+      </ng-container>
 
-        &lt;!&ndash; Trade Offer Details Column &ndash;&gt;
-        <ng-container matColumnDef="trade_offer_details">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Trade Offer Details </th>
-          <td mat-cell *matCellDef="let row"> {{row.market_cap}} </td>
-        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToTradeOfferDetails(row.id)"></tr>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        &lt;!&ndash; Row shown when there is no matching data. &ndash;&gt;
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-        </tr>
-      </div>-->
-      </div>
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
     </table>
 
-
-
-    <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
 </div>

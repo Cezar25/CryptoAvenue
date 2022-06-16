@@ -17,8 +17,10 @@
             </div>
             <!-- End -->
           </div>
-          <button mat-raised-button (click)="cancel()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Cancel  </button>
-          <button mat-raised-button (click)="createTradeOffer()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm confirm-btn"> Send  </button>
+          <button *ngIf="!isAccepting()" mat-raised-button (click)="cancel()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Cancel  </button>
+          <button *ngIf="!isAccepting()" mat-raised-button (click)="createTradeOffer()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm confirm-btn"> Send  </button>
+          <button *ngIf="isAccepting()" mat-raised-button (click)="deny()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Deny  </button>
+          <button *ngIf="isAccepting()" mat-raised-button (click)="accept()" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm cancel-btn"> Accept  </button>
         </div>
         <!-- End -->
 
