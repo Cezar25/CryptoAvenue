@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
 {
-    public class ConvertCoinsFromUserWalletsHandler : IRequestHandler<ConvertCoinsFromUserWallets>
+    public class ConvertCoinsFromUserWalletsHandler : IRequestHandler<ConvertCoinsFromUserWallets, Wallet>
     {
         private readonly IWalletRepository repository;
 
@@ -19,13 +19,13 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
             this.repository = repository;
         }
 
-        public async Task<Unit> Handle(ConvertCoinsFromUserWallets request, CancellationToken cancellationToken)
+        public Task<Wallet> Handle(ConvertCoinsFromUserWallets request, CancellationToken cancellationToken)
         {
             var soldCoinWallet = repository.GetWalletByIdIncluded(request.WalletId);
 
             if (request.AmountOfSoldCoin > soldCoinWallet.CoinAmount)
             {
-                return Unit.Value;
+                return null;
             }
             else
             {
@@ -62,7 +62,7 @@ namespace CryptoAvenue.Application.CommandHandlers.UserWalletCommandHandlers
                 repository.SaveChanges();
             }
 
-            return Unit.Value;
+            return Task.FromResult(soldCoinWallet);
         }
     }
 }
